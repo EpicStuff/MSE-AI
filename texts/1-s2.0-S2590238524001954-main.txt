@@ -1,0 +1,877 @@
+Article
+ChemOS 2.0: An orchestration architecture for
+chemical self-driving laboratories
+ChemOS 2.0 is a comprehensive laboratory architecture for transforming the
+modern chemistry lab into one that accelera tes the pace of chemical research. This
+new kind of laboratory, known as a self-driving lab (SDL), uses automatedexperimental tools, as well as computational experiment planners, to create fully
+automated workﬂows that require minimal human intervention. ChemOS 2.0
+presents a modular and versatile approach to building one’s own SDL, includingreal-life implementations of this framework.Malcolm Sim, Mohammad Ghazi
+Vakili, Felix Strieth-Kalthoff, ...,Santiago Miret, SergioPablo-Garcı ´a, Ala ´n
+Aspuru-Guzik
+spgarcica@gmail.com (S.P.-G.)
+alan@aspuru.com (A.A.-G.)
+Highlights
+A modular strategy for building a
+self-driving lab for chemicalresearch
+Demonstrative workﬂows based
+on real-world research in materialsdiscovery
+High- and low-level
+implementation of laboratoryhardware/software
+Automated experiment planning
+and execution as well asautomated data collection
+Sim et al., Matter 7, 2959–2977
+September 4, 2024 ª2024 Elsevier Inc. All
+rights reserved.
+https://doi.org/10.1016/j.matt.2024.04.022
+llArticle
+ChemOS 2.0: An orchestration architecture
+for chemical self-driving laboratories
+Malcolm Sim,1,2Mohammad Ghazi Vakili,1,2Felix Strieth-Kalthoff,1,2Han Hao,1,2Riley J. Hickman,1,2,3
+Santiago Miret,4Sergio Pablo-Garcı ´a,1,2,3,9,*and Ala ´n Aspuru-Guzik1,2,3,5,6,7,8,*
+SUMMARY
+Self-driving laboratories (SDLs) , which combine automated experi-
+mental hardware with computational experiment planning, haveemerged as powerful tools for accelerating materials discovery.The intrinsic complexity created by their multitude of components
+requires an effective orchestrat ion platform to ensure the correct
+operation of diverse experimental setups. Existing orchestrationframeworks, however, are either tailored to speciﬁc setups orhave not been implemented for real-world synthesis. To addressthese issues, we introduce ChemOS 2.0, an orchestration architec-ture that efﬁciently coordinate s communication, data exchange,
+and instruction management am ong modular laboratory compo-
+nents. By treating the laboratory as an ‘‘operating system,’’
+ChemOS 2.0 combines ab initio calculations, experimental orches-
+tration, and statistical algorithms to guide closed-loop operations.
+To demonstrate its capabilities, we showcase ChemOS 2.0 in acase study focused on discovering organic laser molecules. The re-sults conﬁrm ChemOS 2.0’s prowess in accelerating materialsresearch and demonstrate its pot ential as a valuable design for
+future SDL platforms.
+INTRODUCTION
+Global humanitarian and ecological challenges have sparked an unprecedented de-
+mand for novel functional materials across d iverse industries, including clean energy
+technologies (renewable energy conversion and energy storage)1as well as medi-
+cine and health care.2Motivated by the urgency of these crises, researchers have
+realized the need to accelerate the often laborious and empirical discovery processof designing, fabricating, and testing new materials.
+Given this need, recent research efforts h ave shown remarkable progress in auto-
+mated experimentation for various steps of the materials discovery cycle, including
+synthesis, formulation and device fabrication, functional characterization, and
+computational simulations. Notable advances in this regard range from early exam-ples of automated bio molecule synthesis,
+3ﬂow chemistry and microﬂuidics for solu-
+tion-phase synthesis,4,5high-throughput experimentation for biological assays or
+reaction screening,6,7to automated systems for fabricating solid-state or thin-ﬁlm
+materials,8,9as well as automated computational tools10‒12and the application of
+big data13for virtual screening. The merger of s uch automation platforms with ad-
+vances from artiﬁcial intelligence (AI) has given rise to the concept of self-driving lab-
+oratories (SDLs): the closed-loop integr ation of data-driven experiment planning
+with automated experiment execution. Suc h autonomous experimentation systemsPROGRESS AND POTENTIAL
+Materials discovery and research
+in the broader ﬁeld of chemistry isa long and arduous process that iscurrently dominated by traditionaltrial-and-error methodologies.
+One solution for accelerating
+chemical research is the pairing ofautomated experimentalworkﬂows with automatedexperiment planning. Thiscombination forms anuninterrupted loop and is knownas a self-driving lab (SDL). Many
+SDLs have been built across the
+world and have showntremendous promise in helpingchemists with their research.However, acceptance of SDLs bythe scientiﬁc community remainshindered by a lack of resources, alack of expertise, and signiﬁcantly
+for this work, a lack of a
+generalized framework forbuilding them (importantly, aframework with concrete, real-world examples). We present ageneral strategy for creating SDLsthat are tailored to mostapplications in chemistry. We
+demonstrate the capabilities of
+this framework via examples thatcombine computational andexperimental tools.
+Matter 7, 2959–2977, September 4, 2024 ª2024 Elsevier Inc. All rights reserved. 2959llhave been successfully demonstrated to address diverse optimization problems in a
+sample-efﬁcient (and thereby time-efﬁcient) manner, signiﬁcantly reducing therequired experimental resources.
+14While early examples have mainly focused on re-
+action condition optimization, recent SDLs have shown the potential to discover newmaterials compositions, e.g. , for quantum dot synthesis,
+15thin-ﬁlm devices,8nano-
+particles,16or solid-state materials.17
+Whereas automated systems have enabled increased throughput and enhancedreproducibility compared with human expe rimentation, their ﬂexibility and recon-
+ﬁgurability has remained limited. While this can be partly attributed to the oftenhuman-centric hardware design, software integration and the dynamic orchestra-tion of automated workﬂows have remained a major challenge in automated lab-oratories. To address this challenge, a range of software solutions such asChemOS,
+18AresOS,19and NIMS-OS,20among others,21‒27have been proposed
+for workﬂow management and hardware integration, with more ambitious ap-
+proaches implementing complete frameworks combining hardware and soft-ware,
+28‒30and standardizing experimental protocols.31However, existing frame-
+works overlook how researchers automate hardware, and do not provide ﬂexiblehuman-robotic integrations or a proper universal framework. Moreover, current
+frameworks do not incorporate Internet of Things (IoT) breakthroughs like fogcomputing, which offer strong data management and storage without relying onremote servers.
+32,33Failing to embrace these cutting-edge technologies is a
+missed opportunity for optimizing SDL performance and making them more usable
+for experimental scientists. Additionally, the disconnect between experimental andcomputational simulations limits many laboratories’ research potential, as it fails tointegrate valuable theoretical insights from computational studies. An idealorchestration framework should tackle all of the aforementioned challenges to pro-mote widespread adoption and continuous improvements of diverse kindsof SDLs.
+Remarkably, the current state of the automated laboratory landscape shows notable
+parallels to the early era of computer development in the 1950s and 1960s, where amultitude of speciﬁc devices, processing units, and workﬂows were developed withlittle ﬂexibility and interoperability. Historically, this has inspired the development ofstandardized, portable operating systems (OSs), which form the backbone of mod-ern computer technology, and have enabled the widespread adoption of computersystems. The UNIX OSs,
+34arguably the most prominent class of operating systems,
+a r eb a s e do nt h r e es i m p l ed e s i g nc o n c e p t s :( 1 )t h ed e v e l o p m e n to fs m a l lf u n c t i o n a l
+units for speciﬁc tasks, (2) the robust interoperation of these units, and (3) their inter-
+communication through plain text streams.35
+B a s e do nt h i sU N I Xp h i l o s o p h y ,w ep r o p o s eC h e m O S2 . 0( Figure 1 ), a versatile,
+adaptable and portable ‘‘operating system’’ for automated laboratories, fosteringa holistic approach to operate and orchestrate various experimental and computa-tional units. Analogous to computational OSs, standardized plain-text communica-tion protocols not only allow for the ﬂexible integration of new software and hard-
+ware units but also enable seamless inte raction with human researchers. At the
+heart of our architecture is the integra tion of a fog computing device, offering
+improved efﬁciency and faster decision-making within the laboratory. Much like atraditional OS kernel, the fog computing de vice manages data, coordinates compo-
+nents, and empowers the lab to operate autonomously. We ﬁrst describe the gen-eral architecture of ChemOS 2.0 along with its main design elements. Second, wed e m o n s t r a t et h ea p p l i c a b i l i t yo fC h e m O S2 . 0i no u ro w nl a b o r a t o r y ,s h o w c a s i n g1Department of Chemistry, University of Toronto,
+Lash Miller Chemical Laboratories, 80 St. GeorgeStreet, Toronto, ON M5S 3H6, Canada
+2Department of Computer Science, University of
+Toronto, Sandford Fleming Building, 40 St.
+George Street, Toronto, ON M5S 2E4, Canada
+3Vector Institute for Artiﬁcial Intelligence, 661
+University Avenue Suite 710, Toronto, ON M5G
+1M1, Canada
+4Intel Labs, 2200 Mission College Boulevard,
+Santa Clara, CA 95054, USA
+5Department of Materials Science & Engineering,
+University of Toronto, 184 College St., Toronto,ON M5S 3E4, Canada
+6Department of Chemical Engineering & Applied
+Chemistry, University of Toronto, 200 College St.,
+Toronto, ON M5S 3E5, Canada
+7Canadian Institute for Advanced Research
+(CIFAR), 661 University Avenue, Toronto, ON
+M5G 1M1, Canada
+8Acceleration Consortium, 80 St. George Street,
+Toronto, ON M5S 3H6, Canada
+9Lead contact
+*Correspondence:
+spgarcica@gmail.com (S.P.-G.),
+alan@aspuru.com (A.A.-G.)
+https://doi.org/10.1016/j.matt.2024.04.022ll
+2960 Matter 7, 2959–2977, September 4, 2024Articlethe full orchestration of a complex materials discovery workﬂow toward novel gain
+materials for organic solid-state lasing devices.
+RESULTS
+Software management
+Meticulous control over the laboratory’s software ecosystem is imperative to
+enhance experimental reproducibility, increase transparency, and mitigate produc-tion failures. As such, achieving complete transparency necessitates stringent man-agement of the software state within a laboratory with dependency conﬂicts due to
+incompatible software versions posing a well-recognized challenge in this regard.
+36
+To address these concerns, the core design of ChemOS 2.0 incorporates an orches-
+tration fog device that runs the necessary software layers for laboratory operationswhile keeping each laboratory modular for s treamlined integration. To ensure repro-
+ducibility, robustness, and seamless deployment, the fog orchestration platform isequipped with NixOS, a declarative package-manager-based (Nix) operating sys-tem known for its ability to provide precise control over system state and softwareAB C
+DEF
+Figure 1. Features and capabilities of ChemOS 2.0
+(A) Web graphical interface to ease the user interaction.(B) Package to ensure full software reproducibility.(C) Bayesian optimizer platform for experimental planning.
+(D) DFT workﬂow manager connected to our high-performance computer cluster to orchestrate ab
+initio DFT experiment.
+(E) SQL database server hosting both ex perimental and simulation databases.
+(F) Communication protocol to control laboratory instruments.
+Modules (A) and (D)–(F) enable the communication layer with external agents.ll
+Matter 7, 2959–2977, September 4, 2024 2961Articleversions.37Nix provides precise control over the system state by enabling an
+accurate selection of software versions and dependencies. Deﬁning local and globalsystem states in NixOS revolves around the use of .nix ﬁles, containing a declarativesystem state recipe. Researchers can use conﬁguration ﬁles to share digital experi-mental environments and deploy pre-conﬁgured OSs on different platforms. Thus,.nix ﬁles are pluggable modules whose add ition or removal will change the state
+of the system. While some of the code may be hardware-speciﬁc, these ﬁles serve
+as a foundation for building unique SDL architectures. In our work, we have prepareda collection of .nix ﬁles containing the environmental state used for our experiments.The conﬁguration code and installation in s t r u c t i o n sc a nb ef o u n di nt h eC h e m O S2 . 0
+repository.
+38
+Data management
+Ameliorating experimental reproducibili ty requires a proper data management plan
+involving the collection of experimental procedures, outcomes, and environment
+metadata from an SDL. Notably, we draw inspiration from the remarkable advance-ments in computational chemistry, where sophisticated data solutions have success-fully ensured reproducibilit y in chemical simulations.
+13,39‒43
+To streamline data management, our orches tration device is equipped with two in-
+dependent relational databases: one for experimental and another for simulationdata. The ﬁrst is designed to store informati on about the laboratory state, including
+raw and processed data and metadata of the instruments, as well as the input and
+output of experimental processes. We im plement this desired modularity in the
+database layout by deﬁning key universal s u b - t a b l e s ,d e v i c e ,j o b ,a n dd e v i c e l o g ,
+and more specialized ones tailored to the needs of each instrument. This conciselayout ensures maximum ﬂexibility and a ro bust architecture for experimental data
+collection that is readily transferable to a ny SDL. A detailed layout of the experi-
+mental database can be found in Note S1 and Figure S1 .O nt h eo t h e rh a n d ,t h e
+simulation database is managed by AiiDA, which provides a well-tested and robust
+design speciﬁcally tailored for simulation orchestration.
+12These databases are not
+only used to keep track of all the data collected in the laboratory, but they also serveas a broker to share data between different devices and software running in the lab-oratory. ChemOS 2.0’s databases can be easily exported and published into special-ized databases to report complete experimental information. As such, we gain amore comprehensive snapshot of the laboratory, encompassing all instructionsexecuted by experimental devices and their corresponding metadata.
+In concluding our data management approach, the choice to implement a relational
+database management system (RDBMS) was guided by its capability for precise datahandling and executing complex queries, crucial for ensuring data integrity in labo-ratory environments. This system’s universal-specialized schema design offers bothbroad lab compatibility and speciﬁc customization options. Although the ﬂexibilityand scalability of NoSQL databases make t hem appealing, especially for managing
+diverse data types in environments where multiple laboratories operate in parallel,they were set aside in favor of RDBMS’s cu rrent suitability. However, as we look to
+the future where rapid response and scalability become paramount in multi-labora-
+tory settings, the integration of NoSQL remains a considered option.
+Device communication
+Enabling seamless communication betwee n hardware and applications is a crucial
+role of an operating system, particularly in the context of SDLs, where applicationscan be likened to chemical procedures with multiple steps. In ChemOS 2.0, thell
+2962 Matter 7, 2959–2977, September 4, 2024Articleinteraction between the system and hardware is facilitated through a core middle-
+ware software unit, operating on the terminals physically connected to the devicesand the local network, as depicted in Figure 2 with the SiLA2 client/server standard
+managing the communications.
+27SiLA2 is speciﬁcally developed for communication
+within laboratories and is a highly ﬂexible option. By contrast, other standards, suchas MQTT or Redis, are primarily designed for lower-data-size communication andare more suited for the IoT rather than laboratory environments. Therefore,SiLA2’s tailored features for laboratory settings give it a distinct advantage overthese alternatives. In our implementation, the instruments themselves are treatedas SiLA2 servers, exposing all their valid actions to the local network, while ourorchestration device acts as a client capable of querying the devices to execute their
+operations. The SiLA2 package comes with a suite of commands that generate,
+deploy, and maintain the available actions of the SiLA2 servers by deﬁning XML ﬁles.Details of using SiLA2 in Python can be found in Note S2 and Figures S2 ,S3,a n d S4.
+A ne x a m p l eX M Lﬁ l ec a nb ef o u n di n Note S3 . In adherence with the third UNIX prin-
+ciple, job ﬁles to the SiLA2 servers are all in a human-readable JSON format for all ofthe instruments (see Note S4 ). The manager component often serves as a device
+driver and commonly includes highly abstracted code capable of executing complex
+A BC D
+Figure 2. Laboratory distribution
+The self-driving lab is orchestrated using ChemOS 2.0, which leverages the SiLA2 client/server
+protocol to control laboratory devices. The client interacts with the servers on the network to access
+available actions. Each server operates as a daemon on the respective computer connected to thelaboratory instrument. In our conﬁguration, device-speciﬁc managers also run as daemons,providing a GUI for user interaction with the instru ment. Communication between the SiLA2 servers
+and managers is facilitated through a computational socket, enabling command transmission via
+ChemOS 2.0 or the GUI. This setup empowers users to command various laboratory instruments:(A) MEDUSA, a robotic organic synthesis platform
+45; (B) Chemspeed, a robotic general synthesis
+platform; (C) an HPLC-MS module for characterizati on; and (D) our custom-built automated optical
+characterization able to characterize lasing properties.Instruments (B)–(D) are physically connecte d, enabling direct transfer of materials.ll
+Matter 7, 2959–2977, September 4, 2024 2963Articleactions. Commercial solutions usually consist of graphical user interfaces (GUIs)
+tailored for individual operations and usually lack an application programming inter-face (API) for direct communication.
+44Consequently, custom software modiﬁcations
+are often required to exert control over these devices. The manager therefore pro-vides a ‘‘workaround’’ for some instruments that are limited by their provided userinterfaces for automation, or a device drive r for more bare-bones/simplistic instru-
+ments. To bridge the communication gap between the (standardized) SiLA2 server
+and the (device-speciﬁc) manager, we implemented a socket server. Although thedecoupling introduced by this connection adds complexity to the code architecture,the socket communication layer acts as a safeguard in case of a loss of connectionduring the execution of sensitive/hazard ous operations. The socket layer also ad-
+dresses the practical need for our researchers to sometimes operate instrumentswithout ChemOS 2.0, and critically, ensure the continued operation of the instru-ment in the event of a loss of connection between ChemOS 2.0 and the instrument.
+A deeper description of the SiLA2 server im plementation and the socket server can
+be found in Notes S5 ,S6,a n d S7and Figures S2 ,S3,a n d S4, respectively. A code
+example of interacting with a SiLA2 server can be found in Note S8 .
+Last, we have successfully deployed the aforementioned middleware unit in our
+experimental laboratory. Figure 2 illustrates our current setup, which includes (1)
+MEDUSA ( Note S9 ), a robotic pump system capable of parallelized synthesis in so-
+lution
+45; (2) Chemspeed platform, an automated robotic framework for parallelized
+synthesis and characterization workﬂows ( Note S10 and Figure S4 )46;( 3 )ah i g h - p e r -
+formance liquid chromatography/ma ss spectrometry (HPLC-MS) device ( Note S11 )
+for compound separation and identiﬁcation; and (4) the custom-built automated op-tical characterization: a ﬂow setup for automated spectroscopy
+46(Note S12 ). The
+available commands for each of the experimental units can be found in Tables S1 ,
+S2,S3,S4,a n d S5. To test the SiLA2 server before deployment, we used ‘‘simula-
+tion’’ versions of the workﬂow managers ( Note S5 ), ensuring minimal interruptions
+of operations while the server is in develo pment. The operations of each instrument
+are controlled by an independent computer connected to the local network.
+We have also explored additional capabilities of our system by successfully inte-
+grating a low-level sensor connected to a Raspberry Pi for real-time monitoring oflaboratory conditions such as humidity and temperature. This integration exem-pliﬁes the adaptability of ChemOS 2.0 to incorporate custom devices, as detailedinNote S13 and Figure S5 . Furthermore, to showcase the system’s parallelization/
+asynchronous potential shown in other SDL setups, we have conducted a simulation
+consisting of two HPLC-MS emulators run concurrently. This setup, conﬁgured to
+work in tandem with the Chemspeed platform, demonstrates efﬁcient asynchronousprocessing of samples, highlighting the ﬂexibility and scalability of the SiLA2 proto-col (Note S14 and Figure S6 ). Together, these tests not only validate the robustness
+and versatility of our communication protocol but also reinforce the capability ofChemOS 2.0 to adapt to diverse and evolving laboratory environments.
+In addition to facilitating communication between devices, a critical aspect of an
+orchestrator is error handling. Our communi cation layer, SiLA2, enhances this safety
+aspect by allowing users to deﬁne and manage custom exceptions. These excep-tions are raised by the server and communicated to the client in the event of an issue,enabling precise and tailored responses to speciﬁc errors. For instance, in the eventof physical instrument failu res, such as a sudden controller crash or communication
+interruptions, the SiLA2 server rapidly communicates the problem to the client. Thistriggers predeﬁned protocols, including alerting laboratory managers and, wherell
+2964 Matter 7, 2959–2977, September 4, 2024Articlepossible, executing coded recovery action s without restarting the entire workﬂow.
+This approach not only ensures operational c ontinuity but also maintains safety stan-
+dards, especially during sensitive or hazardous operations. Additionally, in scenarioswhere data validity is in question, such as readings from HPLC-MS or optical tables,the system is capable of raising alerts for suspected measurement errors. By pro-grammatically integrating lab workﬂows, ChemOS 2.0 unlocks the ability to auto-
+matically detect and troubleshoot experimental data. To validate and demonstrate
+these error-handling capabilities, we have included a detailed simulation case inNote S15 and Figure S7 , showing how ChemOS 2.0 effectively manages and re-
+sponds to various error scenarios. These simulators are faulty and will crash atrandom, allowing ChemOS 2.0 to demonstrate its error-handling capabilities.
+DFT integration
+While experimental laboratories contribute signiﬁcantly to scientiﬁc research, the
+forefront of chemical exploration relies on ab initio simulations to attain profound in-
+sights into complex chemical processes. Many of these simulations, however, comewith substantial computational demands and require specialized external computa-tional facilities for execution. The need for simulations in chemical exploration toimprove the quality and efﬁciency of research makes it crucial to equip ChemOS2.0 with a dedicated unit capable of handling such chemical simulations.
+To tackle the computational challenges and ensure reproducibility, ChemOS 2.0
+embraces the integration of the AiiDA software package.
+12AiiDA plays a critical
+role in automating data transfers between the user’s local environment and thehigh-performance supercomputing cluster. By utilizing the SSH protocol, AiiDA sub-mits calculations to an SLURM queue, retrieves outputs, and stores the results in acentralized database. It also resolves rel evant dependencies between the different
+steps, helping to properly schedule their execution. To ensure reproducibility,AiiDA stores the data and metadata for each step of the workﬂow in the simulationdatabase and provides Python bindings to ease the query. Additionally, AiiDA is
+prepared for distributed computing, enabling efﬁcient utilization of computational
+resources. As a result, lightweight operations such as 3D molecular structuregeneration can be performed locally, while computationally intensive tasks utilizingpackages like ORCA
+47and xtb48can be executed on our high-performance super-
+computing cluster.
+In this work, we leverage the capabilities of AiiDA to create a powerful DFT workﬂow
+for estimating the lasing performance of organic laser molecules. Taking a SMILES
+string as input, the AiiDA-enabled work chain efﬁciently executes the necessary
+calculations, monitors their status, and retrieves critical data related to the lasingperformance. These data are subsequently used in a Bayesian optimizationcampaign, enabling researchers to make informed decisions and advance theirchemical exploration efforts. The workﬂow is depicted in Figure 3 and additional in-
+formation can be found in the methods section.
+Web interface
+ChemOS 2.0 operates as a server-based system, primarily relying on usage via com-
+mand-line interactions. While this approach is well-suited for specialists, it may not
+be the preferred method for chemists who are more accustomed to GUIs.
+To facilitate the adoption of our system, we developed a user-friendly web applica-
+tion interface, empowering any researcher to send experimental jobs easily, monitortheir progress, and analyze the resulting data. This layout is shown in Figure 4 .T h ell
+Matter 7, 2959–2977, September 4, 2024 2965Articleweb application is built using the Streamlit package,49is hosted on the orchestration
+device, and includes a sidebar menu that enables toggling between the available
+devices of the laboratory. Once the user clicks into a tab, the web interface showsthe actions of the device and the inputs needed for their execution. Users canthen upload job ﬁles, visualize and download results, and control the Bayesianoptimizer using the application. Workﬂows involving multiple steps need to becoded in Python using scripts that send commands to the instruments and modules.Moreover, the SiLA2-type system offers a promising approach for implementing ano-code platform, enabling users to deﬁne workﬂows in a more user-friendly
+manner.
+Overall, the introduction of this web applic ation interface signiﬁcantly simpliﬁes the
+usability of our system and enhances its acce ssibility for researchers across diverse
+skill levels. In this work, we have implemented functionality for all the available hard-ware presented in the device communication section. While a full-featured webinterface would enhance the capability of ChemOS 2.0, its development would
+A B
+C
+D
+E
+F
+Figure 3. DFT workﬂow to compute the laser properties
+(A) Building a 3D structure of the molecule from a SMILES string using Open Babel.69
+(B) Searching for the lowest-energy conformer using the crest package.64
+(C) Optimizing the ground state structure and calc ulating the corresponding Hessian of the lowest-
+energy conformer using the xTB-GFN2 semi-empirical Hamiltonian.48
+(D) Evaluating the ground and excited state energi es and gradient of both si nglet and triplet states
+at the time-dependent DFT level using ORCA.47
+(E) Determining the vibrationally coupled absor ption and emission spectra using the vertical
+gradient approximation.(F) Computing a proxy for lasing properties.
+70ll
+2966 Matter 7, 2959–2977, September 4, 2024ArticleA
+B
+Cll
+Matter 7, 2959–2977, September 4, 2024 2967Articlerequire substantial efforts from additi onal ﬁelds and is beyond the scope of this
+study.
+Experimental planner
+Experimental planners are the keystone of SDL, prompting us to equip ChemOS 2.0
+with Atlas,50a package for Bayesian optimization (BO) designed explicitly for exper-
+imental sciences. Atlas is a general-purpos e optimization framework for expensive-
+to-evaluate black-box problems, capable of mixed-parameter and multi-objective
+optimization. Importantly, Atlas incorporates BO concepts particularly relevant to
+chemistry, such as a molecular kernel function,51general experimental parameter
+optimization,52robust optimization,53and asynchronous experimental execu-
+tion.54,55For more information, see Note S16 and Hickman et al.,50where we
+show an additional closed-loop electrochemical campaign orchestrated byChemOS 2.0.
+Experimental campaign
+To demonstrate a proof-of-concept of a fully closed loop of automated experiment
+planning and execution, we designed a mult i-objective campaign for the synthesis of
+Bis[(N -carbazole)styryl]biphenyl (BSBCz) derivatives based on previous work.
+46The
+campaign goals are to simultaneously maximize the experimental gain cross sectionand the simulated lasing gain factor (produced via DFT simulations), involving BO-based experiment planning, automated synthesis, puriﬁcation, and functional char-acterization, as well as simultaneous compu tational simulation via the AiiDA module.
+The search space of potential target molecules in this campaign is deﬁned by
+enumerating all products of a double Suzuki-Miyaura coupling between the MIDAester (MIDA = N-methlyiminodiacetic acid) o f (E)-2-(4-(N-Carbazoly)phenyl)-vinyl-
+1-boronic acid and 38 commercially available dihalides.
+46A detailed synthesis
+s c h e m ec a nb ef o u n di n Figure S8 . This space is navigated by Atlas using a Gaussian
+process surrogate model56with a Tanimoto similarity kernel function.51Initial rec-
+ommendations were genera ted by training the optimizer on two data points from
+the original work. The recommended target molecules are then synthesized and
+characterized experimentally, while spectr oscopic properties are simulated compu-
+tationally through the aforementioned workﬂow. We provide Atlas with the goal ofmaximizing both the simulated spectral gain factor (from the AiiDA workﬂow), as wellas the experimental gain cross section via an equally weighted expected hypervo-lume improvement acquisition function that jointly maximizes all objectives.
+Testing hardware functionality with MEDUSA
+Before creating a fully closed loop, we evaluated the experimental capabilities of our
+setup by performing a human-in-the-loop orchestration test excluding an experi-
+mental planner or DFT simulations. The test i nvolved the synthesis, characterization,
+and measurement of optical properties for a compound recommended by ourexperimental planner.
+The synthesis was performed using MEDUSA. During the test, ChemOS 2.0 directed
+the synthesis of the suggested BSBCz derivative as recommended during the crea-tion of the BO campaign by Atlas. The synthesis instructions were seamlesslyFigure 4. Web application for ChemOS 2.0
+(A) Sidebar for toggling between instruments/features.(B) Job submission for the HPLC-MS.
+(C) Data visualization of the HLPC-MS’s job results.ll
+2968 Matter 7, 2959–2977, September 4, 2024Articlecommunicated to MEDUSA through its SiLA2 server, and real-time data were logged
+in the experimental database.
+Following synthesis, the crude reaction mix ture was manually ﬁltered and transferred
+to the HPLC-MS device for characterization. Puriﬁcation (HPLC-MS) and spectro-scopic characterization (custom-built automated optical characterization platform)
+were controlled by ChemOS 2.0 through SiLA2 commands. The desired product
+was successfully detected by HPLC-MS, and the puriﬁed product underwent down-stream optical property analysis. All data produced during this test can be found inNote S17 .
+Building a closed-loop workﬂow with the Chemspeed platform
+Last, we deployed and executed a closed-loop workﬂow for the synthesis of BSBCz
+derivatives. In addition to orchestrating the experimental component of the
+campaign, we conducted DFT simulations parallel to satisfy the two objectives
+required by the BO campaign (in the experimental planner section). Details can befound in Note S18 and Figure S9 . For the closed-loop case study, we used Chem-
+speed to synthesize the BSBCz derivative. Creating the closed loop encompassedsending the SiLA2 commands to the SiLA2 servers.
+A d d i t i o n a li n f o r m a t i o na b o u tt h ed e s i g no ft h ec a m p a i g nc a nb ef o u n di n Note S19 .
+The results and workﬂow are illustrated in Figure 5 showing the following steps: (1)
+ChemOS 2.0 queries the Atlas Bayesian optimizer with two literature-known ‘‘seed’’observations and receives a recommendation for which BSBCz derivative to synthe-size. (2) Then, it instructs Chemspeed to execute the synthesis. (3) When the reactionis complete, ChemOS 2.0 sends the compounds to the HPLC-MS to detect theproduct in the crude mixture and transfers the puriﬁed BSBCz derivative to thecustom-built automated optical characterization platform. (4) Finally, the opticalcharacterization platform measures sample ﬂuorescence and absorbance spectra
+and the emission lifetime to compute the gain cross section. (5) In parallel to the
+experimental loop, the computational job is sent to the AiiDA daemon to obtainthe simulated spectral gain factor. (6) The results from the two previous steps areused to retrain the Bayesian optimizer and query another candidate. All logging in-formation was stored in the databases using the database architecture described inthe data management section. The experimental gain cross-sectional value was esti-mated experimentally using ﬂuorescence spectra, relative quantum yields, and
+emission rates of the BSBCz derivatives using our automated optical characteriza-
+tion platform. Details of the calculation can be found in previous work.
+46
+In summary, ChemOS 2.0 was able to successfully orchestrate a full SDL loop,
+including manipulation of different inst ruments, an AI experiment planner, and
+stored all output data in an internal database.
+DISCUSSION
+We demonstrate that more general, transferable, and multifaceted SDLs arepossible thanks to central lab orchestration. Building upon its predecessor,ChemOS 2.0 showcases signiﬁcant advancements in automated laboratory systems.Tested in real-world laboratory environments using rigorous state-of-the-art exper-imental methods, it addresses key challenges in orchestrating SDLs. Its enhance-ments include ab initio simulations integration, a versatile communication protocol,
+a middleware layer for instrument control, a modular database, delocalizedll
+Matter 7, 2959–2977, September 4, 2024 2969ArticleA B
+C
+D EFG
+Figure 5. Results saved on ChemOS 2.0 for the synthesis of BSBCz derivatives
+(A) First recommendation candidate made by the experimental planner.
+(B) Simulated ﬂuorescence spectrum of BSBCz derivative produced by DFT workﬂows on ChemOS 2.0.
+(C) Logging information for organic synthesis on Chemspeed.(D) Diode array detector (DAD) chromatogram and (E) extracted ion chromatogram (XIC) plots for the HPLC-MS.(F) Time-correlated single photon counting and absorbance/ﬂuorescence s pectra of the custom-built automated optical characterization platform
+analysis.
+(G) Second recommendation made by the experimental planner based on th e results of (B) and (F). All results and raw data ﬁles are stored in the
+database during the execution of experiments.ll
+2970 Matter 7, 2959–2977, September 4, 2024Articlecomputational resources, a package manager for reproducibility, and a prototype
+web interface for laboratory management. The modular nature of ChemOS 2.0 en-ables laboratories from different ﬁelds to conﬁgure it according to their domain-spe-ciﬁc requirements.
+Following the UNIX philosophy, ChemOS 2.0 a cts an ‘‘operative system,’’ with tools
+and instruments working together to create workﬂows and present data in a human-
+readable format. Unlike monolithic designs in other orchestration conﬁgurations,our approach reﬂects an operating system’s design philosophy, promoting ﬂexibilityand allowing users to easily modify layers and incorporate new features into thesetup, such as new instruments and experiment planners. The database design fol-lows the same principles, allowing users to rapidly add new devices to automatedworkﬂows and data collection schemes usin g a universal-specialized table scheme
+as well as device-speciﬁc additions. Thus, rather than building a framework speciﬁc
+to our setup, we have designed an architec ture amenable to this experimental lab
+along with a diverse set of laboratory settings. Moreover, by employing a centralfog orchestration device as the core of our architecture, we ensure greater robust-ness and adaptability, allowing an autom ated management of laboratory services
+and ensuring software reproducibility.
+One of the remarkable advantages of our modular architecture is its support for ﬂex-
+ible human/robot integration of automated tools. Instead of demanding a complete
+overhaul of laboratory layout and hardware, ChemOS 2.0 allows the automation of
+existing tools and minimally interrupts existing workﬂows. A drastic transformationof existing labs is often impractical, as it disrupts the research activity of academicsand industry professionals. This can discourage them from transitioning to digitiza-tion. ChemOS 2.0 has been designed with a hybrid integration in mind, allowing re-searchers to gradually introduce automation into their workﬂows. Initially, the Nixconﬁguration can be installed on a workstation in the laboratory and later expandedupon. Users can begin by integrating simpl er devices, before ad ding instruments
+one by one to their ChemOS 2.0 ecosystem. While testing connectivity between
+ChemOS 2.0 and the instrument servers, simulators were used instead of the actuallab hardware. As such, the deployment of the SiLA2 servers and testing of the actualhardware was therefore minimized, and regular operations of the laboratory wereminimally interrupted.
+Digitization, including the implementat ion of tools like ChemOS 2.0, represents a
+considerable challenge for many laboratories, as it requires signiﬁcant experience
+in the efﬁcient use and integration of computational resources. We believe this cre-
+a t e st h en e e df o ran e w ,e m e r g i n gr o l ei nr e s e a r c hl a b o r a t o r i e s :a‘ ‘ d i g i t a lm a n a g e r , ’ ’responsible for orchestration, workﬂow assembly, and the integration of new (digi-tal) tools, which we believe will be crucial to the proliferation of SDLs. Moreover,while it is a ﬁnancial barrier for automating many laboratories, we remain optimisticf o rt h ef u t u r eg i v e nt h a tt h ec o s to fa u t o mated tools is steadily decreasing each
+year.
+57Following digital managers and cost, another hurdle may be less straightfor-
+ward to address: the API-type access to automated tools. To aid the proliferation of
+SDLs, manufacturers should comprehensively support the automation of their hard-
+ware, and recognize that in doing so, they can actually encourage more adoption oftheir products by academia, startups, and industry.
+Importantly, our work represents a prototype implementation of the discussed
+design principles, and leaves room for structural reﬁnements and further softwaredevelopment. As SDLs become more prevalent, the connection betweenll
+Matter 7, 2959–2977, September 4, 2024 2971Articleorchestration devices will become a signiﬁc ant consideration, presenting challenges
+related to scalability and cybersecurity. Fu rthermore, the increasing complexity of
+laboratory environments will necessita te the development of more powerful and
+user-friendly interfaces. Graphical interfaces and natural language processing58
+enable users to communicate with the laboratory and coupled with advanced dataanalysis methods, will allow programming -averse users to leverage the features of
+the ChemOS 2.0 platform effectively.
+Conclusions
+In conclusion, this work represents an advancement in promoting the adoption of inno-
+vative digital tools by chemists in their laboratories. The integration of BO, experi-mental techniques, ab initio simulations, and data management within ChemOS 2.0
+uniﬁes automated laboratories to conduct sophisticated workﬂows. Our hybridapproach not only relies on experimental results but also incorporates in-depth sampleanalysis through DFT calculations, enabling comprehensive data-driven research. Theautomation of data collection opens up exciting opportunities for machine learning
+and data science applications in chemistry, fueling accelerated research progress
+and discoveries. Looking ahead, we envision even greater possibilities throughenhanced communication and collaboration among multiple ChemOS 2.0 platforms,fostering seamless cooperation between different laboratories. ChemOS 2.0 lays asolid foundation for designing novel SDLs, making them more modular and robustand making their units transferable. This advancement supposes a step forward inthe quest to revolutionize materials research through streamlined and efﬁcient SDLs.
+EXPERIMENTAL PROCEDURES
+Resource availability
+Lead contact
+Further information and requests for resou rces and reagents should be directed to
+and will be fulﬁlled by the lead contact, Sergio Pablo-Garcı ´a(spgarcica@gmail.com ).
+Materials availability
+This study did not generate new unique reagents.
+Data and code availability
+As a showcase, the results of the DFT calculations have been uploaded to ioChem-
+BD.39,59
+All the code needed for this work can be found in our GitHub repository.38Frozen
+copies of the major ChemOS 2.0 versions can be found on Zenodo: https://www.
+doi.org/10.5281/zenodo.11089654 . Tutorials can also be found to replicate the
+more generalizable parts of this work. The experimental data can also be found inthis repository.
+Closed-loop workﬂow
+The synthesis of BSBCz derivatives was performed using the Chemspeed SWING XL
+automated platform, available at the University of Toronto. For more details of the
+automation manager for the Chemspeed platform, see Note S3 . Automated
+Suzuki-Miyaura couplings were performed f ollowing the general slow-release condi-
+tions reported by Grzybowski, Burke, and coworkers.
+45Synthesis instructions were
+received from the SiLA2 client on ChemOS 2.0. Reactions were performed in theISYNTH reactor under a nitrogen atmosphere, established by ﬁve evacuate-backﬁllcycles. Reactants and reagents were transfe rred as stock solutions in 1,4-Dioxane or
+water, respectively, under a constant str eam of nitrogen, using the 4-Needle liquidll
+2972 Matter 7, 2959–2977, September 4, 2024Articledispensing tool. The reaction mixture was heated to 100/C14C under vortex stirring for
+12 h. The reaction mixture was cooled down to room temperature for 1 h, and thecrude reaction mixture was ﬁltered over a short plug of Celite (using the Solid PhaseExtraction module of the Chemspeed SWING XL platform), eluting with tetrahydro-furan and collecting the eluate. Following communication with the HPLC-MS devicethrough the respective SiLA2 client on ChemOS (see details below), the eluate is
+automatically injected to the HPLC-MS using the on-deck injection valve equipped
+with a sample loop.
+Separation and identiﬁcation in HPLC-MS
+Analysis of crude reaction mixtures and product isolation was performed by HPLC-
+MS on a ThermoFisher system, equipped with a Vanquish HPLC and a QExactivemass spectrometer. Injection to the HPLC-MS system was realized through a six-port injection valve on the deck of the Chemspeed SWING XL platform. Job submis-
+sion and orchestration of operations between the two devices was enabled by
+ChemOS 2.0. Upon submission of a job from ChemOS 2.0 to the HPLC-MS device,an HPLC-MS run is automatically started. After the equilibration stage, ChemOS 2.0can read the ‘‘ready’’ status from the HPLC-MS device and commence the analytetransfer into the sample loop on the Che mspeed SWING XL. Data acquisition on
+the HPLC-MS device is started through an el ectronic trigger sent from the injection
+valve driver on the Chemspeed SWING XL, indicating the exact sample injectiontime. Upon completion of the ﬁrst analysis run, the target compounds are identiﬁed
+by matching peaks in the wavelength-averaged UV/vis chromatogram and their ex-
+tracted ion chromatograms, respectively. The detailed workﬂow for peak identiﬁca-tion is described in previous work.
+46All analysis results are stored on ChemOS 2.0. In
+case of successful detection of the desired reaction product, a second HPLC-MS runis initialized by ChemOS 2.0, following the workﬂow detailed above. In this case, thefraction containing the desired product is automatically collected using a down-stream selection valve and is used for spectroscopic characterization (see below).
+Custom-built automated optical characterization
+The collected sample is automatically characterized in the spectroscopic workﬂow
+described in Note S5 , orchestrated by ChemOS 2.0. Upon successful completion
+of the HPLC-MS run and automated fraction collection, spectroscopic analysis canbe initiated from ChemOS 2.0. On the custom -built device, the sample is transferred
+to different ﬂow cuvettes using a syringe pump. Steady-state absorption spectra arerecorded using a white-light lamp (Ocian Insight DH-MINI) combined with a spec-trometer (Ocean Insight, QEPro XR). Steady-state emission spectra were recorded
+on the same spectrometer using a 365-nm solid-state LED (Thorlabs, M365FP1
+with DC4100HUB) as the excitation source. Quantum yields were determined byintegration of the emission spectrum, while simultaneously recording the excitationtransmission using a photodetector (Thorlabs, S120VC with PM100D). Quantumyields were referenced to a pre-measured sample of 4,4
+0-Bis[(N-carbazole)styryl]
+biphenyl ( 4= 0.89 in toluene).60Time-resolved emission spectra were recorded
+using time-correlated single-photon co unting (PicoQuant TimeHarp 260 board)
+after excitation with a picosecond-pulsed laser (PicoQuant, LDH-D-C-375 with
+PL800-D), and the corresponding lifetimes were obtained by exponential ﬁtting. De-
+tails on the data analysis workﬂow are described in Wu et al.46Upon completion of
+the analysis workﬂow, all analysis result s are automatically stored on ChemOS 2.0.
+MEDUSA
+MEDUSA is a synthetic platform developed from ‘‘The Machine,’’45consisting of sy-
+ringe pumps and selection valves connected by tubing and further to solution andll
+Matter 7, 2959–2977, September 4, 2024 2973Articlereaction vials and N 2supply. The atmosphere handling was performed by inserting
+drawing gas from heal-space of vials solution consistently reﬁlling N 2and purge sy-
+ringe connect to exhaust. The automated ligand transfer was performed by washingthe syringe with desired solution by pumping from the source and dispensing towaste, followed by drawing a certain amou nt and dispensing to the destination
+vial. Finally, ﬂushing required drawing N
+2and ﬂushing tubing content to destination.
+Each hardware execution was recorded and streamed as standard output. A ﬁnal exit
+message was sent at the completion of the experiment.
+Computational procedures
+All SiLA2 servers were constructed using the Python implementation of the SiLA2
+0.10.1 communication standard. The SiLA2 servers operate in a separate threadon the computers that control the driver for the instruments in the lab. Communica-tion between the SiLA2 server and the instrument on the local computer is accom-
+plished using either socket connections or via status folders and ﬁles. Meanwhile,
+all communication between the local instrument and other devices on the networkis only done via the SiLA2 server.
+ChemOS 2.0 uses NixOS 22.11 conﬁguratio n ﬁles. Using this conﬁguration ﬁle will
+produce an identical shell on any Linux device that has NixOS installed. The exper-imental database was constructed using SQLalchemy 1.4.41,
+61and the simulation
+database was built by AiiDA.12Both databases use PostGreSQL 14.6 as the back-
+end. Interaction with the database on ChemOS 2.0 is accomplished through the
+use of psycopg2 2.9.5.62All storage of data in the database is done automatically
+through Python scripts executed on ChemOS 2.0. Connecting ChemOS 2.0 to theother devices (SiLA2 servers) in the lab is ea sy and straightforward. One has to create
+a client Python object and initialize it usi ng the IP address and port of the targeted
+SiLA2 server. Afterward, one can send any of the available commands to the SiLA2server (the instrument), which are repres ented as methods of the SilaCLient object.
+Calling a method of the client object returns a SiLA2 command instance. If a com-
+mand is observable, it is possible to subscribe to the command and receive a stream
+of information as the command is executing. It is through this mechanism that outputdata from the instruments is streamed to the fog server.
+Tracking the progress of experimental campaigns with Atlas 0.0.0 is accomplished
+by using Olympus 0.0.1b0,
+63a benchmarking framework for BO. Using Olympus’
+Campaign object, we can keep track of the search space and previous observa-tions over the course of the optimization. To use the Atlas SiLA2 server, The
+Olympus Campaign object is passed to the optimizer and ultimately to Atlas,
+which uses the observations attribute of the Campaign as input for suggestingnew parameters. Saving the campaign state as a .pkl ﬁle is one way to trackeach successive step of the experiments. The Atlas SiLA2 server returns a param-e t e rv e c t o r ,w h i c hc a nt h e nb ea d d e dt ot h eC a m p a i g na n du s e dt oa u t o m a t et h enext round of experiments.
+Density functional theory
+Generation of molecular conformers was performed using crest 2.11.1.
+64Semi-
+empirical geometry optimization and frequency calculations of S0 and T1 structureswere performed at gfn2-xtb level of theory using xtb 6.4.1.
+48DFT geometry optimi-
+zation and frequency calculations of S0 structure were performed with the ORCA5.0.4 package,
+47at PBE0-D3/Def2-SV(P) level of theory. TD-DFT single-point and
+gradient calculations were performed with the ORCA 5.0.4 package, at PBE0-D3/Def2-SV(P) level of theory, with Tamm-Dancoff approximation.
+65‒67The totalll
+2974 Matter 7, 2959–2977, September 4, 2024Articleelectronic energies of S0, S1-S5, and T1-T5 and the gradients of S0, S1-S3, and T1-
+T3 were computed at the DFT-optimized S0 structure. AiiDA 2.4.0 and AiiDA-shell0.5.3 were used for workﬂow orchestration.
+12,68
+SUPPLEMENTAL INFORMATION
+Supplemental information can be found online at https://doi.org/10.1016/j.matt.
+2024.04.022 .
+ACKNOWLEDGMENTS
+This material is based upon work supported by the U.S. Department of Energy, Of-
+ﬁce of Science, subaward by University of Minnesota, project title ‘‘Development ofMachine Learning and Molecular Simulat ion Approaches to Accelerate the Discov-
+ery of Porous Materials for Energy-Relevant Applications,’’ under award numberDE-SC0023454 (UMN subaward A010026303) A.A.-G. acknowledges supportfrom the Canada 150 Research Chairs Program as well as Anders G. Fro ¨seth. Com-
+putations were performed on the Niagara supercomputer at the SciNet HPC Con-
+sortium. SciNet is funded by the Canada Foundation for Innovation. M.S. acknowl-
+edges tremendous support from the Ontario Student Assistance Program’sOntario Graduate Scholarship, the Gove rnment of Ontario, Ontario Research
+Fund - Research Excellence, and the University of Toronto.
+AUTHOR CONTRIBUTIONS
+M.S., software, methodology, investigation, writing original draft. M.G.V., method-ology, writing, conceptualization, architecture design. F.S.-K., preparation of exper-imental workﬂows, writing review and editing. H.H., preparation of simulation and
+experimental workﬂows. R.J.H., implementation of the experiment planner, writing
+review and editing. S.M., conceptualization, writing review and editing. S.P.-G.,methodology, writing, conceptualization, supervision. A.A.-G., conceptualization,funding acquisition, supervision, project. a dministration, writing review and editing.
+DECLARATION OF INTERESTS
+A.A.-G is a founder of Kebotix, Inc., and Intrepid Labs, Inc.
+Received: August 24, 2023
+Revised: January 31, 2024
+Accepted: April 16, 2024Published: May 14, 2024
+REFERENCES
+1. Helm, D. (2012). The Kyoto approach has failed.
+Nature 491, 663–665. https://doi.org/10.1038/
+491663a .
+2. Wouters, O.J., McKee, M., and Luyten, J.
+(2020). Estimated Research and DevelopmentInvestment Needed to Bring a New
+Medicine to Market, 2009-2018. JAMA 323,
+844–853. https://doi.org/10.1001/jama.
+2020.1166 .
+3. Merriﬁeld, R.B., and Stewart, J.M. (1965).
+Automated peptide synthesis. Nature 207,
+522–523. https://doi.org/10.1038/207522a0 .
+4. Be ´dard, A.C., Adamo, A., Aroh, K.C., Russell,
+M.G., Bedermann, A.A., Torosian, J., Yue, B.,Jensen, K.F., and Jamison, T.F. (2018).
+Reconﬁgurable system for automatedoptimization of diverse chemical reactions.
+Science 361, 1220–1225. https://doi.org/10.
+1126/science.aat0650 .
+5. Hartrampf, N., Saebi, A., Poskus, M., Gates,
+Z.P., Callahan, A.J., Cowfer, A.E., Hanna, S.,Antilla, S., Schissel, C.K., Quartararo, A.J.,
+et al. (2020). Synthesis of proteins by
+automated ﬂow chemistry. Science 368,
+980–987. https://doi.org/10.1126/science.
+abb2491 .
+6. Macarron, R., Banks, M.N., Bojanic, D., Burns,
+D.J., Cirovic, D.A., Garyantes, T., Green, D.V.S.,
+Hertzberg, R.P., Janzen, W.P., Paslay, J.W.,
+et al. (2011). Impact of high-throughput
+screening in biomedical research. Nat. Rev.Drug Discov. 10, 188–195. https://doi.org/10.
+1038/nrd3368 .7. Santanilla, A.B., Regalado, E.L., Pereira, T.,
+Shevlin, M., Bateman, K., Campeau, L.-C.,
+Schneeweis, J., Berritt, S., Shi, Z.-C., et al.
+(2015). Nanomole-scale high-throughput
+chemistry for the synthesis of complexmolecules. Science 347, 49–53. https://doi.org/
+10.1126/science.1259203 .
+8. MacLeod, B.P., Parlane, F.G.L., Morrissey, T.D.,
+Ha¨se, F., Roch, L.M., Dettelbach, K.E., Moreira,
+R., Yunker, L.P.E., Rooney, M.B., Deeth, J.R.,et al. (2020). Self-driving laboratory for
+accelerated discovery of thin-ﬁlm materials.
+Sci. Adv. 6, eaaz8867. https://doi.org/10.1126/
+sciadv.aaz8867 .
+9. Kusne, A.G., Yu, H., Wu, C., Zhang, H., Hattrick-
+Simpers, J., DeCost, B., Sarker, S., Oses, C.,
+Toher, C., Curtarolo, S., et al. (2020). On-the-ﬂyll
+Matter 7, 2959–2977, September 4, 2024 2975Articleclosed-loop materials discovery via Bayesian
+active learning. Nat. Commun. 11, 5966.
+https://doi.org/10.1038/s41467-020-19597-w .
+10. Jain, A., Ong, S.P., Chen, W., Medasani, B., Qu,
+X., Kocher, M., Brafman, M., Petretto, G.,
+Rignanese, G., Hautier, G., et al. (2015).
+Fireworks: a dynamic workﬂow system
+designed for high -throughput applications.
+Concurr. Comput. 27, 5037–5059. https://doi.
+org/10.1002/cpe.3505 .
+11. Mo ¨lder, F., Jablonski, K.P., Letcher, B., Hall,
+M.B., Tomkins-Tinch, C.H., Sochat, V., Forster,
+J., Lee, S., Twardziok, S.O., Kanitz, A., et al.
+(2021). Sustainable data analysis with
+Snakemake. F1000Res. 10, 33. https://doi.org/
+10.12688/f1000research.29032.1 .
+12. Huber, S.P., Zoupanos, S., Uhrin, M., Talirz, L.,
+Kahle, L., Ha ¨uselmann, R., Gresch, D., Mu ¨ller,
+T., Yakutovich, A.V., Andersen, C.W., et al.
+(2020). AiiDA 1.0, a scalable computational
+infrastructure for automated reproducibleworkﬂows and data provenance. Sci. Data 7,
+300. https://doi.org/10.1038/s41597-020-
+00638-4 .
+13. Bo, C., Maseras, F., and Lo ´pez, N. (2018). The
+role of computational results databases inaccelerating the discovery of catalysts. Nat.
+Catal. 1, 809–810. https://doi.org/10.1038/
+s41929-018-0176-4 .
+14. Stach, E., DeCost, B., Kusne, A.G., Hattrick-
+Simpers, J., Brown, K.A., Reyes, K.G., Schrier,
+J., Billinge, S., Buonassisi, T., Foster, I., et al.
+(2021). Autonomous experimentation systemsfor materials development: a community
+perspective. Matter 4, 2702–2726. https://doi.
+org/10.1016/j.matt.2021.06.036 .
+15. Abdel-Latif, K., Epps, R.W., Bateni, F., Han, S.,
+Reyes, K.G., and Abolhasani, M. (2021). Self-Driven Multistep Quantum Dot Synthesis
+Enabled by Autonomous Robotic
+Experimentation in Flow. Adv. Intell. Syst. 3,
+2000245. https://doi.org/10.1002/aisy.
+202000245 .
+16. Tao, H., Wu, T., Kheiri, S., Aldeghi, M., Aspuru-
+Guzik, A., and Kumacheva, E. (2021). Self-
+Driving Platform for Metal Nanoparticle
+Synthesis: Combining Microﬂuidics and
+Machine Learning. Adv. Funct. Mater. 31,
+2106725. https://doi.org/10.1002/adfm.
+202106725 .
+17. Li, J., Li, J., Liu, R., Tu, Y., Li, Y., Cheng, J., He, T.,
+and Zhu, X. (2020). Autonomous discovery of
+optically active chiral inorganic perovskite
+nanocrystals through an intelligent cloud lab.
+Nat. Commun. 11, 2046. https://doi.org/10.
+1038/s41467-020-15728-5 .
+18. Roch, L.M., Ha ¨se, F., Kreisbeck, C., Tamayo-
+Mendoza, T., Yunker, L.P.E., Hein, J.E., and
+Aspuru-Guzik, A. (2020). ChemOS: Anorchestration software to democratizeautonomous discovery. PLoS One 15,
+e0229862. https://doi.org/10.1371/journal.
+pone.0229862 .
+19. Deneault, J.R., Chang, J., Myung, J., Hooper,
+D., Armstrong, A., Pitt, M., and Maruyama, B.(2021). Toward autonomous additive
+manufacturing: Bayesian optimization on a 3D
+printer. MRS Bull. 46, 566–575. https://doi.org/
+10.1557/s43577-021-00051-1 .20. Tamura, R., Tsuda, K., and Matsuda, S. (2023).
+NIMS-OS: an automation software to
+implement a closed loop between artiﬁcial
+intelligence and robotic experiments in
+materials science. Sci. Technol. Adv. Mater. 3,
+2232297. https://doi.org/10.1080/27660400.
+2023.2232297 .
+21. Kusne, A.G., and McDannald, A. (2023).
+Scalable multi-agent lab framework for lab
+optimization. Matter 6, 1880–1893. https://doi.
+org/10.1016/j.matt.2023.03.022 .
+22. Rahmanian, F., Flowers, J., Guevarra, D.,
+Richter, M., Fichtner, M., Donnely, P., Gregoire,
+J.M., and Stein, H.S. (2022). Enabling modular
+autonomous feedback -loops in materials
+science through hierarchical experimental
+laboratory automation and orchestration. Adv.
+Mater. Interfaces 9, 2101987. https://doi.org/
+10.1002/admi.202101987 .
+23. Maffettone, P.M., Campbell, S., Hanwell, M.D.,
+Wilkins, S., and Olds, D. (2022). Delivering real-
+time multi-modal materials analysis with
+enterprise beamlines. Cell Rep. 3, 101112.
+https://doi.org/10.1016/j.xcrp.2022.101112 .
+24. Fitzpatrick, D.E., Maujean, T., Evans, A.C., and
+Ley, S.V. (2018). Across-the-world automated
+optimization and continuous-ﬂow synthesis of
+pharmaceutical agents operating through a
+cloud-based server. Angew. Chem. Int. Ed. 57,
+15128–15132. https://doi.org/10.1002/anie.
+201809080 .
+25. Fitzpatrick, D.E., Battilocchio, C., and Ley, S.V.
+(2016). A Novel Internet-Based Reaction
+Monitoring, Control and Autonomous Self-
+Optimization Platform for Chemical Synthesis.Org. Process. Res. Dev. 20, 386–394. https://
+doi.org/10.1021/acs.oprd.5b00313 .
+26. Leong, C.J., Low, K.Y.A., Recatala-Gomez, J.,
+Quijano Velasco, P., Vissol-Gaudin, E., Tan,
+J.D., Ramalingam, B., Made, R.I., Pethe, S.D.,
+Sebastian, S., et al. (2022). An object-oriented
+framework to enable workﬂow evolution acrossmaterials acceleration platforms. Matter 5,
+3124–3134. https://doi.org/10.1016/j.matt.
+2022.08.017 .
+27. Bromig, L., Leiter, D., Mardale, A.-V., von den
+Eichen, N., Bieringer, E., and Weuster-Botz, D.(2022). The SiLA 2 Manager for rapid device
+integration and workﬂow automation.
+SoftwareX 17, 100991. https://doi.org/10.1016/
+j.softx.2022.100991 .
+28. Manzano, J.S., Hou, W., Zalesskiy, S.S., Frei, P.,
+Wang, H., Kitson, P.J., and Cronin, L. (2022). An
+autonomous portable platform for universalchemical synthesis. Nat. Chem. 14
+, 1311–1318.
+https://doi.org/10.1038/s41557-022-01016-w .
+29. Rohrbach, S., /C20Siau/C20ciulis, M., Chisholm, G.,
+Pirvan, P.-A., Saleeb, M., Mehr, S.H.M.,
+Trushina, E., Leonov, A.I., Keenan, G., Khan, A.,
+et al. (2022). Digitization and validation of a
+chemical synthesis literature database in theChemPU. Science 377, 172–180. https://doi.
+org/10.1126/science.abo0058 .
+30. Fakhruldeen, H., Pizzuto, G., Glowacki, J., and
+Cooper, A.I. (2022). ARChemist: Autonomous
+Robotic Chemistry System Architecture. In2022 International Conference on Robotics and
+Automation (ICRA) (IEEE), pp. 6013–6019.
+https://doi.org/10.1109/ICRA46639.2022.
+9811996 .31. Steiner, S., Wolf, J., Glatzel, S., Andreou, A.,
+Granda, J.M., Keenan, G., Hinkley, T., Aragon-
+Camarasa, G., Kitson, P.J., Angelone, D., and
+Cronin, L. (2019). Organic synthesis in a
+modular robotic system driven by a chemical
+programming language. Science 363,
+eaav2211. https://doi.org/10.1126/science.
+aav2211 .
+32. Shi, W., Cao, J., Zhang, Q., Li, Y., and Xu, L.
+(2016). Edge computing: Vision and
+challenges. IEEE Internet Things J. 3, 637–646.
+https://doi.org/10.1109/JIOT.2016.2579198 .
+33. Yi, S., Hao, Z., Qin, Z., and Li, Q. (2015). Fog
+Computing: Platform and Applications. In 2015
+Third IEEE Workshop on Hot Topics in WebSystems and Technologies (HotWeb) (IEEE),
+pp. 73–78. https://doi.org/10.1109/HotWeb.
+2015.22 .
+34. Ritchie, D.M., and Thompson, K. (1974). The
+UNIX time-sharing system. Commun. ACM 17,
+365–375. https://doi.org/10.1145/361011.
+361061 .
+35.Raymond, E.S. (2003). The Art of UNIX
+Programming (Addison-Wesley Educational) .
+36. Wilkinson, M.D., Dumontier, M., Aalbersberg,
+I.J.J., Appleton, G., Axton, M., Baak, A.,
+Blomberg, N., Boiten, J.-W., da Silva Santos,
+L.B., Bourne, P.E., et al. (2016). The fair guiding
+principles for scientiﬁc data management and
+stewardship. Sci. Data 3, 160018. https://doi.
+org/10.1038/sdata.2016.18 .
+37. Dolstra, E., and Lo ¨h, A. (2008). NixOS: a purely
+functional Linux distribution. In Proceedings ofthe 13th ACM SIGPLAN international
+conference on Functional programming (ICFP
+’08) (Association for Computing Machinery),
+pp. 367–378. https://doi.org/10.1145/1411204.
+1411255 .
+38. Sim, M. (2023). ChemOS 2.0 (University of
+Toronto). https://github.com/
+malcolmsimgithub/ChemOS2.0 .
+39. A ´lvarez-Moreno, M., de Graaf, C., Lo ´pez, N.,
+Maseras, F., Poblet, J.M., and Bo, C. (2015).
+Managing the computational chemistry big
+data problem: the ioChem-BD platform.
+J. Chem. Inf. Model. 55, 95–103. https://doi.
+org/10.1021/ci500593j
+.
+40. Berman, H.M., Westbrook, J., Feng, Z.,
+Gilliland, G., Bhat, T.N., Weissig, H.,
+Shindyalov, I.N., and Bourne, P.E. (2000). The
+protein data bank. Nucleic Acids Res. 28,
+235–242. https://doi.org/10.1093/nar/28.1.235 .
+41. Jain, A., Ong, S.P., Hautier, G., Chen, W.,
+Richards, W.D., Dacek, S., Cholia, S., Gunter,
+D., Skinner, D., Ceder, G., and Persson, K.A.
+(2013). Commentary: the materials project: amaterials genome approach to accelerating
+materials innovation. Apl. Mater. 1, 011002.
+https://doi.org/10.1063/1.4812323 .
+42. Chanussot, L., Das, A., Goyal, S., Lavril, T.,
+Shuaibi, M., Riviere, M., Tran, K., Heras-
+Domingo, J., Ho, C., Hu, W., et al. (2021). Open
+catalyst 2020 (OC20) dataset and community
+challenges. ACS Catal. 11, 6059–6072. https://
+doi.org/10.1021/acscatal.0c04525 .
+43. Miret, S., Lee, K.L.K., Gonzales, C., Nassar, M.,
+and Spellings, M. (2023). The open MatSci ML
+toolkit: A ﬂexible framework for machine
+learning in materials science. Preprint atll
+2976 Matter 7, 2959–2977, September 4, 2024ArticleOpenReview. Trans. Mach. Learn. Res. https://
+openreview.net/forum?id=QBMyDZsPMd .
+44. Seifrid, M., Pollice, R., Aguilar-Granda, A.,
+Morgan Chan, Z., Hotta, K., Ser, C.T., Vestfrid,
+J., Wu, T.C., and Aspuru-Guzik, A. (2022).
+Autonomous Chemical Experiments:
+Challenges and Perspectives on Establishing a
+Self-Driving Lab. Acc. Chem. Res. 55, 2454–
+2466. https://doi.org/10.1021/acs.accounts.
+2c00220 .
+45. Li, J., Ballmer, S.G., Gillis, E.P., Fujii, S.,
+Schmidt, M.J., Palazzolo, A.M.E., Lehmann,
+J.W., Morehouse, G.F., and Burke, M.D. (2015).
+Synthesis of many different types of organicsmall molecules using one automated process.
+Science 347, 1221–1226. https://doi.org/10.
+1126/science.aaa5414 .
+46. Wu, T.C., Aguilar-Granda, A., Hotta, K.,
+Yazdani, S.A., Pollice, R., Vestfrid, J., Hao, H.,
+Lavigne, C., Seifrid, M., Angello, N., et al.
+(2023). A Materials Acceleration Platform for
+Organic Laser Discovery. Adv. Mater. 35,
+2207070. https://doi.org/10.1002/adma.
+202207070 .
+47. Neese, F., Wennmohs, F., Becker, U., and
+Riplinger, C. (2020). The ORCA quantum
+chemistry program package. J. Chem. Phys.
+152, 224108. https://doi.org/10.1063/5.
+0004608 .
+48. Bannwarth, C., Caldeweyher, E., Ehlert, S.,
+Hansen, A., Pracht, P., Seibert, J., Spicher, S.,
+and Grimme, S. (2020). Extended tight -binding
+quantum chemistry methods. WIREs Comput.Mol. Sci. 11, e1493. https://doi.org/10.1002/
+wcms.1493 .
+49. Snowﬂake (2024). Streamlit (Snowﬂake Inc.).
+https://streamlit.io .
+50. Hickman, R., Sim, M., Pablo-Garcı ´a, S.,
+Woolhouse, I., Hao, H., Bao, Z., Bannigan, P.,
+Allen, C., Aldeghi, M., and Aspuru-Guzik, A.
+(2023). Atlas: A brain for self-driving
+laboratories. Preprint at ChemRxiv. https://doi.
+org/10.26434/chemrxiv-2023-8nrxx .
+51. Grifﬁths, R.-R., Klarner, L., Moss, H.B., Ravuri,
+A., Truong, S., Stanton, S., Tom, G., Rankovic,
+B., Du, Y., Jamasb, A., et al. (2023). GAUCHE: A
+Library for Gaussian Processes in Chemistry.Preprint at arXiv. https://doi.org/10.48550/
+arXiv.2212.04450 .52. Angello, N.H., Rathore, V., Beker, W., Wołos,
+A., Jira, E.R., Roszak, R., Wu, T.C., Schroeder,
+C.M., Aspuru-Guzik, A., Grzybowski, B.A., and
+Burke, M.D. (2022). Closed-loop optimization
+of general reaction conditions for heteroaryl
+Suzuki-Miyaura coupling. Science 378,
+399–405. https://doi.org/10.1126/science.
+adc8743 .
+53. Aldeghi, M., Ha ¨se, F., Hickman, R.J., Tamblyn,
+I., and Aspuru-Guzik, A. (2021). Golem: an
+algorithm for robust experiment and processoptimization. Chem. Sci. 12, 14792–14807.
+https://doi.org/10.1039/D1SC01545A .
+54.Ginsbourger, D., Janusevskis, J., and Riche,
+R.L. (2011). Dealing with asynchronicity in
+parallel Gaussian Process based global
+optimization. In Conference of the ERCIM WG
+on Computing and Statistics (HAL), pp. hal-
+00507632 .
+55.Desautels, T., Krause, A., and Burdick, J.W.
+(2014). Parallelizing exploration-exploitationtradeoffs in Gaussian process bandit
+optimization. J. Mach. Learn. Res. 15,
+4053–4103 .
+56.Rasmussen, C.E., and Williams, C.K.I. (2006).
+Gaussian Processes for Machine Learning (MITPress) .
+57. MacLeod, B.P., Parlane, F.G.L., Brown, A.K.,
+Hein, J.E., and Berlinguette, C.P. (2022).
+Flexible automation accelerates materials
+discovery. Nat. Mater. 21, 722–726. https://doi.
+org/10.1038/s41563-021-01156-3 .
+58. Bran, A.M., Cox, S., White, A.D., and Schwaller,
+P. (2023). Chemcrow: Augmenting large-
+language models with chemistry tools. Preprint
+at arXiv. https://doi.org/10.48550/arXiv.2304.
+05376 .
+59. Pablo-Garcı ´a, S. and Sim, M. ChemOS 2.0 DFT
+database. Version 1.0 (ioChem-BD). 10.19061/
+iochem-bd-10-1
+60. Oyama, Y., Mamada, M., Shukla, A., Moore,
+E.G., Lo, S.-C., Namdas, E.B., and Adachi, C.
+(2020). Design Strategy for Robust Organic
+Semiconductor Laser Dyes. ACS Mater. Lett. 2,
+161–167. https://doi.org/10.1021/
+acsmaterialslett.9b00536 .
+61.Bayer, M. (2012). SQLAlchemy. In The
+Architecture of Open Source ApplicationsVolume II: Structure, Scale, and a Few More
+Fearless Hacks, A. Brown and G. Wilson, eds.
+(Brown & Wilson), pp. 291–315 .
+62. Di Gregorio, F., and Varrazzo, D.; The Psycopg
+Team (2021). Psycopg2 – PostgreSQL database
+adapter for Python. https://www.psycopg.org/
+docs/ .
+63. Ha ¨se, F., Aldeghi, M., Hickman, R.J., Roch,
+L.M., Christensen, M., Liles, E., Hein, J.E., andAspuru-Guzik, A. (2021). Olympus: a
+benchmarking framework for noisy
+optimization and experiment planning. Mach.
+Learn. Sci. Technol. 2, 035021. https://doi.org/
+10.1088/2632-2153/abedc8 .
+64. Pracht, P., Bohle, F., and Grimme, S. (2020).
+Automated exploration of the low-energy
+chemical space with fast quantum chemical
+methods. Phys. Chem. Chem. Phys. 22, 7169–
+7192. https://doi.org/10.1039/c9cp06869d .
+65. Adamo, C., and Barone, V. (1999). Toward
+reliable density functional methods without
+adjustable parameters: The PBE0 model.
+J. Chem. Phys. 110, 6158–6170. https://doi.org/
+10.1063/1.478522 .
+66. Weigend, F., and Ahlrichs, R. (2005). Balanced
+basis sets of split valence, triple zeta valenceand quadruple zeta valence quality for H to Rn:
+Design and assessment of accuracy. Phys.
+Chem. Chem. Phys. 7, 3297–3305. https://doi.
+org/10.1039/B508541A .
+67. Grimme, S., Ehrlich, S., and Goerigk, L. (2011).
+Effect of the damping function in dispersion
+corrected density functional theory. J. Comput.Chem. 32, 1456–1465. https://doi.org/10.1002/
+jcc.21759 .
+68. Huber, S.P. (2022). aiida-shell (E ´cole
+Polytechnique Fe ´de´rale de Lausanne). https://
+github.com/sphuber/aiida-shell .
+69. O’Boyle, N.M., Banck, M., James, C.A., Morley,
+C., Vandermeersch, T., and Hutchison, G.R.
+(2011). Open Babel: an open chemical toolbox.J. Cheminform. 3, 33. https://doi.org/10.1186/
+1758-2946-3-33 .
+70. de Souza, B., Neese, F., and Izsa ´k, R. (2018). On
+the theoretical prediction of ﬂuorescence rates
+from ﬁrst principles using the path integralapproach. J. Chem. Phys. 148, 034104. https://
+doi.org/10.1063/1.5010895 .ll
+Matter 7, 2959–2977, September 4, 2024 2977Article
