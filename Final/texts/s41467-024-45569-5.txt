@@ -1,0 +1,353 @@
+Perspective https://doi.org/10.103 8/s41467-024-45569-5
+Performance metrics to unleash the power of
+self-driving labs in chemistry and materialsscience
+Amanda A. Volk1& Milad Abolhasani1
+With the rise of self-driving labs (SDLs ) and automated experimentation across
+chemical and materials sciences, there is a considerable challenge in designingthe best autonomous lab for a given problem based on published studiesalone. Determining what digital and p hysical features are germane to a speci ﬁc
+study is a critical aspect of SDL design that needs to be approached quanti-tatively. Even when controlling for features such as dimensionality, everyexperimental space has unique req uirements and challenges that in ﬂuence the
+design of the optimal physical platform and algorithm. Metrics such as opti-
+mization rate are therefore not necessa rily indicative of the capabilities of an
+SDL across different studies. In this perspective, we highlight some of thecritical metrics for quantifying p erformance in SDLs to better guide
+researchers in implementing the most suitable strategies. We then provide ab r i e fr e v i e wo ft h ee x i s t i n gl i t e rature under the lens of quanti ﬁed performance
+as well as heuristic recommendations for platform and experimental space
+pairings.
+Self-driving labs (SDLs) are a rapidly growing ﬁeld that offers
+incredible potential in improving the rate and scope of research inchemistry and materials science.
+1SDLs are novel tools that incor-
+porate automated experimental work ﬂows (physical world) with
+algorithm-selected experimental parameters (digital world). Suchautonomous experimentation tools can navigate complex and
+exponentially expanding reaction spaces with an ef ﬁciency unac-
+hievable through human-led manual experimentation, therebyallowing researchers to explore larger and more complicatedexperimental systems. At their highest degree of autonomy, theefﬁciency of SDLs can be derived from continuous, automated
+experimentation, which includes model retraining between eachexperiment. Such models can navigate and learn complex parameterspaces at a higher ef ﬁciency than the traditional design of experi-
+ment (DOE) approaches. These bene ﬁts thereby enable the dis-
+covery and optimization of novel and improved materials andmolecules, as well as effective ways to manufacture them at scale.Due to the nascency of the SDL ﬁeld in chemistry and materials
+science, the wide range of potential reaction space complexities,
+and the diversity of SDLs applied in literature, there is a need forsystem standards which de ﬁne the criteria necessary for a system
+to qualify as autonomous or high performing. It should be notedthat prior efforts have been made towards developing an SDLautonomy classi ﬁcation system for synthetic biology.
+2,3In this arti-
+cle, building on the prior efforts of autonomy classi ﬁcation in syn-
+thetic biology,2,3we propose a set of characterization metrics to
+delimitate between autonomy levels of SDLs in chemistry and
+materials sciences. Speci ﬁcally, our proposed system explicitly
+deﬁnes the role of a human researcher for autonomy classi ﬁcation of
+SDL platforms in chemistry and materials science. While there isnotable dif ﬁculty in directly comparing SDLs across different
+experimental spaces, many system features can be quanti ﬁed and
+correlated meaningfully.
+Performance metrics for autonomous labs
+The features which can de ﬁne the performance aspects of an SDL and
+are critical to report include speci ﬁc information on the SDL ’sd e g r e e
+of autonomy, operational lifetime, accessible parameter spaces, pre-
+cision, throughput, sampling cost, and optimization performance –as
+shown in Fig. 1and Table 1.Received: 10 July 2023
+Accepted: 22 January 2024
+Check for updates
+1Dept. of Chemical and Biomolecular Engineering, North Carolina State University, Raleigh, NC, USA. e-mail: abolhasani@ncsu.edu
+Nature Communications |         (2024) 15:1378 11234567890():,;
+1234567890():,;Degree of autonomy
+T h ed e g r e eo fa u t o n o m yc a nb ed e ﬁned by the context in which non-
+robotic experimentalists may interact with the experimental system.
+Shown in Fig. 2, this feature may be broken down into piecewise, semi-
+closed loop, closed-loop, or self-motivated operation modules. A pie-cewise system, which may also be referred to as an algorithm-guidedstudy, has complete separation between platform and algorithm. Inthis context, a human scientist must collect and transfer experimentaldata to the experimental selection algorithm. Once the algorithm picks
+the next experimental condition s, a human researcher must then
+transfer these to the physical platform to test. This piecewise schema is
+the simplest to achieve as there is no need for in/online or in-situ
+measurements, automated data analysis, or programming for roboticsinterfacing. These systems are particularly useful in informatics-basedstudies, high-cost experiments, and systems with low operationallifetimes since a human scientist can manually ﬁlter out erroneous
+Fig. 1 | Key metrics for quantifying performance in SDLs. The metrics illustrated include degree of autonomy, operational lifetime, throughput, experimental precision,
+material usage, accessible parameter space, and optimization ef ﬁciency.
+Table 1 | Overview of the suggested performance metrics in SDLs with a summary for each metric, a list of reported studies that
+achieved a high degree of performance for each metric, and the subsequently reported metrics of the listed studies
+Metric Summary Exemplary Studies Reported Metrics
+Degree of Autonomy Classi ﬁcation of the extent with which human intervention is required for
+regular operation. The metric can be piecewise, semi-closed-loop, or
+closed-loop.4,13–16,18,20,23,26,29,30
+Closed-loop
+Operational Lifetime The total time that a platform can conduct experiments. The metric should
+be reported in four forms: demonstrated unassisted lifetime, demon-
+strated assisted lifetime, theoretical unassisted lifetime, and theoretical
+assisted lifetime. Additional research efforts should be made to evaluate
+the maximum lifetimes outside of case study optimizations.4700 samples (demonstrated, unassisted)
+Throughput The rate that the platform can conduct experiments. The metric should be
+reported in both demonstrated and theoretical throughput which includesboth sample preparation and measurement. Additional research efforts
+should be made to evaluate the maximum throughput outside of case
+study optimizations.4,15 30 to 33 samples per hr (demonstrated)
+Experimental Precision A quantitative value representing the reproducibility of an experimental
+platform. Precision estimates should be made using unbiased sequential
+experiments in conditions similar to those found during optimization.Sequential replication of a test condition can introduce bias.4,16,23 Alternating random
+Material Usage The total quantity of materials used per experiment. The metric should be
+broken down into total active quantity during experimentation, total usedper experiment, total hazardous material used per experiment, and total
+high value material used per experiment. The values should be reported in
+either volume or mass, where appropriate. Additional effort should betaken to include the material usage for auxiliary steps, such as reactor
+cleaning or preconditioning.4,13,24,25 0.06 to 0.2 mL per sample
+Accessible Para-
+meter SpaceQualitative and quantitative description of accessible parameter space for
+a system along with the attainable measurement techniques. The report-
+ing should be sub-divided into demonstrated and theoretical range.9 1.6 × 10
+11
+Optimization Ef ﬁciency Quantitative analysis of the performance of a full system and its experi-
+ment selection algorithm. The most effective performance metric is direct
+algorithm benchmarking with replicates. The existing method can be
+compared with random sampling along with state-of-the-art selectionalgorithms. In the absence of suf ﬁcient data generation, simulated
+benchmarking can be applied. Where appropriate, linear regressions and
+explainable arti ﬁcial intelligence techniques should be applied to any
+models used along with the required data set size to reach predictability.14–16,25 Grid-search, SNOBFIT, CMA-ES, Nelder-
+Meade, and Human benchmarkingPerspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 2conditions and correct system issues as they arise. However, this
+strategy is typically impractical for studies that require dense dataspaces, such as high dimensional Bayesian optimization (BO) or rein-forcement learning (RL). Next in degree of autonomy are semi-closed-loop systems. In these systems, a human scientist must interfere withsome steps in the process loop, but there is still direct communicationbetween the physical platform and the experiment-selection algo-rithm. Typically, the researcher must either collect measurementsafter the experiment or reset some aspect of the experimental systembefore experimental studies can continue. This technique is mostapplicable to batch or parallel processing of experimental conditions,
+studies that require detailed of ﬂine measurement techniques, and high
+complexity systems that cannot conduct experiments continuously inseries. These systems are generally more ef ﬁcient than a piecewise
+strategy while still accommodating measurement techniques that arenot amenable to inline integration. However, they are often ineffectivein generating very large data sets. Then, there are closed-loop systems,which further improves the degree of autonomy. A closed-loop systemrequires no human interference to carry out experiments. The entiretyof the experimental conduction, system resetting, data collection andanalysis, and experiment-selection, are carried out without any humanintervention or interfacing. These systems are typically challenging to
+create; however, they offer extremely high data generation rates and
+enable otherwise inaccessible data-greedy algorithms (such as RL andBO). Finally, at the highest level of autonomy, will be self-motivatedexperimental systems which are able to de ﬁne and pursue novel sci-
+entiﬁc objectives without user direction. These platforms merge the
+capabilities of closed-loop tools while achieving autonomous identi ﬁ-
+cation of novel synthetic goals, thereby removing the in ﬂuence of a
+human researcher. No platform to date has achieved this level ofautonomy, but it represents the complete replacement of humanguided scienti ﬁc discovery.
+Operational lifetime
+In conjunction with the degree of autonomy, it is also important to
+consider the operational lifetime of an SDL. Quanti ﬁcation of this value
+enables researchers to understand when platforms are suited to theirdata, labor, and platform generation budgets. Operational lifetime canbe divided into four categories: demonstrated unassisted lifetime,demonstrated assisted lifetime, theoretical unassisted lifetime, andtheoretical assisted lifetime. The distinction between theoretical anddemonstrated lifetimes allows researchers to showcase the fullpotential of an SDL without misrepresenting the work that was carriedout. For example, the operational lifetime of a micro ﬂuidic reactor is
+constrained to the volume of source chemicals provided as well as
+additional factors such as precursor degradation or reactor fouling. In
+practice, most micro ﬂuidic studies feature demonstrated lifetimes on
+the scale of hours. However, without source chemical limitations,many of these systems may reach functionally inde ﬁnite theoretical
+lifetimes. Even with these theoretical inde ﬁnite lifetimes, reportingdemonstrated lifetimes and their context is critical to communicating
+the potential application of a platform. For example, demonstratedlifetime should be speci ﬁed as the maximum achieved lifetime or,
+more importantly, the average demonstrated lifetime across trials. Inaddition, assisted and unassisted demonstrated lifetimes should beclariﬁed to help identify labor requirements and therefore scalability
+of an SDL. For example, in recent work by the authors, a microdropletreactor was used to conduct colloidal atomic layer deposition reac-tions over multiple cycles.
+4One precursor used would degrade within
+two days of synthesis, and a fresh precursor was needed to be pre-pared once every two days. Beyond this limitation, the SDL could run
+continuously for one month without stopping or needing to be
+cleaned. In this study, the demonstrated unassisted lifetime is twodays, and the demonstrated assisted lifetime is up to one month.
+Throughput
+Like operational lifetime, throughput is a critical component in spe-cifying the capability of an automated system. Throughput is oftenreferenced as the primary metric with which to compare technologies,as it is the most common bottleneck in achieving dense data spaces. Assuch, many techniques and ﬁelds distinguish themselves through this
+metric. However, throughput is often heavily dependent on the
+experimental system being studied as well as the technique being used
+to measure the material. For example, a platform can be highly ef ﬁ-
+cient in conducting experiments, but if it is studying a synthesis with along reaction time and does not have parallelization capability, thethroughput is signi ﬁcantly throttled. Alternatively, if an experimental
+space includes a rapid reaction time, but the characterization methodis too slow to suf ﬁciently capture early time scales, then a large portion
+of the parameter space is neglected. Furthermore, if a characterizationmethod is non-destructive, a single sample can generate multiplemeasurements, thereby enabling a signi ﬁcantly higher data generation
+rate. Consequently, the throughput is best reported as both theoretical
+and demonstrated values, which encompasses both the platform
+material preparation rate and the analyses. As an example, from workpublished by the authors, in a micro ﬂuidic rapid spectral sampling
+system presented previously, the platform could generate over 1,200measurements per hour while running at maximum throughput, butfor the longer reaction times studied, the actual sampling rate wascloser to 100 measurements per hour.
+4Therefore, this work showed a
+demonstrated throughput of 100 samples per hour and a theoreticalthroughput of 1,200 measurements per hour. The combination ofthese two values provides context on both the maximum potentiallimit and the actual stress tested limit.
+Experimental precision
+Experimental precision represents th e unavoidable spread of data points
+around a “ground truth ”mean value. Precision can be quanti ﬁed by the
+standard deviation of replicates of a single condition, conducted in anunbiased manner. Recently, there has been increased focus on the
+Fig. 2 | Degrees of autonomy in SDLs. Illustration of the process work ﬂows for ( A)
+piecewise, where human users fully separate the experiment and computational
+system, ( B) semi-closed-loop, where the algorithm and robotic componentspartially communicate, ( C) closed-loop, where the human user has no in ﬂuence in
+the goal seeking loop, and ( D) self-motivated experimental systems, where the
+computational system dictates its own objectives.Perspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 3signiﬁcance of this metric in SDLs, par ticularly through the use of
+simulated experimentation through s urrogate benchmarking. Surrogate
+benchmarking is used to evaluate algorithm performance on differentparameter spaces without requirin g operation of a full experimental
+system. Instead of conducting physical experiments, the algorithm
+samples from a simple function digitally, thereby signi ﬁcantly increasing
+the throughput and offering direct comparisons between algorithmsthrough the evaluation of standard ized, n-dimensional functions.
+5–8
+S h o w ni nF i g . 3, sampling precision has a signi ﬁcant impact on the rate at
+which a black-box optimization algorithm can navigate a parameterspace,
+5,9,10aﬁnding that is supported by prior literature.11In many cases,
+high data generation throughput cannot compensate for the effects ofimprecise experiment conduction and sampling. Therefore, it is criticalto develop SDL hardware that can generate both large and precise datasets. Characterization of the precision component is, therefore, critical
+for evaluating the ef ﬁcacy of an experimental system. The ideal protocol
+for acquiring this metric is to cond uct unbiased replicates of a single
+experimental condition set. There are many ways to conduct thesereplicates, and the exact methods f or preventing bias will vary from
+system to system. However, the most common bias to avoid is throughsequential sampling of the same condi tions. As shown in prior literature,
+the test condition can be alternated with a random condition set before
+each replicate. This sampling strateg y helps to position the test condi-
+tion in an environment more similar to the setting used for optimization.
+Material usage
+When working with the number of experiments necessary for
+algorithm-guided research and navigation of large, complex para-meter spaces, the quantity of materials used in each trial becomes aconsideration. This consideration can be broken down into safety,monetary costs, and environmental impacts. Lower working volumesof hazardous materials in a platform means that critical failures can bemore easily contained, which expands the parameter space ofexploration to unforeseen results and a larger library of reaction can-didates. Therefore, it is important to report the total active quantity ofparticularly hazardous materials. Furthermore, low material usagereduces the overall cost and environmental impacts of experimenta-
+tion. For research involving expensive or environmentally harmful
+materials, it is important to quantify the impacts of the reaction sys-tem. As such, experimental costs should be reported in terms of usageof the total materials, high value materials, and environmentallyhazardous materials. Total material and environmentally hazardousmaterial generation should be reported with respect to the totalquantities used, which includes waste stream materials generated
+through system washing and measurement references. It should benoted that many processes developed with microscale experimentalsystems are dif ﬁcult to scale to functional quantities. Therefore, where
+applicable, it is important to provide data quantifying the scalability or
+generated knowledge of a developed process.
+Accessible parameter space
+Beyond the baseline characteristics associated with the quantity andquality of the data generated, another important consideration is thepossible range of experimental parameters that can be accessed onboth the inputs and outputs. Every experiment conduction strategyfeatures its own limitations on the accessible parameter space, andeach poses further limitations by the tools used to measure them.Liquid handling robots typically are limited from handling extremely
+low reaction times, and micro ﬂuidic reactors typically require solution
+phase precursors and are constrained to by injection ratios. Precisereporting of the demonstrated and theoretical parameter space alongwith details of the characterization techniques is critical for commu-nicating the capabilities and limitations of an SDL. Each of the para-meters used in a study should be reported alongside their minimumand maximum bounds and how they are parameterized in the opti-mization algorithms. Furthermore, considerable effort should bemade to include qualitative constraints on the accessible list of para-meters that may be used by an SDL.
+Optimization ef ﬁciency
+Finally, and likely most importantly, every SDL study should include a
+comprehensive evaluation of the overall system performance. Bench-marking with a real-world, experimental platform can be highly chal-lenging, as there is often little data available for direct comparison, andit is typically too costly to conduct replicates with alternative systemsor algorithms. Moreover, two seemingly similar experimental systemscan feature reaction spaces of differing complexity, resulting in a morechallenging optimization for one than the other. Shown in Fig. 4, many
+aspects of surface response features can in ﬂuence the rate of optimi-
+zation. With these limitations in mind, there are several aspects of a
+physical platform and the experiment-selection algorithm of SDLs that
+can serve as reasonable indicators of their performance. First, it isimportant to specify the optimized feature that was achieved becauseof the study along with the number of experiments or prior dataimplemented to reach that outcome. Where relevant, all championresults should be benchmarked with appropriate state-of-the-art
+Fig. 3 | Effect of noise on optimization ef ﬁciency. A Surface response plot of a
+two-dimensional michalewicz surrogate function, ( B)m e d i a nb e s tr e s p o n s ea n d( C)
+median mean squared error across ten replicates for a simulated optimization of a
+six-dimensional michalewicz surface with varying degrees of noise indicated by the
+legend. As the level of noise observed in the surrogate function is increased, theperformance of the optimization algorithm decreases while the algorithm model ’s
+uncertainty increases. More precise experimental platforms, therefore, tend togenerate higher performing self-driving laboratories. The optimization algorithm
+uses bagging regression with an exhaustive grid search hyperparameter tunedmulti-layered perceptron and an upper con ﬁdence bounds decision policy. Noise is
+applied to the surrogate function by randomly sampling from a normal probability
+function with standard deviations of 0, 0.1, and 0.2 respectively and adding thesample to the surrogate output.Perspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 4literature. Next, the algorithm should be demonstrated to provide
+basic predictability across the studied data set. In model-driven algo-rithms, this can be provided through a simple regression validation bysplitting all the available data into training and testing sets and pre-
+dicting the outcome of unknown measurements. Furthermore, there
+should be a clear discussion of the dimensionality of the parameterspace explored along with quanti ﬁcation of each parameter ’sd e g r e e
+of in ﬂuence. With increasing interest in explainable AI, there are
+libraries of simple tools, such as Shapley plots, for quantifying theinﬂuence of each parameter on the system response.
+12With model-
+driven algorithms, extracting these values is as simple as running themodel through a prebuilt algorithm. Finally, when there are noapparent benchmarks for a given experimental space, random sam-pling can serve as a simple and clear standard. By comparing theperformance of an experiment-selection algorithm to random sam-
+pling, the researcher can demonstrate control over the experimental
+space. Outside of serendipitous trials, the only way to achieve anexperiment-selection algorithm that bypasses the performance ofrandomly selected conditions is to build a functioning autonomous
+platform with an effective guiding algorithm.
+Self-driving laboratories in literature
+By clearly reporting the parameters detailed in this perspective,research can be guided towards more productive and promisingtechnological areas. Early evaluation of these metrics under a samplingof recent SDL literature –detailed in Table 1–leads to several tech-
+nological indicators that can already affect decision-making in SDLstudies.
+4,13–28First, of the available technologies, micro ﬂuidic platforms
+have demonstrated unassisted generation of larger data sets and at ahigher demonstrated throughput, as shown in Fig. 5. Among liquid
+handling tools, micro-well plate systems were at the top in perfor-mance. Second, there is a slight correlation between experimental costand the total number of trials used to reach the optimum condition.
+Experimental systems that consume small quantities of materials can
+generate larger data sets and, therefore, apply more resources towardprocess optimization. Both indicators suggest that low material con-
+Fig. 5 | Analysis of SDL Performance in Literature. A The system throughput as a
+function of demonstrated unassisted lifetime, Bthe number of trials required to
+reach the optimum value as a function of the total material cost per experiment,
+andCthe dimensionality of the parameter space as a function of the number oftrials required to reach the optimum for both liquid handler and micro ﬂuidics
+based automated systems. Note that publications that do not report the listed
+values are not included in the ﬁgure.
+Fig. 4 | Effect of surface complexity on optimization rate. Two-dimensional
+surface plots of the surrogate functions ( A)A c k l e y ,( B) Griewank, ( C) Levy, and ( D)
+Rastrigin and the median best response of ten optimization replicates across thefour surrogates in ( E)t w o - ,( F) four-, and ( G) six-dimensional parameter spaces. The
+optimization algorithm consists of gaussian processor regression with an upper
+conﬁdence bounds decision policy.Perspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 5sumption technologies are the most effective in black-box optimiza-
+tion environments in the current state of SDL technology. However,these points should be taken with a major caveat. In much of the SDLliterature mining performed for this perspective, data generation rates
+are largely limited by the reaction rates under study. Few SDL papers
+report system speci ﬁcations beyond what is necessary for a case study
+experiment, but in studies that present an SDL as the core of the work,these parameters are just as important as the exact experiments thatare conducted. Improved reporting and stress testing of SDLs wouldhelp to resolve this de ﬁciency in the available data and direct further
+research into more effective and productive technologies.
+Additionally, the sampled SDL literature, shown in supporting
+information Table S.1, does not show a clear correlation between thedimensionality of the studied para meter space and the number of trials
+required to reach an optimum. Some d eviation in the required number
+of trials is expected, due to varying complexity of the response surfaces
+and the presence of non-contributing parameters. However, a correla-tion with dimensionality should be present, particularly when assumingreal-world experimental systems tend to exhibit similar levels of com-plexity. This trend indicates that ma ny of the prior works do not provide
+the global optimum of the studied experimental space. This is to be
+expected, as identifying when a global optimum has been reached is afundamental and largely unsolvable challenge in the optimization ofhigh-cost experimental spaces. With no clear, quanti ﬁable indicator of a
+comprehensively explored and optimized space available, alternativemetrics for demonstrating an SDL ef ﬁcacy are necessary.
+As previously discussed, it is critical to report SDL ’s algorithm
+performance features in formats that demonstrate predictive cap-abilities, feature analyses, and benchmarking, yet these parametersare not often included in the SDL literature. Among the seventeensurveyed studies shown in supporting information Table S.1, 23%included a real-world benchmarking of any kind, and 12% includedsimulated benchmarking, leaving 65% of the studies without anyform of algorithm comparison. Additionally, only 62% of the thirteenstudies that leverage a machine learning model demonstrated anyform of model validation, and only 19% conducted any parameteranalysis. Furthermore, 71% of the studies reported no data quanti-
+fying the precision of the automated experimental system of the
+built SDL. Finally, no quantitative information on the accessibleparameter space was found in the selection of reported literature.With this absence of information on the basic performance metricsof SDLs, it is highly challenging to elucidate a clear direction for theﬁeld. A larger effort should be taken by researchers to ensure that
+these quantitative metrics are included.
+Conclusions
+It is critical to the development of future SDLs that studies includeclear and precise efforts to quantify the capabilities of the presented
+platform. Without more deliberate and thorough evaluation of SDLs,
+theﬁeld will lack the necessary information for guiding future
+research. However, due to the inherently different challenges posed byeach experimental space, there is a signi ﬁcant dif ﬁculty in comparing
+performance between systems by features such as optimization rate.Additionally, there is not a clear indicator to identify a fully optimizedexperimental space in high experimental cost problems. Instead, it ismore effective to apply the criteria laid out in this perspective andinclude quanti ﬁed data regarding the performance of the platform,
+software, and combined system. By doing so, the knowledge gap in theexisting SDL literature will be better ﬁlled, and researchers can pursue
+quanti ﬁably promising research directions.
+Data availability
+The source data generated in this study have been deposited in the
+repository “SDL ”(https://github.com/AbolhasaniLab/SDL ).Code availability
+The source code for the noise benchmarking plots and surrogate
+models have been deposited in the repository “SDL ”(https://github.
+com/AbolhasaniLab/SDL ).
+References
+1. Abolhasani, M. & Kumacheva, E. The rise of self-driving labs in
+chemical and materials sciences. Nat. Synth .2,4 8 3 –492 (2023).
+2. Beal, J. & Rogers, M. Levels of autonomy in synthetic biology
+engineering. Mol. Syst. Biol. 16, e10019 (2020).
+3 . M a r t i n ,H .G .e ta l .P e r s p e c t i v e sf o rs e l f - d r i v i n gl a b si ns y n t h e t i c
+biology. Curr. Opin. Biotechnol .79, 102881 (2023).
+4. Volk, A. A. et al. AlphaFlow: autonomous discovery and optimiza-
+tion of multi-step chemistry using a self-driven ﬂuidic lab guided by
+reinforcement learning. Nat. Commun. 14,1–16 (2023).
+5. S. Surfanovic & D. Bingham, Virtual Library of Simulation Experi-
+ments: Test Functions and Datasets. https://www.sfu.ca/~ssurjano/
+about.html . (2023).
+6. Y. Watanabe, T. Okamoto & E. Aiyoshi, Nauka ,https://doi.org/10.
+1541/IEEJEISS.126.1559 .
+7 . G r i e w a n k ,A .O .G e n e r a l i z e dd e scent for global optimization. J.
+Optim. Theory Appl. 34,1 1–39 (1981).
+8. D. H. Ackley, A Connectionist Machine for Genetic Hillclimbing ,
+Springer US, 1987.
+9. Pedregosa, F. et al. J. Mach. Learn. Res. 12, 2825 –2830 (2011).
+10. Harris, C. R. et al. Array programming with NumPy. Nature 585,
+357 –362 (2020).
+11. Epps, R. W. & Abolhasani, M. Modern nanoscience: Convergence
+of AI, robotics, and colloidal synthesis. Appl. Phys. Rev. 8,0 4 1 3 1 6
+(2021).
+12. L. S. Shapley, AV a l u eN - P e r s o nG a m e s ,https://doi.org/10.
+7249/P0295 .
+1 3 . K r i s h n a d a s a n ,S . ,B r o w n ,R .J .C .C . ,d e M e l l o ,A .J .&D e M e l l o ,J .C .
+Intelligent routes to the controll ed synthesis of nanoparticles. Lab
+Chip 7,1 4 3 4 –1441 (2007).
+14. Wigley, P. B. et al. Fast machine-learning online optimization of
+ultra-cold-atom experiments. Sci. Rep. 6,1–6( 2 0 1 6 ) .
+15. Bezinge, L., Maceiczyk, R. M., Lignos, I., Kovalenko, M. V. & deMello,
+A. J. Pick a Color MARIA: adaptive sampling enables the rapididenti ﬁcation of complex perovskite n anocrystal compositions with
+deﬁned emission characteristics.
+ACS Appl. Mater. Interfaces 10,
+18869 –18878 (2018).
+16. Epps, R. W. et al. Arti ﬁcial Chemist: An Autonomous Quantum Dot
+Synthesis Bot. Adv. Mater. 32, 2001626 (2020).
+17. Salley, D., Keenan, G., Grizou, J., Sharma, A., Martín, S. & Cronin, L. A
+nanomaterials discovery robot for the Darwinian evolution of shape
+programmable gold nanoparticles. Nat. Commun. 11, 2771 (2020).
+18. Li, J. J. J. et al. U1 snRNP regulates cancer cell migration and invasion
+in vitro. Nat. Commun. 11,1–10 (2020).
+1 9 . M e k k i - B e r r a d a ,F .e ta l . npj Comput. Mater. 7,1–10 (2020).
+20. Abdel-Latif, K., Epps, R. W., Bateni, F., Han, S., Reyes, K. G. &
+Abolhasani, M. Self ‐Driven Multistep Quantum Dot Synthesis
+Enabled by Autonomous Robotic Experimentation in Flow. Adv.
+Intell. Syst. 3, 2000245 (2021).
+21. Ohkubo, I. et al. Mater. Today Phys .16,1 0 0 2 9 6 .( 2 0 2 1 )
+22. Jiang, Y. et al. An arti ﬁcial intelligence enabled chemical synthesis
+robot for exploration and optimization of nanomaterials. Sci. Adv .8,
+eabo2626 (2022).
+23. Bateni, F.et al. Autonomous Nanocrystal Doping by Self ‐Driving
+Fluidic Micro ‐Processors. Adv. Intell. Syst. 4, 2200017 (2022).
+24. Kosuri, S. et al. Machine-Assis ted Discovery of Chondroitinase ABC
+Complexes toward Sustained Neural Regeneration. Adv. Healthc.
+Mater. 11, 2102101 (2022).Perspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 625. Tamasi, M. J. et al. Machine learning on a robotic platform for
+the design of polymer-protein hybrids. Adv. Mater. 34, 2201809
+(2022).
+26. Knox, S. T., Parkinson, S. J., Wilding, C. Y. P., Bourne, R. A. & Warren,
+N. J. Autonomous polymer synthesis delivered by multi-objective
+closed-loop optimisation. Polym. Chem. 13,1 5 7 6 –1585 (2022).
+27. Wakabayashi, Y. K., Otsuka, T., Krockenberger, Y., Sawada, H.,
+Taniyasu, Y. & Yamamoto, H. Machine-learning-assisted thin- ﬁlm
+g r o w t h :B a y e s i a no p t i m i z a t i o ni nm o l e c u l a rb e a me p i t a x yo fSrRuO3 thin ﬁlms. APL Mater. 7, 101114 (2019).
+28. Li, C. et al. A cluster of palmitoylated cysteines are essential for
+aggregation of cysteine-string protein mutants that cause neuronalceroid lipofuscinosis. Sci. Rep. 7,1–10 (2017).
+29. Bateni, F. et al. Smart Dope: A Self-Driving Fluidic Lab for Acceler-
+ated Development of Doped Perovskite Quantum Dots. Adv. Energy
+Mater. 14,2 3 0 2 3 0 3( 2 0 2 4 ) .
+30. Sadeghi, S. et al. Autonomous nanomanufacturing of lead-free
+metal halide perovskite nanocrystals using a self-driving ﬂuidic lab.
+Nanoscale 16,5 8 0 –591 (2024).
+Acknowledgements
+M.A. gratefully acknowledge the ﬁnancial support from the Dreyfus
+Program for Machine Learning in the Chemical Sciences and Engineer-ing (Award # ML-21-064), University of North Carolina Research Oppor-tunities Initiative (UNC-ROI) program, and National Science Foundation(Awards #1940959 and 2208406).
+Author contributions
+M.A. and A.A.V. conceived the project. A.A.V. designed the becnh-marking algorithm. M.A. acquired f unding and directed the project.
+A.A.V. and M.A. drafted and edited the manuscript.
+Competing interests
+The authors declare no competing interests.Additional information
+Supplementary information The online version contains
+supplementary material available athttps://doi.org/10.1038/s41467-024-45569-5 .
+Correspondence and requests for materials should be addressed to
+Milad Abolhasani.
+Peer review information Nature Communications thanks the anon-
+ymous reviewer(s) for their contribution to the peer review of this work.
+Reprints and permissions information is available at
+http://www.nature.com/reprints
+Publisher ’s note Springer Nature remains neutral with regard to jur-
+isdictional claims in published maps and institutional af ﬁliations.
+Open Access This article is licensed under a Creative Commons
+Attribution 4.0 International License, which permits use, sharing,adaptation, distribution and reproduction in any medium or format, aslong as you give appropriate credit to the original author(s) and thesource, provide a link to the Creative Commons licence, and indicate ifchanges were made. The images or other third party material in thisarticle are included in the article ’s Creative Commons licence, unless
+indicated otherwise in a credit line to the material. If material is notincluded in the article ’s Creative Commons licence and your intended
+use is not permitted by statutory re gulation or exceeds the permitted
+use, you will need to obtain permission directly from the copyrightholder. To view a copy of this licence, visit http://creativecommons.org/
+licenses/by/4.0/ .
+© The Author(s) 2024Perspective https://doi.org/10.1038/s41467-024-45569-5
+Nature Communications |         (2024) 15:1378 7
