@@ -1,0 +1,434 @@
+Leveraging Large Language Models and Social Media for Automation in
+Scanning Probe Microscopy
+Zhuo Diao,a)Hayato Yamashita, and Masayuki Abeb)
+Graduate School of Engineering Science, Osaka University, 1-3 Machikaneyama, Toyonaka, Osaka 560-0043,
+Japan
+Wepresentthedevelopmentofanautomatedscanningprobemicroscopy(SPM)measurementsystemusingan
+advanced large-scale language model (LLM). This SPM system can receive instructions via social networking
+services (SNS), and the integration of SNS and LLMs enables real-time, language-agnostic control of SPM
+operations, thereby improving accessibility and efficiency. The integration of LLMs with AI systems with
+specialized functions brings the realization of self-driving labs closer.
+As the level of sophistication and reproducibility re-
+quired for experiments increases, it becomes more diffi-
+cult to master the experimental equipment. This situ-
+ation implies the need for methods and tools to facili-
+tate experiments. One way to address this problem is
+through the use of artificial intelligence (AI) and its in-
+tegration into experimental instruments1–4. In partic-
+ular, there is widespread interest in creating an envi-
+ronment of automated solutions5,6. On the other hand,
+the implementation of fully autonomous systems in ex-
+perimental research is still in its infancy, despite the
+promise of revolutionizing research by automating rou-
+tine tasks and analyses. It will still take time for individ-
+ual researchers to obtain an environment in which they
+can implement specific experimental AI themselves7–11.
+As an alternative trend, research on the use of genera-
+tive AI12in experiments is gaining traction. Generative
+AI’s capability to create complex data patterns and pro-
+cesses is desirable in increasingly intricate experimental
+procedures13–16. Among various types of generative AI,
+large language models (LLMs) stand out for their poten-
+tial to act as cognitive mediators between researchers’
+objectives and general tasks. Thus, LLMs can be trans-
+formative tools, enhancing the efficiency and accessibil-
+ity of user and experiment instrument interactions. In
+this manuscript, we present the use of an advanced LLM
+in scanning probe microscopy (SPM) experiments, func-
+tioning as a measurement agent. This SPM system is
+designed to receive and process instructions via social
+networking services (SNS), enabling real-time, language-
+agnostic control of SPM operations.
+Figure 1 shows an SPM system integrated with LLM
+and SNS. Our system integrates a front-end SNS client
+utilizing Slack web app17for receiving user commands,
+and a back-end embedded system for command process-
+ing and execution. To deal with user actions, we uti-
+lize Slack API’s event subscription feature, allowing the
+system to listen to the user messages that are sent to
+specific Slack channels. User messages can be in multi-
+ple languages, and different message types (text/audio).
+The SPM agent involves translating user commands into
+a)enzian0515@gmail.com
+b)abe.masayuki.es@osaka-u.ac.jp
+command parserspeech to textPython serverSPM & controller
+SPM“start scan”```ScanEnabled(true)```{“ScanEnabled”=true}Front-endBack-endExperiment setup“start scan”“start scan”
+*Copyright 2023 Slack Technologies, LLCUFYUQSPDFTTJOHIPPLTCFGPSFSFNPUFSPM APP
+6*$PNQPOFOUWBMVFTFULLMFIG. 1. Schematic diagram of interactive system of scan-
+ning probe microscopy (SPM). In the experiments, Slack, a
+social networking service (SNS), is used for the human in-
+put portion of the commands, which ChapGPT, a large-scale
+language model (LLM), understands and converts into actual
+commands for the SPM device.
+executable SPM commands via a sophisticated AI model
+that processes natural language and speech inputs, lever-
+aging OpenAI’s Whisper18for speech-to-text (TTS) con-
+version and ChatGPT (gpt-4-0124-preview)19for under-
+standing and generating appropriate commands for SPM
+control (text-to-command: TTC). The system’s core, a
+Python server, hosts the custom SPM controller, facili-
+tating direct TCP connection with the SPM instrument.
+The SPM controller can receive commands in JSON for-
+mat to set the value of the corresponding UI element
+name. In Fig. 1, as an example, for a switchable UI
+named “ScanEnabled", giving it a true value will control
+the SPM to start scanning.
+Constructing clear and detailed LLM prompts regard-
+ing parameter settings and behavior in the experiment is
+important for the LLM to make the following decisions
+from the incoming messages. The following prompt is an
+example of a configuration in our system.
+“You are a robot controlling a scanning probe
+microscopy. Users will provide instructions
+in text format on how to control the device,
+and you’ll need to translate these texts into
+specific programmatic commands. " , “You
+can control and set the scan parameters in
+the scanning probe microscopy. " , “The be-
+low list shows the function about what you
+can do. Each programmatic command is fol-
+lowed by parentheses containing the namesarXiv:2405.15490v1  [physics.app-ph]  24 May 20242
+of required parameters. Following this is a
+description of the command, arg type indi-
+cates the type of parameter, and arg descrip-
+tion represents the parameter’s description."
++ command str, “You should try your best
+to understand the instructions and use the
+list up functions to write. The function ar-
+gument should follow the type I defined.", “If
+the user’s instructions can be accomplished by
+multiple step commands, then output them se-
+quentially and separate each command with
+a new line.", “If the user’s instructions can-
+not be carried out by the commands provided
+above alone, please respond with ’None’ first
+and then give a reason to user. Otherwise, re-
+ply with the names of the corresponding pro-
+grammatic commands and provide appropri-
+ate values within parentheses. ", “Reply to
+me in language str."
+In the experiment, ChatGPT determines the instructions
+sent to SPM based on these prompts as well as five previ-
+ous message histories and the current user message. “lan-
+guage str" will be replaced with the detected language
+name of the user message. This ensures that our mea-
+surement agent replies to the user in the same language
+theyused. TableIshowstheSPMexperimentcommands
+currently understood by the SPM agent. These com-
+mands are saved in a bulleted format, such as a CSV file
+so that they can be easily added or deleted. The bulleted
+command list we used in this paper is shown in Tab. I. In
+theaboveprompts, "“commandstr"willbereplacedwith
+the text content of this bulleted list. The table serves as
+an API reference documentation for the LLM, informing
+the supported SPM control command and explaining the
+usage of the commands and their arguments.
+The output text generated by ChatGPT is then pro-
+cessed via a command parser, which converts it into a
+canonical format of the SPM command. Given the in-
+herent uncertainty in AI-generated output, the command
+parser ensures that the resulting command line for con-
+trolling the SPM device adheres to the system’s spec-
+ifications. Unsupported output content is disregarded,
+while supported programmatic commands and their cor-
+responding arguments are extracted.
+Using the above-mentioned system, we perform the
+STM experiment operated in ultra-high vacuum condi-
+tion ( <1×10−8Pa) at room temperature. Mechanically
+etched PtIr STM tips (UNISON P-50 Pt; Ir) were used
+for imaging. As a sample, we prepare Si(111)clean sur-
+face by a standard flashing-and-annealing method. For
+data acquisition, we have established an SPM system
+built with LabVIEW, LabVIEW FPGA, and Python.
+NI PXIe-7857R was used as the measurement board,
+The scanning and data acquisition were controlled with
+Python script in which automated SPM measurement
+routines and scan functions for optimizing experimentalTABLE I. Description of Programmatic Commands for Chat-
+GPT. Descriptions in the table is input to “command str" in
+the prompt.
+Programmatic
+CommandsDescription Arg
+TypeArg
+Description
+StageOffset_X_Tube
+(arg)Setting the
+absolute X (left
+and right
+direction)
+position
+coordinates of
+the probe (SPM
+tip)floatCoordinate value
+of X in
+nanometers
+StageOffset_Y_Tube
+(arg)Setting the
+absolute Y (up
+and down
+direction)
+position
+coordinates of
+the probe (SPM
+tip)floatCoordinate value
+of Y in
+nanometers.
+StageOffset_X_Tube_
+ADD (arg)Sets the relative
+X (left/right
+direction)
+position to be
+moved from the
+current
+coordinates of
+the probe (SPM
+tip)floatDistance to be
+move in X, in
+nanometers
+StageOffset_Y_Tube_
+ADD (arg)Sets the relative
+Y (up/down
+direction)
+position to be
+moved from the
+current
+coordinates of
+the probe (SPM
+tip)floatDistance to be
+move in Y, in
+nanometers
+Sample_Bias
+(arg)The bias voltage
+add to the
+measured samplefloatthe value of the
+sample bias
+Aux1MaxVoltage
+(arg)Setting the
+scanning area
+range of the X
+sizefloatscan range of the
+X direction in
+nanometers
+Aux2MaxVoltage
+(arg)Setting the
+scanning area
+range of the Y
+sizefloatscan range of the
+Y direction in
+nanometers
+ScanEnabled
+(arg)Switches to
+control scanningbooltrue to start the
+scan and false to
+stop the scan
+environment were contained.
+Figure 2 shows a demonstration of STM measurements
+of the Si(111) −(7×7)surface using SNS. In part (A)
+of the figure, the operator inputs the incomplete English
+phrase"startscan22.5nmx22.5nm,"intendingtomean
+“Start scanning in the area of 22.5nm×22.5nm". The
+backend system interprets the messages and sends the
+command (as shown in (B)) to the SPM. Here, 0.6Vis
+the calibrated voltage value of the scanner equivalent to
+22.5nm. Thus, even if the English are not perfect, the
+correct command is sent, thanks to LLM. Part (C) and
+(E) show that the SPM agent sends information mes-
+sages indicating that scanning has started and finished,
+respectively. After the measurement, the scanned image
+is sent back to the operator as shown in (D). The image
+is filtered for easier viewing.
+Figure 3 shows the results of the experiment follow-3
+	"
+	#
+	$
+	%
+	&
+FIG. 2. An example of an STM experiment using SNS.
+ing those presented in Fig. 2. As the STM image from
+Fig. 2 depicted an adsorbed object in the upper left por-
+tion, to avoid the ares, a message "shift in the y-direction
+by 5 nm" was entered as shown in Fig. 2 (a), then the
+tip positioning update was performed by 5 nm. Figure
+3(b) confirms that the scanning avoided the adsorbed
+object by restarting the scan. In Figure 3(c), a mes-
+sage "set bias voltage to -2V and start scan" was input,
+setting the bias voltage to −2 Vand beginning the scan-
+ning of 22.5 nm ×22.5 nmarea. Since this negative bias
+was applied, both faulted and unfaulted half-unit cells
+are distinguishable. These steps illustrate that the two
+commands(changingthebiasvoltageandinitiatingscan-
+ning) were executed correctly. Although the scanning
+area was not explicitly mentioned in Fig.3(c), ChatGPT
+presumed the previously used scanning range as accept-
+able based on the command history and proceeded with
+the scan. In Fig.3(d), a message meaning “Start scanning
+in the area of 10nm ×10nm" was entered in Chinese. In
+theSTMimagesonSlack,thestartpositionofscanningis
+theupperleft. ComparingwithFig. 3(c), wecanseethat
+the10 nm ×10 nmarea in the upper left portion is im-
+aged. Additionally, Figure 3(e) shows a message entered
+in Japanese to scan a 22.5 nm ×22.5 nmarea, resulting
+in the same image as seen in Fig.3(c). This demonstrates
+that, although the ChatGPT prompt is written in En-
+glish, the LLM can interpret and execute commands in
+multiple languages.
+According to the prompts, when ChatGPT judges the
+user message as "not executable", our system will ex-
+tract the reason part from the generated text and send
+it to the Slack client. Figure 4 shows a result when a
+command not in Tab. I is entered into the message; the
+prompt instructs the user to answer "None" if the com-
+mand cannot be executed and to tell the user why, and
+the message that shows the reason will be generated.
+This study has presented the stage for a detailed dis-
+	B
+	C
+	D
+	E
+	F
+FIG. 3. The messages for image acquisition and responses
+in succession.
+cussion of the integration of AI into the experimental
+process, exploring both its potential benefits and chal-
+lenges. One of the primary goals of AI in scientific ex-
+periments is to realize a self-driving lab: to enable AI to
+perform preset experiments autonomously. On the other
+hand, depending on the research (for example imaging
+with microscopy), it will be necessary to check the results
+of the experiments in real-time. In such cases, humans
+will intervene in the experiment, but even then, they will
+always be constrained by the time it may take to check
+reproducibility and the experiment itself. SPM often re-
+quires not only skilled experimental techniques but also a
+very long time for data acquisition. In particular, while
+in spectroscopic measurements and atom manipulation
+experiments, it is essential to set up areas and parame-
+ters that allow appropriate data acquisition20,21. In such
+experimental studies, adding human guidance is an ef-
+fective way to perform effective experiments and provide
+feedback to train AI systems capable of autonomously
+performingexperiments. SPMoperatorshavebeendomi-
+natedbymanualandoftenlabor-intensiveprocesses22–24.
+As the complexity of experiments grows, so too does the
+challenge of mastering intricate methodologies, particu-4
+FIG. 4. Response from the SPM agent when a message
+related to a command that has not been preconfigured is sent.
+larly for novices in the field. This underscores a critical
+need for innovative solutions that can streamline the ex-
+perimental process and make high-quality research more
+accessible and reproducible.
+The use of SNS and LLM proposed in this study is
+one way to solve these problems. As a prospect, LLM is
+expected to be utilized in a wide range of experimental
+applications. A general-purpose LLM such as ChatGPT
+could serve as the "brain of an experimental system" co-
+ordinatingwithotherspecializedalgorithmsandAImod-
+els to handle complex, specialized research tasks. The
+specialized AI model can extract features from the data
+in a higher-dimensional space compared to the model
+output25,26(e.g., classifying a 256 ×256 pixel SPM im-
+age into a few labels of feature data, which will make
+LLM easier to understand). This feature information
+can then be incorporated into user prompts, allowing the
+LLMtodeterminethenextexperimentalprocedureusing
+predefined prompts. Then, LLM can perform efficient
+experiments using more advanced SPM features, after
+we implement these methods into the system and enrich
+the method description in the document file of Tab. I.
+For example, to perform the automated SPM experi-
+ments, several advanced algorithms and AI implemen-
+tations for SPM can be integrated into the system, in-
+cluding data processing methods27,28, drift correction29,
+tip reconstruction10,30, and atom manipulation31.
+The accuracy of the AI can be improved by generating
+more detailed prompts, similar to instruction manuals.
+Fortunately, the “gpt-4-0125-preview" model supports up
+to 128,000 tokens, and given that a single conversation
+typically utilizes only around 500 tokens, the full poten-
+tial of ChatGPT is not yet being leveraged. The AI can
+facilitate more advanced experimental operations by in-
+corporating detailed instructions in the experimental ap-
+paratus into the prompts.
+In summary, we have developed an SPM agent repre-
+senting an innovative application of AI in scientific re-
+search, offering a user-friendly and efficient method for
+conducting SPM experiments remotely. This work con-tributes to the broader efforts in automating scientific
+research, promising to accelerate experimental workflows
+andfacilitateremoteexperimentationinvariousscientific
+fields.
+This work was supported in-part by a Grant-in-Aid
+for Scientific Research (19H05789, 21H01812, 22K18945)
+from the Ministry of Education, Culture, Sports, Science
+and Technology of Japan (MEXT).
+1Coley C W, Thomas D A, Lummiss J A M, Jaworski J N, Breen
+C P, Schultz V, Hart T, Fishman J S, Rogers L, Gao H, Hicklin
+R W, Plehiers P P, Byington J, Piotti J S, Green W H, Hart A J,
+Jamison T F and Jensen K F 2019 Science 365eaax1566
+2Kaminski T S and Garstecki P 2017 Chem. Soc. Rev. 46(20)
+6210–6226
+3Epps R W, Bowen M S, Volk A A, Abdel-Latif K, Han S,
+Reyes K G, Amassian A and Abolhasani M 2020 Adv Mater 32
+e2001626 ISSN 1521-4095 (Electronic); 0935-9648 (Linking)
+4Tao H, Wu T, Kheiri S, Aldeghi M, Aspuru-Guzik A and Ku-
+macheva E 2021 Advanced Functional Materials 312106725
+5Abolhasani M and Kumacheva E 2023 Nature Synthesis 2483–
+492
+6Rooney M B, MacLeod B P, Oldford R, Thompson Z J, White
+K L, Tungjunyatham J, Stankiewicz B J and Berlinguette C P
+2022 Digital Discovery 1(4) 382–389
+7Gromski P S, Henson A B, Granda J M and Cronin L 2019
+Nature Reviews Chemistry 3119–128
+8Epps R W and Abolhasani M 2021 Applied Physics Reviews 8
+041316
+9Vasudevan R K, Kelley K P, Hinkle J, Funakubo H, Jesse S,
+Kalinin S V and Ziatdinov M 2021 ACS Nano 1511253–11262
+10Krull A, Hirsch P, Rother C, Schiffrin A and Krull C 2020 Com-
+munications Physics 354
+11Diao Z, Ueda K, Hou L, Li F, Yamashita H and Abe M
+2024 Ai-equipped scanning probe microscopy for autonomous
+site-specific atomic-level characterization at room temperature
+(Preprint 2404.11162)
+12Granovetter M 1978 American Journal of Sociology 831420–
+1443
+13Rombach R, Blattmann A, Lorenz D, Esser P and Ommer B
+2021High-resolutionimagesynthesiswithlatentdiffusionmodels
+(Preprint 2112.10752)
+14Hoogeboom E, Satorras V G, Vignac C and Welling M 2022
+Equivariant diffusion for molecule generation in 3d vol 162 pp
+8867 – 8887 cited by: 82
+15Sanchez-LengelingBandAspuru-GuzikA2018 Science 361360–
+365
+16Zhao Y, Siriwardane E M D, Wu Z, Fu N, Al-Fahdi M, Hu M
+and Hu J 2023 npj Computational Materials 938
+17SlackisatrademarkandservicemarkofSlackTechnologies, Inc.,
+registered in the U.S. and in other countries.
+18Radford A, Kim J W, Xu T, Brockman G, McLeavey C and
+Sutskever I 2022 Robust speech recognition via large-scale weak
+supervision ( Preprint 2212.04356)
+19OpenAI, Achiam J, Adler S, Agarwal S and Ahmad L 2024 Gpt-4
+technical report ( Preprint 2303.08774)
+20Sugimoto Y, Abe M, Hirayama S, Oyabu N, Custance Ó and
+Morita S 2005 Nature Materials 4156–159
+21Sugimoto Y, Pou P, Abe M, Jelinek P, Pérez R, Morita S and
+Custance Ó 2007 Nature 44664–67
+22Abe M, Sugimoto Y, Custance Ó and Morita S 2005 Nanotech-
+nology 163029
+23Paul W, Oliver D, Miyahara Y and Grütter P 2014 Applied Sur-
+face Science 305124–132
+24Extance A 2018 Nature 555545–547 ISSN 1476-4687 (Elec-
+tronic); 0028-0836 (Linking)
+25Simonyan K and Zisserman A 2015 Very deep convolutional net-
+works for large-scale image recognition ( Preprint 1409.1556)5
+26KrizhevskyA,SutskeverIandHintonGE2012Imagenetclassifi-
+cationwithdeepconvolutionalneuralnetworks Advances in Neu-
+ral Information Processing Systems vol 25 ed Pereira F, Burges
+C, Bottou L and Weinberger K (Curran Associates, Inc.)
+27Jones L, Yang H, Pennycook T J, Marshall M S J, Van Aert
+S, Browning N D, Castell M R and Nellist P D 2015 Advanced
+Structural and Chemical Imaging 18
+28Diao Z, Katsube D, Yamashita H, Sugimoto Y, Custance O andAbe M 2020 Applied Physics Letters 117033104
+29Diao Z, Ueda K, Hou L, Yamashita H, Custance O and Abe M
+2023 Applied Physics Letters 122121601
+30Diao Z, Hou L and Abe M 2023 Applied Physics Express 16
+085002
+31Chen I J, Aapro M, Kipnis A, Ilin A, Liljeroth P and Foster A S
+2022 Nature Communications 137499

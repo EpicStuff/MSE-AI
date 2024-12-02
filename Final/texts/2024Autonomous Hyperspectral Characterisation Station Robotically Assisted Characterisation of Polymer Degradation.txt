@@ -1,0 +1,935 @@
+1
+Autonomous Hyperspectral Characterisation Station:
+Robotically Assisted Characterisation of Polymer
+Degradation
+Shayan Azizi1,2, Ehsan Asadi1, Shaun Howard2, Benjamin W. Muir2, Riley O’Shea2and Alireza Bab-Hadiashar1
+Abstract —This paper addresses the gap between the capabil-
+ities and utilisation of robotics and automation in laboratory
+settings and builds upon the concept of Self Driving Labs
+(SDL). We introduce an innovative approach to the temporal
+characterisation of materials. The article discusses the challenges
+posed by manual methods involving established laboratory equip-
+ment and presents an automated hyperspectral characterisation
+station. This station integrates robot-aided hyperspectral imag-
+ing, complex material characterisation modeling, and automated
+data analysis, offering a non-destructive and comprehensive
+approach. This work explains how the proposed assembly can
+automatically measure the half-life of biodegradable polymers
+with higher throughput and accuracy than manual methods.
+The investigation explores the effect of pH, number of average
+molecular weight (Mn), end groups, and blends on the degra-
+dation rate of polylactic acid (PLA). The contributions of the
+paper lie in introducing an adaptable classification station for
+novel characterisation methods and presenting an innovative
+methodology for polymer degradation rate measurement. The
+proposed system has the potential to accelerate the development
+of high-throughput screening and characterisation methods in
+material and chemistry laboratories.
+Note to Practitioners —The characterisation and classification
+of materials hold significant importance within the realms of
+material science, chemistry, manufacturing and circular economy.
+We introduce an innovative approach by employing robotics to
+automate hyperspectral imaging and processing to accelerate and
+improve material characterisation within a laboratory environ-
+ment. This methodology facilitates the time-dependent character-
+isation of materials. This automated system encompasses sample
+manipulation and handling for hyperspectral scanning, accom-
+panied by automated image and data processing procedures to
+minimise manual interventions effectively. The developed system
+can be seamlessly integrated into lab settings, offering objective,
+accurate, and automated measurement of biodegradable polymer
+degradation rate.
+Index Terms —Hyperspectral imaging, laboratory automation,
+polymer degradation, material characterisation.
+I. INTRODUCTION
+EFFORTS have been directed towards bridging the gap
+between capabilities and utilisation of robotics and au-
+tomation within a laboratory setting. With the introduction
+of Self Driving Labs (SDL) [1] such as the mobile chemist
+1Shayan Azizi, Ehsan Asadi and Alireza Bab-Hadiasher are with Fac-
+ulty of Manufacturing, Materials and Mechatronics Engineering, RMIT
+University, VIC 3000, Australia (email: s3950426@student.rmit.edu.au;
+ehsan.asadi@rmit.edu.au; alireza.bab-hadiashar@rmit.edu.au)
+2Shayan Azizi, Shaun Howard, Benjamin W. Muir and Riley O’Shea
+are with the Manufacturing business unit at CSIRO, VIC 3168, Australia
+(email: shayan.azizi@csiro.au; shaun.howard@csiro.au; ben.muir@csiro.au;
+riley.o’shea@csiro.au)
+Fig. 1: Robot-aided hyperspectral mapping and data sampling.
+[2], automation and AI are expected to significantly impact
+laboratory operations, enabling mechanised large-scale exper-
+imentation with high levels of repeatability and throughput
+while reducing operational costs [3]. Automation can greatly
+enhance material classification and characterisation which are
+essential tasks within scientific laboratories. Specifically, there
+has been a growing interest in the use and applications of
+biodegradable polymers, including but not limited to packag-
+ing, electronics, automotive components, and critical medical
+applications such as implantation and drug delivery [4][5].
+Consequently, automation of degradation rate measurement
+and analysis is becoming increasingly important, necessitating
+objective data sampling throughout days, nights and weekends
+for an extended period of time.
+A. Problem, solution and rationale
+Numerous chemical and material science experiments in-
+volve reactions or processes that happen gradually, yielding
+crucial data at specific time points. Prolonged experiments
+that require regular measurements impose significant demands
+on laboratory staff and equipment usage. Moreover, many
+experiments prove sensitive to intrusive measurement tech-
+niques entailing resampling or extreme exposure. Established
+equipment for characterisation, including mass spectrome-
+try, Fourier-transform infrared spectroscopy (FTIR), nuclear
+magnetic resonance (NMR), UV-vis spectroscopy, gas per-
+meation chromatography (GPC), etc., are frequently operatedarXiv:2402.11763v1  [eess.SY]  19 Feb 20242
+manually, requiring laborious sample preparation. They often
+have prolonged operation times and are associated with high
+operational and setup costs. These characteristics limit their
+seamless integration into automated workflows.
+Current techniques for measuring the degradation rate of
+biodegradable polymers encompass a range of methods, in-
+cluding NMR, FTIR, GPC, thermogravimetric analysis (TGA),
+(SEM) and turbidity measurements [6]. For instance, GPC
+quantifies alterations in the hydrodynamic radius associated
+with molecular weight. By evaluating changes in molecular
+weight, insights into the polymer degradation rate can be
+derived. However, GPC involves many preparatory manual
+steps as well as high levels of uncertainty associated with its
+measurements. Alternatively, a turbidity scanner can measure
+the intensity of scattered light by the sample, which may
+decrease as the polymer degrades. Turbidity measurements are
+based on assumptions that the polymer is homogeneous within
+the solution and the light beam wavelength is appropriate for
+all samples, which is usually not the case. These standard an-
+alytical techniques exhibit limitations in assessing degradation
+rates and often involve multiple manual procedures with low
+throughput.
+This paper presents an automated hyperspectral character-
+isation station for high-throughput material analysis without
+requiring any preparatory steps or deep domain knowledge.
+This method allows flexibility and optimised automation via
+integrating robot-aided hyperspectral imaging with complex
+material characterisation modelling and automated data anal-
+ysis. The compact and non-destructive nature of the proposed
+method allows synergistic deployment with various classi-
+fication tools, thereby providing a comprehensive analysis.
+Through a detailed case study, we show how the proposed
+assembly can automatically measure the half-life of bio-
+degradable polymers with higher throughput and accuracy
+compared to what is typically achieved with manual methods.
+B. Contributions and capabilities
+This paper has two major contributions: (I)We introduce an
+adaptable and automated classification station that enables the
+development of novel characterisation methods involving slow
+temporal changes by providing readily analysable hyperspec-
+tral data over an extended period of time. Applications of this
+system encompass tracking changes within samples over time,
+conducting comparative analyses across multiple samples,
+time-dependent characterisation, and non-intrusive monitor-
+ing. The hyperspectral data provides a range of information,
+including variations in total reflectance, alterations in peak
+and trough intensities, quantitative colorimetric assessment,
+and identification of anomalies in established spectral patterns.
+This information is useful to detect the presence or absence
+of specific materials as well as to measure solubility and
+degradation, light sensitivity, uniformity, concentrations, etc.
+This framework provides opportunities for the development of
+innovative, rapid, automated, and high-throughput screening
+and characterisation methods within material and chemistry
+laboratories. The use of the proposed system has the potential
+to accelerate the generation of training data for machinelearning methods that can solve characterisation challenges.
+(II) An innovative methodology is developed for polymer
+degradation rate measurement as an objective, accurate and
+automated solution with minimum human intervention. This
+technique provides insights into the degradation of Polylactic
+Acid (PLA). The impact of variables such as pH, molecular
+weight, end groups and blends of polymers on the rate of
+polymer degradation is investigated.
+II. R ELATED WORK
+Laboratory automation is increasingly necessary to speed up
+chemical analysis processes and reduce the required human re-
+sources [1][3]. Recent work are focused on using collaborative
+robots (cobots), which are an emerging technology that brings
+flexibility to labs without compromising scientists’ safety. As
+an example, “the mobile robotic chemist” [2] is designed to
+perform complete experiments and improve future experiments
+by analysing the results of previous runs. Such closed-loop
+automated processes are intended to increase the speed of lab-
+oratory processes. A less sophisticated application of cobots in
+labs is their use in Covid-19 testing facilities [7], where a sam-
+ple cleaning procedure is automated, saving lab technicians
+time and effort from performing tedious and repetitive tasks.
+Another example is a robotic system performing the Michael
+reaction experiment competently as a junior chemist [8]. To
+add flexibility, a system architecture called the ARChemist
+[9] was developed to facilitate laboratory automation using
+existing equipment. Similarly, a scene-aware robotic chemist
+with the ability to plan long horizon trajectories and perform
+pouring exercises was developed to perform basic solubility
+and crystallisation experiments [10].
+Robots are also increasingly employed to automate various
+aspects of hyperspectral analysis across different domains. As
+an example, robots and HSI were used to design a construction
+demolition waste system [11] to separate common waste mate-
+rials such as brick, rubber, concrete, and wood using a robotic
+arm. For outdoor applications, an automated hyperspectral
+imaging system, in conjunction with a deep learning technique,
+was also developed to predict the nitrogen contents in corn
+plant leaves [12]. However, automated systems have turned
+out to have a lower time-averaged throughput compared to
+humans. Most recently, a system known as Hyperbot-A [13]
+has been developed to automate the process of hyperspectral
+imaging data gathering with the help of a cobot. However,
+hyperbot-A’s integration with external equipment remains un-
+explored and hasn’t been utilised for specific applications.
+In terms of data analysis, there is significant potential to
+improve scientific measurements by using artificial intelli-
+gence, particularly those focused on hyperspectral imaging
+(HSI) [14]. For instance, a study conducted in a laboratory
+setting utilises HSI to predict the mean size of polymer
+molecules [15], which had an observed and predicted value
+correlation (R2) of 0.97. Similarly, by using machine learn-
+ing and hyperspectral images, the possibility of measuring
+the conductivity of thin polymer films was explored [16].
+Although conductivity and reflection spectrum may initially
+seem unrelated, the combination of HSI and ML served as3
+a diagnostic tool to measure film conductivity. While this
+work demonstrated the potential of hyperspectral imaging as
+a characterisation technique, the data-gathering process was
+conducted manually.
+Over the past few years, some work has also investigated
+polymer degradation and aging using hyperspectral imaging.
+Polylactic acid degradation was evaluated in an accelerated
+weathering test using a NIR hyperspectral camera, which
+used spectral intensity to suggest a decrease in molecular
+weight induced by the hydrolysis degradation [17]. Another
+study of polymer degradation [18] found that the HSI method
+provides a more detailed picture of sample degradation in
+terms of its spatial variance. Polymer damage and aging
+were also analysed for silicone rubbers while mainly utilising
+the visible spectrum [19]. Most recently, the aging state of
+styrene–butadiene–styrene (SBS) has been analysed using a
+Short Wave Infrared HSI, predicting the aging state with
+an error of 1.8-2.1 days [20]. None of the mentioned work
+examines polymer degradation in a chemical lab that allows
+fine-tuning of different variables. Our proposed methodology
+is a generalised approach to characterising and quantifying the
+degradation rate of various polymers due to hydrolysis. It pro-
+vides a methodology for analysing a larger set of applications
+than scenario-specific methods and measurements.
+III. A UTOMATED HYPERSPECTRAL CHARACTERISATION
+STATION
+This section provides an overview of the innovative char-
+acterisation station proposed as a key element of process
+automation within chemistry laboratories, enabling outcomes
+with objective, data-driven and quantifiable results. Enabled by
+the capabilities of the proposed system, in section IV, we in-
+troduce a new and fully automated approach for measuring and
+analysing polymer degradation rates. The automation station
+is designed around multiple factors such as safety, flexibility,
+minimising human intervention and maximising throughput.
+The system consists of two primary processes: the character-
+isation station and the image and data analysis pipeline. The
+station is comprised of five principal components: a manipula-
+tor (collaborative robot), an end-effector (gripper), an imaging
+device (hyperspectral camera), illumination sources (halogen
+lamps), and lab equipment (shaker). These components are
+integrated through the Robotic Operating System (ROS) as
+the communication framework. The data and imaging analysis
+pipeline comprises five key sub-processes: calibration, region
+of interest (ROI) detection, artefact removal, model fitting, and
+data visualisation.
+A. Process automation and hierarchical state machine
+In our setup, we developed a series of independent software
+modules that each controlled a physical device. The user can
+arrange the modules in any sequence to define the operations
+required for a task. The resulting sequential state machine is
+called a “program” and can be saved into a library for future
+use. Combining several programs and a user input module
+comprises a hierarchical state machine that enables the user
+to define a sequence of controlled actions as shown in Fig.2. “Program” number refers to the labelling associated with
+individual subtasks, and “sequential sampling variables” serves
+as the starting point for the sampling strategy, determining
+the number of iterations a program runs and specifying the
+time interval between each iteration.. Fig. 5 shows an example
+program consisting of modular components for the automation
+of an imaging task. Each program performs a specific task
+via its own state machine, and the human-machine interface
+allows for serialised commands, orchestrating multiple pro-
+grams. Such tasks include running experiments in parallel or
+performing more complex characterisation of high-level tasks.
+B. Image processing and data analysis
+Hyperspectral images are dense and high-dimensional data
+structures that require the implementation of various image
+and data processing techniques to enable meaningful analysis.
+Several techniques are employed in our system, including flat
+field correction, artefact removal and ROI detection. A brief
+overview of these techniques is as follows.
+Calibration : The well-known flat-field correction was em-
+ployed to account for the influence of lighting on the samples.
+A highly reflective (99%) tile was utilised to measure the light
+source’s spectrum (W). The background noise (dark) spectrum
+(D) was recorded with the shutter closed. Subsequently, the
+hyperspectral data is calibrated using C=R−D
+W−D·m, where
+RandCare the raw calibrated data, respectively and mis a
+constant scaling factor.
+ROI detection : Numerous containers commonly found in
+laboratory settings, including well plates, petri dishes, and
+vials, exhibit circular geometries. OpenCV Hough’s circle de-
+tection algorithm [21] with additional developed optimisations
+and fine-tuning were utilised to automate the identification of
+regions of interest (ROIs) [22][23]. The algorithm guarantees
+non-overlapping detection of circles and sequential number-
+ing, ensuring the convenient identification of each individual
+sample. Particular focus was placed on the detection of well
+plates as it allows for concurrent imaging of multiple samples.
+Artefact removal : Two primary artefacts are encountered
+in the detected regions of interest. Firstly, there is glare
+on the surface of the solution, which is considerably more
+reflective than the solution, and secondly, there is a possibility
+of regions being erroneously flagged as part of the sample
+post-circle detection. To address both concerns, a reflective
+mask is produced via 3D printing and fitted on top of the well
+plate and around the samples. This mask reflects considerably
+more light, sufficient to induce CMOS sensor saturation.
+Algorithmically, pixels that experience sensor saturation at any
+wavelength are excluded from the region of interest, thereby
+resolving both artefacts and enhancing the overall outcomes.
+Model fitting : A major challenge in transitioning from lab-
+scale chemistry to process automation is the lack of quantita-
+tive chemical synthesis and analysis. We utilise a model-fitting
+algorithm to match a particular model, whether it’s a basic
+exponential function or a more complex one, with the data
+obtained from hyperspectral imaging for various analyses. For
+example, our novel approach to resolve this issue and calculate
+the polymer’s half-life using only hyperspectral imaging is
+outlined in the subsequent section.4
+Fig. 2: Overall system design of autonomous hyperspectral characterisation station for laboratories.
+IV. A UTOMATING POLYMER DEGRADATION RATE
+MEASUREMENT AND ANALYSIS
+A. Biodegradable polymers and their characteristics
+In this paper, polymer degradation refers to the breakdown
+of large polymers into smaller units due to hydrolysis, as
+seen in Fig. 3. The underlying mechanisms governing polymer
+degradation are complex and not fully understood [24]. Exist-
+ing research suggests two established approaches: bulk erosion
+and surface erosion [25][26]. Numerous theoretical models
+have been proposed to describe polymer degradation rates,
+adopting various approaches, including diffusion and surface
+area dependence. This study uses a simple exponential decay
+approach for assessing polymer degradation. The first-order
+rate equation for the mass of undissolved polymers ( mp) is
+given by 1, where k1is the decay constant.
+−dmp
+dt=k1mp. (1)
+Solving the differential equation 1 results in :
+mp(t) =ae−k1t. (2)
+This study mainly focused on measuring polylactic acid
+(PLA) degradation. It’s been shown that PLA degrades to
+lactic acid and its oligomers [27]. Additionally, Lactic acid and
+lactic acid salts are highly soluble in water [28][29]. Hence,
+degraded PLA will fully dissolve in potassium buffer saline
+(PBS) and not reflect any visible light. Under these conditions,
+potassium lactate would be the major product formed at equi-
+librium. This is further confirmed by an experiment measuring
+Fig. 3: A black and white representation of hyperspectral images, used to
+measure the degradation rate of polymers. The degradation process is evident
+as time (in hours) progresses from the left to the right image.
+the light reflected from PBS + lactide, PBS + lactic acid and
+the PBS on its own. As shown in Fig. 4, the lactide and lactic
+acid do not contribute to a signal change. The slight difference
+in the baseline value of the three samples is due to the position
+of the samples with respect to the camera and light.
+The proposed methodology applies to a variety of polymers
+as long as they satisfy two conditions: ( I) the polymer is
+relatively well dispersed within the solution (this technique
+isn’t as accurate for visibly concentrated or agglomerated
+polymers) and ( II) the polymer dissolves into PBS (or other
+solution) after degradation. An additional polymer independent
+condition ( III) also needs to be satisfied to ensure the mass of
+polymer per imaged-surface-area ( ρA) doesn’t exceed a certain
+threshold ( τ).
+B. Hyperspectral imaging model for polymers degradation
+Hyperspectral imaging provides measurements of the re-
+flected light over a wide range of wavelengths from biodegrad-5
+Fig. 4: Total light reflected by the control samples. Lactide and Lactic acid
+aren’t contributing to a signal change (plotted with the same range as the actual
+results shown in subsequent figures). The standard deviation of reflection
+intensity values for these controlled samples is less than 5% of their average
+values for all cases.
+able polymers, in contrast to conventional RGB cameras or
+similar sensors that are restricted to certain wavelengths. The
+half-life of polymers can be estimated by fitting an exponential
+decay model to regular measurements of total reflected light
+over an extended period of time using a hyperspectral camera.
+The total light reflected by a sample is modelled as follows:
+RT=Rs+Rp+Rb, (3)
+where RTis the total light reflected, Rsis the light reflected
+by PBS, Rpis the light reflected by any undissolved polymer,
+andRbis the light reflected by the background. Since the Rs
+andRbremain unchanged over time, as the polymer degrades,
+they can be replaced by a constant c. Hence, we can rewrite
+Eq. 3 as:
+RT=Rp+c (4)
+As previously discussed, we assume that the polymer is
+relatively well dispersed within the solution and its area
+density doesn’t exceed the threshold τ. This means that the
+light reflected by the polymer would have a linear relationship
+with the cumulative amount of undissolved polymer. Notably,
+the mass of undissolved polymers ( mp) maintains direct
+proportionality with the intensity of reflected light, owing to
+the fact that non-degraded polymers can’t dissolve within the
+solution. This is important as only the undissolved polymers
+will contribute to the hyperspectral reflectance signal. As
+such, we can reasonably expect a linear relationship between
+reflection and undissolved mass given by:
+RT=a·mp+c (5)
+where aandcare both constants. As given in Eq. 2, the
+mass of the remaining polymers can be modelled using an
+exponential decay, resulting in the following equation:
+RT=a·e−kdt+c (6)from which the half-life ( t1
+2) of the polymer can be calcu-
+lated by:
+t1
+2=log(2)
+kd. (7)
+C. Advanced surface-mass dependent degradation model
+By assuming a spherical shape and constant density ( ρ) for
+the polymers, one can arrive at a surface area ( SA) dependent
+rate of degradation as given in Eq. 8, where kdis the rate
+constant [30].
+−dmp
+dt=k2·ρ·SA=k2(4πρ)1
+3(3mp)2
+3 (8)
+With the linear combination of the above equation and
+the mass-dependent model given in Eq. 1, we derive a new
+degradation rate model (Eq. 9). This incorporates both the
+surface and bulk modes of degradation into one equation.
+−dmp
+dt=k2(4πρ)1
+3(3mp)2
+3+k1·mp (9)
+Denoting the constant term k2(4πρ)1
+3(3)2
+3byb, the differ-
+ential equation 9, will be a Bernoulli ODE that can be solved
+exactly with solution given by Eq. 10.
+mp=−e−k1t(bek1t
+3−ed1k1)3
+k3
+1(10)
+By substituting the Eq. 10 in Eq. 5, we can now model the
+total reflected light by:
+RT=−ae−k1t(bek1t
+3−ed1k1)3
+k3
+1+c (11)
+where a >0,b≥0,k1≥0andc≥(b
+k)3. Variable ais
+just a scaling factor; for simplicity, we assume a= 1. Akaike
+information criterion (AIC) and Minimum Description Length
+(MDL) given in equations 12 and 13 respectively [31], are
+used to evaluate the performance of the fitted models.
+AIC =NX
+i=1r2
+i+ 2Pσ2(12)
+MDL =NX
+i=1r2
+i+P
+2log(N)σ2(13)
+D. Robot position for imaging
+To calculate the appropriate distance ( d) and velocity ( Vc) of
+a sample with respect to a fixed camera, we need to know the
+camera’s field of view ( FOV ), effective slit width ( Le), frame
+rate (f) and spatial resolution ( Rp) as well as the desired image
+length ( L). The desired image length in practice should be
+slightly larger than the sample width (e.g. by 10%). Equations
+14 and 15 show how a sample’s distance and velocity values
+are calculated.
+d=L−Le
+2cot(FOV◦
+2) (14)
+Vc=L
+Rp·f, (15)6
+Algorithm 1 Sequential Sampling Strategy
+Input: All hyperspectral ROI ( D), their corresponding time
+(t) and variables f,bl,bu,g
+Output: tn+1, optimal time separation for the next sampling
+1:while sampling do
+2: ifnew measurement then
+3: I←F(D, t)
+4: end if
+5: ie←G(c, J) ▷Where J⊆I
+6: if(ie< ϵ)then
+7: Stop Sampling
+8: else if |ie−∆i|< δ then
+9: Continue without change
+10: else
+11: d←N(ie,∆i, g)
+12: s←T(d, f)
+13: tn+1←P(∆t, s, b l, bu)
+14: end if
+15:end while
+E. Sequential sampling strategy with time-varying intervals
+One of the challenges of polymer degradation analysis lies
+in determining the optimal time intervals for capturing hyper-
+spectral images during the degradation process. Employing a
+constant time interval is not effective, as setting it too short
+may lead to inefficiencies within the system while opting for a
+long interval can result in missing critical data. Moreover, the
+rate of polymer degradation can vary throughout the course of
+an experiment, adding to the complexity of the task. To address
+these challenges, we have developed a sequential sampling
+algorithm, as shown in Alg. 1, designed for optimising the
+time intervals between hyperspectral images. The process is
+as follows:
+Firstly, each sample’s total reflected intensity ( I) is extracted
+from the ROI of hyperspectral images and recorded after each
+measurement. Next, a subset of these intensities, usually the
+last two measurements and a desired rate of change, denoted
+asc, are used to calculate the ideal change in intensity ( ie).
+Any change smaller than a predefined degradation limit ( ϵ)
+is considered insignificant. If the ideal change in intensity is
+smaller than the defined limit ϵ(e.g. <1%of the starting
+intensity), it can be inferred that the sample won’t undergo
+any further notable degradation, and the experiment can be
+stopped. Alternatively, sampling can continue without adjust-
+ing if the difference between ieand the last measured change
+in intensity ( ∆i) is within an acceptable margin ( δ).
+However, an optimisation algorithm is utilised if none of
+these conditions are met. This algorithm calculates the optimal
+time for the next measurement ( tn+1) by considering several
+factors. First, it computes a normalised distance ( d) between
+the ideal and actual change in intensity, with the option to
+increase sensitivity by applying a gain factor ( g). A simple
+way of calculating the normalised distance between ieand∆i
+is given in Eq. 16.
+d=g·(∆i
+ie−2 +ie
+∆i) (16)To find the appropriate change in sampling time ( s), we first
+need to define the maximum allowed factor of change per time
+interval f(we usually don’t want this to be more than a factor
+of two). We then introduce a smooth monotone mapping of
+distances dtos, using the ffactor as given by Eq. 17.
+s= (1−f)e−d+f (17)
+Finally, tn+1is determined based on the elapsed between
+the two previous measurements ∆t,s, and absolute lower ( bl)
+and upper ( bu) time boundaries. These absolute boundaries
+are established based on system limitations and the specific
+requirements of the experiment. If there are multiple samples
+imaged, the final tn+1that the robotic system uses is the
+smallest tn+1between all the given samples. The proposed
+Alg. 1 offers notable advantages, primarily stemming from
+its independence regarding how intensities change over time
+and its low computational cost. These characteristics make
+it a flexible and efficient tool for optimising the timing of
+hyperspectral image capture during experiments.
+V. E XPERIMENTAL SETUP AND RESULTS
+A. Apparatus and integration
+A Universal Robotics UR5e collaborative robot was selected
+as the robotic arm and was equipped with an OnRobot RG6
+gripper. Custom detachable 3D-printed fingers were imple-
+mented for specific applications in the hand.
+The SPECIM FX10e push-broom hyperspectral camera
+serves as the primary characterisation device. It provides a
+spatial resolution of 1024 pixels and covers the wavelength
+range of 400 – 1000nm with a spectral resolution of 224. The
+main light source for hyperspectral imaging is a 500W linear
+halogen lamp.
+ROS1 Noetic on Ubuntu 20.04 and standard UR5e and
+RG6 gripper drivers were utilised for system integration and
+communication. The robotic arm was controlled by directly
+using its controllers and the Transform Library [32] for path
+planning.
+One of the main challenges in capturing hyperspectral data
+was ensuring no information loss and maintaining 16-bit depth
+through multiple software frameworks. The GigE interface of
+the FX10e limited the camera driver’s choices. Aravis was the
+preferred driver option and was used as an element within a
+Gstreamer pipeline, allowing the transport of data to be fine-
+tuned and previewed.
+OpenCV [21] was used to manage the Gstreamer pipeline
+and save the output to a cloud server. It’s important to note
+that the above process was interfaced with the experiment
+sequencer, allowing the automatic capture of hyperspectral
+images in concert with the robot’s motion.
+B. Polymer degradation experimental procedure
+An example of a sample preparation procedure we under-
+took is as follows: Polymer (5 mg) was dissolved in 2 mL of
+1,4-dioxane, 400 µL was taken and added dropwise to a 15 mL
+centrifuge tube that contains 8 mL of a solution of 99% ethanol
+and 1% normal saline (0.9% NaCl in water). The mixture was7
+Fig. 5: Schematic diagram of the imaging procedure. The lid manipulations
+are crucial steps to minimise evaporation when idle and mitigate any potential
+artefacts during the imaging process.
+TABLE I: Polymer information
+Name Mn Mw Endcap Dispersity Source
+PLA1 56687 82911 Ester 1.463 Natureworks
+PLA2 200913 296975 Acid 1.478 Akina Polymers
+PLA3 11075 15089 Ester 1.362 Akina Polymers
+PCL1 19006 34345 Acid 1.807 Merck (Sigma)
+PHB1 128766 284529 None 2.210 Merck (Sigma)
+allowed to settle for at least 30 minutes, then it was centrifuged
+at 3500 RPM for 1 minute, and the supernatant was removed.
+The solid was then dispersed in 1.5 mL of PBS at 0.6M
+concentration and pH 12.3 (unless mentioned otherwise). This
+suspension was then dispensed into a 24 well plate ( ρA=
+2.63mg/cm2). Through several experiments, we find that the
+mass of polymer per imaged-surface-area ( ρA), 3> ρA > 2
+mg/cm2provides the best results for our given polymers and
+experimental setup. The sample well plate was then put on
+an orbital shaker, shaking at 30 RPM. The sequencer program
+was launched, and the tasks defined in Fig. 5 were executed.
+The defined process was repeated at specified time intervals
+for a defined number of cycles, depending on the experiment’s
+requirements.
+Table I contains information about different polymers used
+in our experiments.
+C. Uncertainty and performance
+Each measurement conducted during any experimental run
+exhibited a relative standard deviation of 4.05%. This was
+calculated by putting identical samples within the wells and
+comparing their differences. The given standard deviation
+accounts for the systematic error inherent in our designed
+system. Furthermore, when considering both PLA1 and PLA2,
+the standard deviation of half-life measurements within the
+same experimental run was determined to be approximately
+21 minutes. As a result, we can assert a 95% confidence
+level in the data’s self-consistency within a margin of error
+of 42 minutes for all measured half-life values pertaining
+(a) accuracy ( R2values) of the exponential degradation model
+(b) accuracy ( R2values) of the advanced degradation model
+Fig. 6: Degradation model-fitting performance with fixed sampling rate.
+to PLA1 and PLA2 within the same run. It’s worth noting
+that this margin could potentially be wider for polymers with
+longer degradation periods or measurements made among
+different runs. The circle detection algorithm exhibits a self-
+optimising capability, leading to 100% accuracy in detecting
+regions of interest (ROIs) for well plates of size 24 or smaller,
+contingent upon providing reasonable initial values to the
+algorithm. The final iteration of the robotic system achieved
+an independent success rate of 98.75% per measurement. This
+entailed a total of 396 successful measurements collected and
+analysed, with only 5 instances resulting in system failure
+(likely to be the result of computer glitches). Notably, the
+system’s longest consecutive successful run comprised 156
+measurements, spanning a week-long period without human
+intervention.
+D. Performance of degradation models
+Two distinct mathematical models (Eq. 6 and Eq. 11) were
+formulated to describe the behavior of PLA in a PBS when
+utilising hyperspectral imaging. As illustrated in Figures 6a
+and 6b, the model incorporating a linear combination of both
+surface area and mass-dependent degradation rates demon-
+strates superior performance, achieving a R2value of over
+99% for the examined polymers. In comparison, the simpler8
+TABLE II: Degradation model performance
+Sample AIC(exp.) AIC(adv.) MDL(exp.) MDL(adv.)
+PLA1 at pH=12.3 0.14 0.026 0.32 0.070
+PLA2 at pH=2 0.048 0.020 0.11 0.054
+PLA2 at pH=3 0.072 0.026 0.17 0.072
+exponential model attains R2values in the range of approx-
+imately 96-98%. This eludes the accuracy of the developed
+model for describing the factors underlying polymer degra-
+dation. However, it’s worth noting that the advanced surface-
+mass-dependent degradation model doesn’t have a half-life as
+an inherent characteristic. Consequently, we introduce a new
+metric called “total life”, signifying the time required for the
+hyperspectral signal to diminish to less than 1% of its initial
+amplitude, directly translating to more than 99% of the poly-
+mer degraded and dissolved into the PBS. Table II compares
+the performance of the two different models using AIC and
+MDL; the maximum value data point was normalised to 1prior
+to applying the model selection metrics. For all three of the
+given samples, the surface-mass-dependent degradation model
+(denoted as adv.) has a lower AIC and MDL, indicating a more
+descriptive model for the degradation process compared to a
+simple exponential approach (denoted as exp.). Despite the
+fact that the surface-mass-dependent model provides a more
+accurate description of polymer degradation, we will use the
+exponential model (Eq. 6) for subsequent analyses to report the
+well-established concept of half-life. This is justified as the R2
+values fitting the exponential model fall within an acceptable
+range.
+E. Performance of variable sequential sampling strategy
+The sequential sampling strategy is applied to existing
+data to assess its performance. The objective is to evaluate
+the trade-off between the reduction in the number of data
+points and the resulting measurement accuracy. In practice,
+the algorithm would predict the optimal time for the next
+measurement and then select the closest available data point
+to that predicted time. When comparing Figures 7b and 7a to
+6b and 6a, respectively, a notable reduction in the number
+of data points used is observed, down to only 30-42% of
+the original data set. Despite this reduction in the number
+of data points, the measured half-life and total life remain
+within 10% of the values obtained using the full data set. This
+demonstrates the efficiency and effectiveness of the sequential
+sampling strategy in optimising data collection while main-
+taining measurement accuracy. The algorithm’s performance
+is assessed offline using the collected data in section V-D.
+This approach enables a direct comparison between sampling
+methods, focusing exclusively on the distinction between fixed
+and time-variant intervals while minimising the influence of
+other variables.
+F . Additional polymer types
+Throughout our experimentation, PLA served as the primary
+polymer due to its relatively rapid degradation, enabling us to
+explore and demonstrate the capabilities of the characterisation
+system. However, as illustrated in Fig. 8, the system showcases
+(a) Sequential sampling algorithm and exponential model fitting
+(b) Sequential sampling algorithm and advanced model fitting
+Fig. 7: Performance of model fitting via variable sequential sampling algo-
+rithm. The R2value given is between the fitted model using the post-sampling
+data and the original data set. The percentage of data used after sequential
+sampling is given within the brackets
+Fig. 8: The degradation of PCL1 and PHB1 were measured over the course
+of two weeks. PBS of strength pH 14 was used to attain these results.
+its capabilities beyond PLA by successfully measuring the
+half-life of other polymers, such as PHB and PCL.
+G. Effect of pH
+The degradation of PLA at different pH strengths was
+measured to give a quantitative analysis of the effect of pH9
+Fig. 9: Illustrates the effect of pH strength on the half-life of PLA2
+strength on the polymer degradation rate. As demonstrated in
+Fig. 9, increasing the pH of PBS from 9.6 to 12.3 significantly
+accelerated polymer degradation, reducing the half-life of
+PLA2 by almost 50 times. However, it’s important to note
+that this effect could vary among different polymers and
+buffer solutions. Hence, our system provides the methodology
+needed for high-throughput degradation measurement under
+various conditions. This methodology is not limited to the
+variability of pH strength and can be extended to polymer
+mass, temperature, buffer type or concentration.
+H. GPC measurements
+The samples undergoing degradation were first imaged and
+then periodically taken out of the wells at specific time
+intervals to conduct the destructive GPC analysis. This step
+was crucial to confirm that the changes observed by the
+hyperspectral camera were caused by the polymer degradation
+process. As depicted in Fig. 10a, the sample at t=0, which had
+not undergone any degradation, displayed a broad peak with a
+central value of Mn ≈200,000 g/mol. At each subsequent time
+point, we observe the original peak diminishing in intensity,
+while two additional peaks emerge at Mn ≈2,500 and Mn
+≈5,000 g/mol. Notably, no polymer is detected at Mn <
+1,000 g/mol. This absence in the lower Mn range could be
+attributed to the partial dissolution of oligomers below this
+molecular weight threshold, resulting in rapid degradation with
+only monomers remaining.
+Fig. 10b presents the hyperspectral measurements corre-
+sponding to the GPC results, which are illustrated earlier
+in Fig. 10a. Within a span of 25 hours, it appears that the
+polymer has undergone near-complete degradation, with the
+exponential model closely approaching its projected asymp-
+tote. Consequently, Fig. 10c showcases the final GPC mea-
+surement acquired at the 25th hour compared to the 5th hour
+of the experiment. This measurement shows a minute peak
+at Mn ≈2,200 g/mol. This observation serves as additional
+confirmation, reinforcing the accuracy and reliability of the
+degradation measurements conducted by our proposed system.
+(a)
+(b)
+(c)
+Fig. 10: (a) A plot of the GPC measurements over the course of 5 hours. (b)
+The hyperspectral results of the control sample in the GPC run. (c) The GPC
+measurements at 5 hours and 25 hours time points.
+I. Effect of molecular weight and end-groups on degradation
+Blends of three pairs of polymers (PLA1-PLA2, PLA1-
+PLA3 and PLA2-PLA3) with different molecular weights
+were made, resulting in a range of samples with varying
+number average molecular weights (Mn). The half-life of these
+blends was measured and is illustrated in Fig. 11. The results
+demonstrate that PLA1 has the highest half-life despite having
+a smaller Mn than PLA2. Additionally, we know that PLA110
+Fig. 11: Blend of pairs of polymers demonstrating the effect of molecular
+weight and end groups. The “+” on a data point represents that it’s a shared
+point between two blends.
+Fig. 12: 3D ternary plot of the half life of PLA1, PLA2, PLA3 and their
+blends
+and PLA3 are both ester end-capped while PLA2 is acid
+end-capped. These results show that the degradation rate is
+affected by a multitude of inter-dependant factors, such as the
+combination of end groups and molecular weight. Addition-
+ally, the convergence of half-life measurements between two
+distinct sets of blends (PLA1-PLA2 and PLA1-PLA3) and
+measurements show the accuracy of the measured half-life.
+J. Complex blends
+To fully demonstrate the capabilities of the proposed system,
+we synthesised a blend comprising three distinct polymers
+(PLA1-PLA2-PLA3) and subsequently measured their respec-
+tive half-lives, as shown in Fig. 12. Many variables affect
+the degradation rate of polymers; hence, a high throughput
+analysis of a wide range of polymers and their blends through
+an automated process is crucial.VI. D ISCUSSION
+The characterisation station successfully measured the half
+life of staple biodegradable polymers such as PLA, PHB, and
+PCL within a laboratory environment. The GPC measurements
+confirm the observed change in hyperspectral images is due
+to polymer degradation followed by dissolution. Due to an
+increase in pH strength, the acceleration of degradation was
+measured quantitatively to be a factor of 2-5 per integer
+increase in pH within the range of 9.6 and 14 for PLA2. To
+fully quantify the extent of change in the degradation rate due
+to an increase in pH strength, a more extensive study analysing
+a variety of polymers will be required.
+Furthermore, by utilising blends of PLA1, PLA2 and PLA3,
+we identified a gradual but non-linear change in the half-life of
+the PLA samples when they were blended at different ratios.
+This is critical as without an extensive study of their blends,
+some results could be interpreted as outliers. The ternary plot
+in Fig. 12 depicts the smooth transition of half-life between the
+different polymers to verify the genuine effects of molecular
+weight and end groups underpinning the degradation rate.
+This lays the groundwork for automated and high throughput
+analysis of polymer blends and their properties within the
+realm of material science.
+The sequential sampling strategy developed to optimise
+the time interval between hyperspectral measurements can
+be implemented in real-time as a next step to improve the
+efficiency and multi-experimental throughput of the system.
+Additionally, computationally efficient machine learning al-
+gorithms could be explored as an alternative method to the
+presented method. All the results provided in this paper were
+acquired individually, leading to extended idle periods of the
+characterisation station. However, the system is capable of
+running multiple independent or dependent experiments in
+parallel, which should be considered in the future use of the
+developed system for other applications.
+VII. CONCLUSION
+An innovative robot-assisted automated hyperspectral
+imaging-based methodology is proposed to facilitate the tem-
+poral characterisation of materials. Through the utilisation of
+this developed system, hyperspectral analysis is introduced
+as a novel technique for evaluating the degradation rate
+of biodegradable polymers. The proposed automated system
+has accurately measured polymer degradation rates at high
+throughput. This capability enables the characterisation of
+degradation rates across a wide range of different conditions.
+Notably, our observations indicate that multiple factors influ-
+ence degradation rates, with end groups emerging as the most
+influential polymer property. Our work lays the foundation
+for further exploration through in-depth investigations into
+the individual factors, ultimately expanding our collective un-
+derstanding of polymer degradation dynamics. The proposed
+system is shown to be capable of generating systematic data
+for the validation of models. Future work could utilise this
+capability to test the suitability of potential models for material
+characterisation. There exists ample potential for extending
+the application of our demonstrated system to a broader range11
+of temporal experiments encompassing various materials and
+conditions.
+REFERENCES
+[1] M. Abolhasani and E. Kumacheva, “The rise of self-driving labs in
+chemical and materials sciences,” Nature Synthesis , pp. 1–10, 2023.
+[2] B. Burger, P. M. Maffettone, V . V . Gusev, C. M. Aitchison, Y . Bai,
+X. Wang, X. Li, B. M. Alston, B. Li, R. Clowes et al. , “A mobile
+robotic chemist,” Nature , vol. 583, no. 7815, pp. 237–241, 2020.
+[3] G. R. D. Prabhu and P. L. Urban, “The dawn of unmanned analytical
+laboratories,” TrAC Trends in Analytical Chemistry , vol. 88, pp. 41–52,
+2017.
+[4] A. Samir, F. H. Ashour, A. A. Hakim, and M. Bassyouni, “Recent
+advances in biodegradable polymers for sustainable applications,” Npj
+Materials Degradation , vol. 6, no. 1, p. 68, 2022.
+[5] T. P. Haider, C. V ¨olker, J. Kramm, K. Landfester, and F. R. Wurm,
+“Plastics of the future? the impact of biodegradable polymers on the
+environment and on society,” Angewandte Chemie International Edition ,
+vol. 58, no. 1, pp. 50–62, 2019.
+[6] S. Baidurah, “Methods of analyses for biodegradable polymers: a
+review,” Polymers , vol. 14, no. 22, p. 4928, 2022.
+[7] A. M. Zanchettin and F. Facciotti, “A collaborative robotic solution
+to partly automate sars-cov-2 serological tests in small facilities,” Slas
+Technology , vol. 27, no. 1, pp. 100–106, 2022.
+[8] J. X.-Y . Lim, D. Leow, Q.-C. Pham, and C.-H. Tan, “Development
+of a robotic system for automatic organic chemistry synthesis,” IEEE
+Transactions on Automation Science and Engineering , vol. 18, no. 4,
+pp. 2185–2190, 2020.
+[9] H. Fakhruldeen, G. Pizzuto, J. Glowacki, and A. I. Cooper, “Archemist:
+Autonomous robotic chemistry system architecture,” in 2022 Interna-
+tional Conference on Robotics and Automation (ICRA) . IEEE, 2022,
+pp. 6013–6019.
+[10] N. Yoshikawa, A. Z. Li, K. Darvish, Y . Zhao, H. Xu, A. Kuramshin,
+A. Aspuru-Guzik, A. Garg, and F. Shkurti, “Chemistry lab automation
+via constrained task and motion planning,” 2023.
+[11] W. Xiao, J. Yang, H. Fang, J. Zhuang, Y . Ku, and X. Zhang, “Devel-
+opment of an automatic sorting robot for construction and demolition
+waste,” Clean Technologies and Environmental Policy , vol. 22, pp. 1829–
+1841, 2020.
+[12] Z. Chen, J. Wang, T. Wang, Z. Song, Y . Li, Y . Huang, L. Wang,
+and J. Jin, “Automated in-field leaf-level hyperspectral imaging of corn
+plants using a cartesian robotic platform,” Computers and Electronics
+in Agriculture , vol. 183, p. 105996, 2021.
+[13] N. Hanson, T. Kelestemur, J. Berman, D. Ritzenhoff, and T. Padir,
+“Hyperbot-a benchmarking testbed for acquisition of robot-centric hy-
+perspectral scene and in-hand object data,” in 2022 12th Workshop on
+Hyperspectral Imaging and Signal Processing: Evolution in Remote
+Sensing (WHISPERS) . IEEE, 2022, pp. 1–5.
+[14] V . Sagan, M. Maimaitijiang, S. Paheding, S. Bhadra, N. Gosselin,
+M. Burnette, J. Demieville, S. Hartling, D. LeBauer, M. Newcomb et al. ,
+“Data-driven artificial intelligence for calibration of hyperspectral big
+data,” IEEE Transactions on Geoscience and Remote Sensing , vol. 60,
+pp. 1–20, 2021.
+[15] L. Pieszczek and M. Daszykowski, “Near-infrared hyperspectral imaging
+for polymer particle size estimation,” Measurement , vol. 186, p. 110201,
+2021.
+[16] D. Bash, Y . Cai, V . Chellappan, S. L. Wong, Y . Xu, P. Kumar, J. Da Tan,
+A. Abutaha, J. Cheng, Y . F. Lim et al. , “Machine learning and high-
+throughput robust design of p3ht-cnt composite thin films for high
+electrical conductivity,” arXiv preprint arXiv:2011.10382 , 2020.[17] H. Shinzawa, M. Nishida, T. Tanaka, and W. Kanematsu, “Accelerated
+weathering-induced degradation of poly (lactic acid) fiber studied by
+near-infrared (nir) hyperspectral imaging,” Applied spectroscopy , vol. 66,
+no. 4, pp. 470–474, 2012.
+[18] R. M. Dorrepaal, B. M. Lawless, H. E. Burton, D. M. Espino, D. E.
+Shepherd, and A. A. Gowen, “Hyperspectral chemical imaging reveals
+spatially varied degradation of polycarbonate urethane (pcu) biomateri-
+als,” Acta Biomaterialia , vol. 73, pp. 81–89, 2018.
+[19] M. Bleszynski, S. Mann, and M. Kumosa, “Visualizing polymer damage
+using hyperspectral imaging,” Polymers , vol. 12, no. 9, p. 2071, 2020.
+[20] M. Wieser, S. H. Unterberger, and R. Lackner, “Application of hyper-
+spectral imaging for identification of aging state of styrene–butadiene–
+styrene,” Spectrochimica Acta Part A: Molecular and Biomolecular
+Spectroscopy , vol. 271, p. 120918, 2022.
+[21] G. Bradski, “The OpenCV Library,” Dr. Dobb’s Journal of Software
+Tools , 2000.
+[22] H. Dong, G. Sun, W. C. Pang, E. Asadi, D. Prasad, and I.-M. Chen,
+“Fast ellipse detection via gradient information for robotic manipulation
+of cylindrical objects,” IEEE Robotics and Automation Letters , vol. 3,
+pp. 2754–2761, 2018.
+[23] H. Dong, E. Asadi, G. Sun, D. Prasad, and I.-M. Chen, “Real-time
+robotic manipulation of cylindrical objects in dynamic scenarios through
+elliptic shape primitives,” IEEE Transactions on Robotics , vol. 35, pp.
+95–113, 2019.
+[24] B. Laycock, M. Nikoli ´c, J. M. Colwell, E. Gauthier, P. Halley,
+S. Bottle, and G. George, “Lifetime prediction of biodegradable
+polymers,” Progress in Polymer Science , vol. 71, pp. 144–189,
+2017, topical V olume on Polymeric Biomaterials. [Online]. Available:
+https://www.sciencedirect.com/science/article/pii/S0079670017300540
+[25] F. V on Burkersroda, L. Schedl, and A. G ¨opferich, “Why degradable
+polymers undergo surface erosion or bulk erosion,” Biomaterials , vol. 23,
+no. 21, pp. 4221–4231, 2002.
+[26] A. G ¨opferich, “Mechanisms of polymer degradation and erosion,”
+Biomaterials , vol. 17, no. 2, pp. 103–114, 1996, polymer Scaffolding
+and Hard Tissue Engineering. [Online]. Available: https://www.
+sciencedirect.com/science/article/pii/0142961296857553
+[27] S. Inkinen, M. Hakkarainen, A.-C. Albertsson, and A. Sodergard, “From
+lactic acid to poly (lactic acid)(pla): characterization and analysis of pla
+and its precursors,” Biomacromolecules , vol. 12, no. 3, pp. 523–532,
+2011.
+[28] “National center for biotechnology information. pubchem compound
+summary for cid 612, lactic acid,” accessed 7 September, 2023. [Online].
+Available: https://pubchem.ncbi.nlm.nih.gov/compound/Lactic-Acid
+[29] W. P. Evans and C. B. Monk, “Conductivity and solubility studies
+of some glycollates and lactates,” J. Chem. Soc. , pp. 550–557, 1954.
+[Online]. Available: http://dx.doi.org/10.1039/JR9540000550
+[30] A. Chamas, H. Moon, J. Zheng, Y . Qiu, T. Tabassum, J. H. Jang, M. Abu-
+Omar, S. L. Scott, and S. Suh, “Degradation rates of plastics in the
+environment,” ACS Sustainable Chemistry & Engineering , vol. 8, no. 9,
+pp. 3494–3511, 2020.
+[31] N. Gheissari and A. Bab-Hadiashar, “A comparative study of model
+selection criteria for computer vision applications,” Image and Vision
+Computing , vol. 26, no. 12, pp. 1636–1649, 2008. [Online]. Available:
+https://www.sciencedirect.com/science/article/pii/S0262885608000711
+[32] T. Foote, “tf: The transform library,” in Technologies for Practical Robot
+Applications (TePRA), 2013 IEEE International Conference on , ser.
+Open-Source Software workshop, April 2013, pp. 1–6.

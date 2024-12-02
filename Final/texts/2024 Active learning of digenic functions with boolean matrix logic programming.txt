@@ -1,0 +1,341 @@
+Active learning of digenic functions with boolean
+matrix logic programming
+Lun Ai1, Stephen H. Muggleton2, Shi-Shun Liang1, and Geoff S. Baldwin1
+1Department of Life Sciences
+2Department of Computing
+Imperial College London, London, UK
+{lun.ai15,s.muggleton,shishun.liang20,g.baldwin}@imperial.ac.uk
+Abstract. We apply logic-based machine learning techniques to facil-
+itate cellular engineering and drive biological discovery, using a com-
+prehensive knowledge base of metabolic processes called a genome-scale
+metabolic network model (GEM). Predicted host behaviours are not al-
+ways correctly described by GEMs. Learning the intricate genetic inter-
+actions within GEMs presents computational and empirical challenges.
+To address these difficulties, we describe a novel approach called Boolean
+Matrix Logic Programming (BMLP) by leveraging boolean matrices to
+evaluate large logic programs. We introduce a new system, BMLP active,
+which efficiently explores the genomic hypothesis space by guiding in-
+formative experimentation through active learning. In contrast to sub-
+symbolic methods, BMLP activeencodes a state-of-the-art GEM of a
+widely accepted bacterial host in an interpretable and logical represen-
+tation using datalog logic programs. Notably, BMLP activecan success-
+fully learn the interaction between a gene pair with 90% fewer train-
+ing examples than random experimentation, overcoming the increase in
+experimental design space. BMLP activeenables rapid optimisation of
+metabolic models and offers a realistic approach to a self-driving lab for
+microbial engineering.
+Keywords: LogicProgramming ·BooleanMatrices ·SystemsBiology
+·Genome-Scale Metabolic Networks.
+1 Introduction
+Our study explores the applicability of abductive reasoning and active learn-
+ing to extensive biological systems. We expand the scope of logic-based gene
+function learning by looking at a genome-scale metabolic model. The genome-
+scale metabolic model (GEM), iML1515 [19], encompasses 1515 genes and 2719
+metabolic reactions of the Escherichia coli (E. coli) strain K-12 MG1655, a ver-
+satile host organism in metabolic engineering to produce valuable compounds.
+In iML1515, interactions between gene pairs have been identified as a key error
+source [3]. Learning these interactions requires exploring a combinatorial hy-
+pothesis space. Given that biological relationships are commonly described logi-
+cally, Inductive Logic Programming (ILP) [20] is particularly adept at operatingarXiv:2408.14487v3  [cs.AI]  13 Nov 20242 L. Ai et al.
+Fig.1:Certaingeneticmutationswouldblockpathways,causingcellstodie(pos-
+itive label). BMLP activefinds a gene-reaction association hypothesis to explain
+the pathway blockage and lethality. It encodes the GEM iML1515 as boolean
+matrices and uses them to classify genetic mutation experiment labels for every
+hypothesis. It consults a data source to request ground truth labels. BMLP active
+iteratively refutes hypotheses inconsistent with the labels.
+on biological knowledge bases. We propose Boolean Matrix Logic Programming
+(BMLP) where we employ boolean matrices as underlying bottom-up evaluation
+mechanisms of large datalog programs. This approach allows us to classify phe-
+notypic effects using a datalog encoding of the state-of-the-art GEM iML1515.
+We focused on re-discovering the function associated with the key gene tyrB
+in the Tryptophan biosynthesis pathways. Overlapping functions between two
+genestyrBandaspCis a digenic interaction since they are responsible for pro-
+ducing the same amino acid. To learn from a combinatorial hypothesis space
+with high data efficiency, we create an active learning system BMLP activeto
+learn this digenic interaction, requiring 90% fewer experiments than random
+experimentation. Abductive reasoning and active learning via ILP were success-
+fully demonstrated in biological discovery by the prominent Robot Scientist [14].
+However, this demonstration was limited to only 17 genes in the aromatic amino
+acid pathways of yeast. In contrast, BMLP activeis the first logic programming
+system to learn digenic interaction on the genome scale from GEMs.
+2 Related work
+Many computational scientific discovery systems [16,30,4,12,24] were designed to
+formulate symbolic hypotheses from experimental results. One cannot directly
+employ these systems for experimental planning. In contrast, the Robot Scientist
+[14,15] automatically proposed hypotheses, designed experiments and performedActive learning of digenic functions with boolean matrix logic programming 3
+them using laboratory robotics. Experiments were actively selected to minimise
+the expected cost of experimentation for learning gene functions in yeast [5].
+Notably, we apply BMLP activeto the GEM iML1515 which represents a sig-
+nificant increase in complexity compared to the aromatic amino acid pathways
+investigated by the Robot Scientist platforms.
+BMLPusesbooleanmatricestocomputetheleastmodel.Obtainingtheleast
+Herbrand model of linear recursive datalog programs can be reduced to comput-
+ing the transitive closure of boolean matrices [23,8]. Fischer and Meyer [10] and
+Ioannidis [13] showed a divide-and-conquer boolean matrix computation tech-
+nique by viewing relational databases as graphs. An ILP system called DeepLog
+[21] employed boolean matrices for choosing optimal background knowledge to
+derive a compact bottom clause. In contrast to BMLP, a great body of work
+[17,11,27,6,29,28] only studied approximated evaluations of logic program in ten-
+sor spaces. Solving certain recursive programs is difficult whereas these can be
+solved by an iterative bottom-up evaluation approach [27] such as BMLP.
+3 Modelling a GEM with a Petri net
+In an auxotrophic mutant experiment, genes are deleted from a cell. Thus, key
+metabolic reactions might be no longer viable due to the gene removal, leading
+to insufficient cell growth. We model the metabolic mechanisms using a GEM.
+A GEM contains biochemical reactions of substances. Each reaction involves
+chemical substances xiandyj:
+Irreversible: x1+x2+...+xm−→y1+y2+...+yn
+Reversible: x1+x2+...+xm←→y1+y2+...+yn
+which is often represented by a Petri net [26]. The reactions in a GEM are tran-
+sitions (edges in a Petri net) between reactants and products (nodes in a Petri
+net). We associate binaryphenotypic effects – normal or reduced cell growth of
+auxotrophic mutants compared to the wild-type, with reachability to key sub-
+stances in the metabolic network. To evaluate this reachability problem, we look
+at Petri nets with restrictions, namely one-bounded elementary nets (OEN) [25]
+where nodes are marked with at most one token (Example 1). The reachability
+problem is evaluated as a recursive datalog program with two arguments. Each
+argument of our transformed datalog program concatenates multiple constants,
+e.g.h2_o2. This results in a hypergraph [2], a directed graph where an edge can
+connect to any number of nodes. To construct this datalog program, we consider
+a hypergraph that describes the association between substances and reactions.
+Example 1.P1represents a metabolic network as an OEN and hypergraph. The
+clausesreaction_1,reaction_2andreaction_3are the three transitions t1,t2
+andt3.c1_c2andc3_c4are two hypernodes. Both graphs show that the node
+c5is reachable from {c1,c2}viat1andt2. We can evaluate the groundings of
+pathway (m1,Y)in the Herbrand model which includes pathway (m1,c5). The
+OEN and hypergraph are illustrated below:4 L. Ai et al.
+P1:
+
+metabolites (m1,c1_c2).
+metabolites (m1,c1).
+metabolites (m1,c2).
+reaction_1(c1_c2,c3_c4).
+reaction_1(c1_c2,c3).
+reaction_1(c1_c2,c4).
+reaction_2(c3_c4,c5).
+reaction_3(c5,c4).
+reaction (X,Y)←metabolites (X,Y).
+reaction (X,Y)←reaction_1(X,Y).
+reaction (X,Y)←reaction_2(X,Y).
+reaction (X,Y)←reaction_3(X,Y).
+pathway (X,Y)←reaction (X,Y).
+pathway (X,Y)←reaction (X,Z),
+pathway (Z,Y).
+
+
+4 Boolean matrix logic programming
+We propose the Boolean Matrix Logic Programming (BMLP) problem. In con-
+trast to traditional logic program evaluation, BMLP uses boolean matrices to
+evaluate recursive datalog programs with arity at most two (at most two argu-
+ments) and at most two body literals, namely the H2
+2program class [22]. The
+H2
+2program class has the Universal Turing Machine expressivity when extended
+with functional symbols [31].
+Definition 1 (Boolean Matrix Logic Programming (BMLP) problem).
+LetPbe a datalog program containing a set of clauses with the predicate symbol
+r. The goal of Boolean Matrix Logic Programming (BMLP) is to find a boolean
+matrixRencoded by a datalog program such that (R)i,j= 1 ifP|=r(ci,cj)for
+constantsci,cjand(R)i,j= 0 otherwise.
+Consider a ground term uthat concatenates nconstant symbols c1,c2,...,c n.
+We can represent uusing an-bit binary vector. When ckis inu, thek-th bit of
+the binary vector is 1. All reactions in iML1515 are encoded this way to form
+rows in two boolean matrices R1andR2(Fig 2a).
+We implement a BMLP module in SWI-Prolog [32] called iterative extension
+(BMLP-IE) for the task of bottom-up evaluation of reachability in metabolic
+networks. Each binary vector is represented as an integer. BMLP-IE (Fig 2b)
+iteratively expands the set of facts derivable from a partially grounded query
+r(u,Y). ForPcontaining nconstant symbols, we represent uas a 1×nrow
+vector v.R1andR2can be multiplied with boolean vectors to turn transitionsActive learning of digenic functions with boolean matrix logic programming 5
+(a)
+ (b)
+Fig.2: (a) The vector vencodes source chemical metabolites. All reactions are
+represented in the boolean matrices R1andR2. (b) The module BMLP-IE
+computes v∗, the closure of reaction products, using binary AND over rows and
+boolean matrix addition (ADD), multiplication (MUL) and equality (EQ) [8].
+“on” or “off’ in the OEN to modify the network connectivity. This module gives
+a 170x runtime boost for this task compared to SWI-Prolog [1], showing the
+benefit of a special-purpose module.
+5 Active learning
+Our active learning system BMLP activeselects experiments to minimise the
+expected value of a user-defined cost function and iteratively prunes hypothe-
+ses inconsistent with experimental outcomes. BMLP activeuses the compression
+score of a hypothesis h[5] based on the Minimal Description Length principle
+[7] to compute the posterior probability:
+compression (h,E) =|E+|−|E+|
+pch(size(h) +fph)
+p′(h|E) =2compression (h,E)
+/summationtext
+hi∈H2compression (hi,E)
+Eare labelled examples and E+are positive examples. pchandfphare
+the number of positive predictions and false positive coverage. This compression
+function favours a general hypothesis with high coverage and penalises over-
+general hypotheses that incorrectly predict negative examples. BMLP activeuses
+the following heuristic function [5] to select an experiment from candidate ex-
+perimentsTwith an approximated minimum expected cost:
+EC(H,T)≈mint∈T[Ct+p(t)(mean t′∈T−{t}Ct′)JHt
++ (1−p(t))(mean t′∈T−{t}Ct′)JHt]6 L. Ai et al.
+HtandHtare subsets of hypotheses Hconsistent and inconsistent with t’s label.
+JHtandJHtarecalculatedaccordingtotheentropy −/summationtext
+h∈Hp′(h|E)log2(p′(h|E))
+whereHis replaced by HtorHt. The probability p′(h|E)is calculated from the
+compression function. p(t)is the probability that the label of the experiment
+tis positive and is computed by the probability sum of consistent hypotheses/summationtext
+h∈Htp′(h|E).Ctis the cost of tfrom a user-defined experiment cost function.
+For some hypothesis space Hand background knowledge BK,Vsis the
+version space consistent with straining examples with the assumption that an
+active version space learner selects one instance per iteration. The shrinkage of
+the hypothesis space is|Vs+1|
+|Vs|after querying the label of the s-th instance. The
+minimal reduction ratio p(xs,Vs)is the minority ratio of the version space Vs
+partitioned by an instance xs.
+p(xs,Vs) =min(|{h∈Vs|h∪BK|=xs}|,|{h∈Vs|h∪BK̸|=xs}|)
+|Vs|
+The optional selection strategy is to select instances with minimal reduction
+ratios as close as possible to1
+2to eliminate up to 50%of the hypothesis space
+[18]. A passive learner is considered a learner using random example selection
+since it does not have control over which training examples it uses.
+Theorem 1. (Active learning sample complexity bound [1]) For some ϕ∈[0,1
+2]
+and a small hypothesis error ϵ>0, if an active version space learner can select
+instances to label from an instance space Xwith minimal reduction ratios greater
+than or equal to ϕ, the sample complexity sactiveof the active learner is
+sactive≤ϵ
+ϵ+ϕspassive +c (1)
+where c is a constant and spassiveis the sample complexity of learning from
+randomly labelled instances.
+Theorem1saysthatthenumberofinstancesneededbyactivelearningshould
+be always smaller than the number of randomly sampled examples given a pos-
+itiveϕ. Recent work [1] has theoretically and empirically supported Theorem 1.
+This means the biological experiment sequence needed to arrive at a finding can
+be shortened by active learning.
+We applied BMLP-IE to obtain predicted phenotypic effects for all combina-
+tionsofcandidateexperimentsandhypotheses.Thesepredictionswerecompared
+with experimental data. Labels of experiment instances were requested from a
+data source, e.g. a laboratory or an online dataset. We have only considered la-
+bels from synthetic or online phenotype data. However, BMLP activecan request
+data from a laboratory to automate experiments.
+6 Experiments
+We removed the metabolic reaction associated with tyrBfrom iML1515. This
+GEM model iML1515 [19] was first represented as a datalog program and thenActive learning of digenic functions with boolean matrix logic programming 7
+Fig.3: tyrB isoenzyme function recovery frequency. The experimental space had
+(/parenleftbig33
+2/parenrightbig
++ 33)×7 = 3927 instances for double gene-knockout synthetic data and
+single gene-knockout experimental data of key 33 genes in 7 conditions. The
+hypothesis space contained (27×32+6×31)+2 = 1052 candidate gene-enzyme
+associationsrelatedto27single-functiongenes,6double-functiongenes,thetyrB
+original function and an empty hypothesis.
+as boolean matrices for computation. The random selection strategy randomly
+sampledNinstances from the instance space. BMLP activeselectedNexperi-
+ments from this instance space to actively learn from the hypothesis space. Both
+methods output the hypothesis with the highest compression.
+In Fig 3 we observed that BMLP activesuccessfully guarantees the recovery
+of the correct gene function with as few as 20 experiments. Random sampling
+failed to effectively prune competitive hypotheses even with 250+ experiments.
+This result also shows that BMLP activesignificantly reduced the number of
+experiments needed by 90% compared to random experiment sampling.
+7 Conclusion and future work
+We explored abductive reasoning and active learning using Boolean Matrix
+Logic Programming (BMLP), which utilises boolean matrices encoded in SWI-
+Prolog to compute datalog programs. We applied our active learning system
+BMLP activeto learn a key digenic function in a state-of-the-art genome-scale
+metabolic network. Though we focused on a reduced set of hypotheses in the ex-
+periment, the combinatorial space was sufficiently large that random experiment
+selection was not viable as an experimentation strategy in a discovery process.
+The remarkable increase in the data efficiency of BMLP activedemonstrates its
+potential even as the experimental design space grows exponentially.
+Petri nets complement knowledge representation with dynamic analysis [26].
+However, the simulation of Petri nets in logic programming has been much less8 L. Ai et al.
+explored. Future work will explore the link between Petri nets and Probabilistic
+Logic Programming [9]. Transitions could have firing likelihood constraints and
+this uncertainty can be modelled by probabilistic logic programs.
+Acknowledgments. The first, third and fourth authors acknowledge support from
+theUKRI21EBTA:EB-AIConsortiumforBioengineeredCellsandSystems(AI-4-EB)
+award (BB/W013770/1). The second author acknowledges support from the UK’s EP-
+SRC Human-Like Computing Network (EP/R022291/1), for which he acts as Principal
+Investigator.
+References
+1. Ai, L., Muggleton, S.H., Liang, S.S., Baldwin, G.S.: Boolean matrix logic pro-
+gramming for active learning of gene functions in genome-scale metabolic network
+models. arXiv (2024)
+2. Berge, C.: Hypergraphs: combinatorics of finite sets. North-Holland mathematical
+library (1989)
+3. Bernstein, D.B., Akkas, B., Price, M.N., Arkin, A.P.: Evaluating E. coli genome-
+scale metabolic model accuracy with high-throughput mutant fitness data. Molec-
+ular Systems Biology 19(12) (2023)
+4. Brunton, S.L., Proctor, J.L., Kutz, J.N.: Discovering governing equations from
+data by sparse identification of nonlinear dynamical systems. Proceedings of the
+National Academy of Sciences 113(15), 3932–3937 (2016)
+5. Bryant, C.H., Muggleton, S.H., Oliver, S.G., Kell, D., Reiser, P., King, R.D.: Com-
+bining inductive logic programming, active learning and robotics to discover the
+function of genes. Electronic Transactions in Artificial Intelligence pp. 1–36 (2001)
+6. Cohen, W., Yang, F., Mazaitis, K.R.: TensorLog: A Probabilistic Database Im-
+plemented Using Deep-Learning Infrastructure. Journal of Artificial Intelligence
+Research 67, 285–325 (2020)
+7. Conklin, D., Witten, I.H.: Complexity-based induction. Machine Learning 16(3),
+203–225 (1994)
+8. Copilowish, I.M.: Matrix Development of the Calculus of Relations. The Journal
+of Symbolic Logic 13(4), 193–203 (1948)
+9. De Raedt, L., Kimmig, A.: Probabilistic (logic) programming concepts. Machine
+Learning 100(1), 5–47 (2015)
+10. Fischer, M.J., Meyer, A.R.: Boolean matrix multiplication and transitive closure.
+In: 12th Annual Symposium on Switching and Automata Theory. pp. 129–131
+(1971)
+11. Grefenstette, E.: Towards a Formal Distributional Semantics: Simulating Logical
+Calculi with Tensors. In: Proceedings of the Second Joint Conference on Lexical
+and Computational Semantics. pp. 1–10 (2013)
+12. Guimerà, R., Reichardt, I., Aguilar-Mogas, A., Massucci, F.A., Miranda, M., Pal-
+larès, J., Sales-Pardo, M.: A Bayesian machine scientist to aid in the solution of
+challenging scientific problems. Science Advances 6(5) (2020)
+13. Ioannidis, Y.E.: On the Computation of the Transitive Closure of Relational Op-
+erators. In: Proceedings of the 12th International Conference on Very Large Data
+Bases. pp. 403–411 (1986)Active learning of digenic functions with boolean matrix logic programming 9
+14. King, R.D., Whelan, K.E., Jones, F.M., Reiser, P.G.K., Bryant, C.H., Muggle-
+ton, S.H., Kell, D.B., Oliver, S.G.: Functional genomic hypothesis generation and
+experimentation by a robot scientist. Nature 427, 247–252 (2004)
+15. King, R.D., Rowland, J., Oliver, S.G., Young, M., Aubrey, W., Byrne, E., Liakata,
+M., Markham, M., Pir, P., Soldatova, L.N., Sparkes, A., Whelan, K.E., Clare, A.:
+The Automation of Science. Science 324(5923), 85–89 (2009)
+16. Langley, P.W., Simon, H.A., Bradshaw, G., Zytkow, J.M.: Scientific Discovery:
+Computational Explorations of the Creative Process (1987)
+17. Lin, F.: From Satisfiability to Linear Algebra. Tech. rep., Hong Kong University
+of Science and Technology (2013)
+18. Mitchell, T.M.: Generalization as search. Artificial Intelligence 18, 203–226 (1982)
+19. Monk,J.M.,Lloyd,C.J.,Brunk,E.,Mih,N.,Sastry,A.,King,Z.,Takeuchi,R.,No-
+mura, W., Zhang, Z., Mori, H., Feist, A.M., Palsson, B.O.: iML1515, a knowledge-
+base that computes escherichia coli traits. Nature Biotechnology 35(10), 904–908
+(2017)
+20. Muggleton, S.H.: Inductive logic programming. New Generation Computing 8,
+295–318 (1991)
+21. Muggleton, S.H.: Hypothesizing an algorithm from one example: the role of speci-
+ficity. Philosophical Transactions of the Royal Society A: Mathematical, Physical
+and Engineering Sciences 381(2251) (2023)
+22. Muggleton, S.H., Lin, D., Tamaddoni-Nezhad, A.: Meta-interpretive learning
+of higher-order dyadic datalog: predicate invention revisited. Machine Learning
+100(1), 49–73 (2015)
+23. Peirce, C.S.: Collected Papers of Charles Sanders Peirce, Volumes II (1932)
+24. Petersen, B.K., Larma, M.L., Mundhenk, T.N., Santiago, C.P., Kim, S.K., Kim,
+J.T.:Deepsymbolicregression:Recoveringmathematicalexpressionsfromdatavia
+risk-seeking policy gradients. In: Proceedings of the 9th International Conference
+on Learning Representations (2020)
+25. Rozenberg, G., Engelfriet, J.: Elementary net systems. In: Reisig, W., Rozenberg,
+G. (eds) Lectures on Petri Nets I: Basic Models. ACPN 1996. Lecture Notes in
+Computer Science, vol. 1491 (1998)
+26. Sahu, A., Blätke, M.A., Szymański, J.J., Töpfer, N.: Advances in flux balance anal-
+ysis by integrating machine learning and mechanism-based models. Computational
+and Structural Biotechnology Journal 19, 4626–4640 (2021)
+27. Sato, T.: A linear algebraic approach to datalog evaluation. Theory and Practice
+of Logic Programming 17(3), 244–265 (2017)
+28. Sato, T., Inoue, K.: Differentiable learning of matricized DNFs and its application
+to Boolean networks. Machine Learning 112(8), 2821–2843 (2023)
+29. Sato, T., Kojima, R.: Boolean Network Learning in Vector Spaces for Genome-wide
+Network Analysis. In: Proceedings of the Eighteenth International Conference on
+Principles of Knowledge Representation and Reasoning. pp. 560–569 (2021)
+30. Todorovski, L., Džeroski, S.: Integrating knowledge-driven and data-driven ap-
+proaches to modeling. Ecological Modelling 194(1), 3–13 (2006)
+31. Tärnlund, S.: Horn Clause Computability. BIT Numerical Mathematics 17(2),
+215–226 (1977)
+32. Wielemaker, J., Schrijvers, T., Triska, M., Lager, T.: SWI-Prolog. Theory and
+Practice of Logic Programming 12(1-2), 67–96 (2012)

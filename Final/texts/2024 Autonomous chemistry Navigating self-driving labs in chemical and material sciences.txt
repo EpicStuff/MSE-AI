@@ -1,0 +1,715 @@
+Perspective
+Autonomous chemistry: Navigating self-driving
+labs in chemical and material sciences
+Oliver Bayley,1,2Elia Savino,1,2Aidan Slattery,1,2and Timothy Noe ¨l1,*
+SUMMARY
+Self-driving labs (SDLs) have recently emerged as one of the most
+signiﬁcant technological devel opments in the chemical and mate-
+rials sciences and hold the potential to revolutionize the researchprocess. Herein, we discuss the structure of an SDL in terms of thehardware, the coordinator software, and the AI agent and examinehow the selection of these elements affects the overall research ca-pabilities. We further look to the application and accessibility of
+these platforms to better understand their future impact on syn-
+thetic and materials chemistry. With the rapid rise in the capabilities
+of these SDLs, and with the increasing democratization of the space,it is crucial to be aware of both the promises and pitfalls this technol-ogy holds.
+INTRODUCTION
+In the rapidly evolving landscape of scientiﬁc research, the integration of automa-
+tion, particularly in the realm of self-drivin g labs (SDLs), represents a pivotal shift to-
+ward a more efﬁcient, reproducible, and scalable scientiﬁc method. This approachleverages advanced algorithms (artiﬁcial intelligence [AI] planners), robotics (hard-ware executors), and control software (system coordinators) for the design, execu-
+tion, and analysis of experiments in an automated fashion. It marks a signiﬁcant de-
+parture from traditional laboratory practic es, promising to accelerate the discovery
+pace across various ﬁelds of science.
+1The potential of SDLs presents the opportu-
+nity to enable signiﬁcant cost-savings, i ncreased safety and the ability to free up
+scientists’ time to partake in more exploratory work.
+Automated science is nothing new, with early attempts at computer-controlled
+processes having been successfully demons trated in the mid-20th century with the
+automation of analytical instruments,2experimental apparatus,3,4and due to the
+sequential and repetitive nature, peptide synthesis.5,6While the automation in these
+cases focused on a single component of an experimentalist’s workﬂow, these earlyendeavors laid the groundwork for the more sophisticated SDL systems we seetoday. The explosive growth of SDLs in the most recent decade can be attributedto several concurrent te chnological developments. Firstly, from the hardware front,
+there has been a signiﬁcant decrease in the costs associated with robotics and high-throughput experimentation platforms.
+7T h i sd e c l i n ei np r i c e sm a k e st h e s et e c h n o l -
+ogies more accessible to a wider range of research institutions, especially academia,
+enabling broader adoption, and resulting in a marked increase in academic publica-tions.
+8–10With the improved technological developments, modern SDLs can now
+incorporate more complex robotics capable of performing intricate manipulationsthat were previously either too delicate or too complex.
+11,12Concurrently, there
+has also been a remarkable advancement in the capabilities and accessibility of AIand machine learning (ML) workﬂows as well as the rise of large language modelsPROGRESS AND POTENTIAL
+Through the integration of AI,
+automated workﬂows, and
+robotics into research processes,self-driving labs (SDLs) haveemerged as effective candidatesto efﬁciently accelerate researchtimelines, increase data outputand ﬁdelity, reduce resourceconsumption, and ultimately
+liberate researchers from arduous,
+mundane, and repetitive tasks.These SDLs have already shownsigniﬁcant applications in reactionoptimization, propertyoptimization, processoptimization, as well as drugdiscovery, but as the ﬁeld evolves,
+more applications are expected to
+be realized. SDL decentralization,where researchers can connect toSDLs via the internet, and thecheapening of componentsthrough 3D printing and open-sourced design have bothsigniﬁcantly increased the
+accessibility of SDLs to the wider
+scientiﬁc community. As theaccessibility to SDLs capable ofperforming autonomousoptimization and discovery tasksincreases, their impact on thewider scientiﬁc community is onlyexpected to increase.
+2382 Matter 7, 2382–2398, July 3, 2024 ª2024 Elsevier Inc.
+All rights are reserved, including those for text and data mining, AI training, and similar technologies.ll(LLMs). As these technologies have become signiﬁcantly more powerful and user-
+friendly, scientists are better able to int egrate these sophisticated data analyses
+and experimental design capabilities into their laboratory operations.13,14
+SELF-DRIVING LABS
+Hardware
+With recent technological advancements already making automation of routine, re-
+petitive, and time-consuming processes c ommon place, the signiﬁcant challenge
+facing the use of such hardware lies in the integration of these instruments into acohesive automated workﬂow.
+15Many factors contribute to this challenge, but the
+most signiﬁcant are the physical transfer of material between stations and the
+centralized control of automated units that were designed to operate in a stand-
+alone fashion. To surpass these challenges, and ultimately develop a viable SDL plat-form, a signiﬁcant re-conceptualization of the experiment workﬂow is often required.
+This has resulted in three archetypical platform designs: the ﬂuidics platforms, theﬁxed-robotic-arm platforms, and the mobile platforms ( Figure 1 ).
+1These platforms
+all cater to different needs but are by no means mutually exclusive, with many sys-tems incorporating elements from multiple paradigms into the same platform.
+11,16
+While these three strategies have already been observed, as this young ﬁeld
+develops further, more paradigms may still emerge inspired by other existing tech-
+nologies, for example deposition-based platforms resembling current 3D printingtechnologies.
+In the ﬂuidic platforms ( Figure 1 , purple), the individual experiment stations are linked
+together via chemically inert tubing, allo wing for the sequential ﬂow of material so-
+lutions through each unit. As ﬂuidics are capable of material transport by nature, iteasily overcomes one of the two central challenges mentioned previously and has
+therefore been widely adopted in the SDL platforms.
+11,12,17–19In the simpler ﬂuidics
+platforms, reagents are individually pumped through a mixing stage and subsequentreactor with an in-/online analytical module(s) (high-pressure liquid chromatography[HPLC],
+22infrared [IR],23nuclear magnetic resonance [NMR],24mass spectrometry,
+25or ultraviolet [UV]26) directly monitoring the output. The feedback from the analyt-
+ical module (e.g., yield, e.e., liquid chromatography area percent (LCAP), etc.) canthen be returned to the AI age nt, which selects conditions for the next experiment
+in the campaign. While many successful op timizations have been demonstrated in
+these minimal layouts, the inﬂexibility of these platforms restricts the chemical space
+accessible to the SDL and limits the optimization to continuous reaction parameterssuch as temperature, residence time, or reagent equivalents. Consequently, moreﬂexible systems, such as the RoboChem platform, have sought to introduce liquidhandlers (gantry robots) or switch valves tha t allow the system to autonomously select
+different reagents, catalysts, additives, or reaction paths betwe en each experiment in
+the campaign.
+19,27,28Although this adds more complexity, it allows the systems to
+optimize reactions based on both categori cal and continuous reaction parameters,
+which signiﬁcantly increases the accessible chemical space. These platforms have
+been highly effective for reaction optimiza tion and are relatively straightforward to
+implement in comparison to more elaborate robotic solutions. However, the ﬂuidicplatforms are not universally applicable as they can only be run with reagents whereit is feasible to make stock solutions of sufﬁcient concentration and under conditionsin which the solutions are ﬂowable/homogeneous.
+For scenarios beyond the reach of the ﬂuidic systems, robotic arms play a crucial role
+(Figure 1 ,r e d ) .
+29–31In systems that inherently require physical motion such as the1University of Amsterdam (UvA), Van’t Hoff
+Institute for Molecular Sciences (HIMS), Science
+Park 904, 1098 XH Amsterdam, the Netherlands
+2These authors contributed equally
+*Correspondence: t.noel@uva.nl
+https://doi.org/10.1016/j.matt.2024.06.003ll
+Matter 7, 2382–2398, July 3, 2024 2383Perspectiveweighing of solids, measurement of solid- state properties, or relocation of reactor
+components, robotic arms are employed to p erform the dexterous and otherwise un-
+achievable manipulations. Although commonly used to achieve innately physicaltasks, robotic arms have also been employed to operate standalone equipment inan automated manner without the need to alter the equipment itself, as was demon-
+strated by the MAOSIC system.
+32This is a particularly signiﬁcant use for robotic arms,
+as the integration of human-centered equipment is one of the biggest challenges inSDL hardware development. The robotic-arm and ﬂuidic systems are not mutuallyexclusive either, with systems such as Coley et al.’s (Jensen and Jamison groups)robotic platform incorporating a central robotic arm capable of autonomously recon-ﬁguring an underlying ﬂuidics platform.
+11,12While the robotic arms increase the
+ﬂexibility of a given system, the physical reach of these arms also determines the
+Figure 1. State-of-the-art SDL platforms that highlight the distinctions between the ﬂuidic, the robotic arm, and the mobile robot platform
+architectures(A) The ‘‘Artiﬁcial Chemist’’ by Epps et al. (Abolhasani group) desi gned to generate on-demand quantum dots with a speciﬁc band gap.
+17Reprinted with
+permission from John Wiley and Sons.
+(B) The ‘‘Chemputer’’ by Steiner et al. (Cronin group) designed to perform b atch-like chemical reactions with all modules linked via chemically iner t
+tubing.18Reprinted with permission from AAAS.
+(C) The ‘‘RoboChem’’ by Slattery et al. (Noe ¨l group) designed to optimize single-step ﬂow reactions.19Reprinted with permission from AAAS.
+(D) The ‘‘Ada’’ system by MacLeod et al. (Berlinguette grou p) designed to perform materi al property optimizations20Reprinted under the creative
+commons license 4.0 (CC-BY 4.0).(E) The ‘‘Mobile Chemist’’ by Burger et al. (Cooper group) designed to pe rform chemical reactions and general processes in a human-like manner.
+21
+Reprinted with permission from Springer Nature.
+(F) The ‘‘SynBot’’ by Ha et al. (Choi group) desig ned to perform multi-step chemical manipulations16Reprinted under the creative commons license 4.0
+(CC-BY 4.0).(G) The robotic ﬂow chemistry platform by Coley et al . (Jensen and Jamison groups) designed to autonomously reconﬁgure the underlying ﬂow platform
+to perform multi-step ﬂow reactions.
+11Reprinted with permission from AAAS.ll
+2384 Matter 7, 2382–2398, July 3, 2024Perspectiveplatform layouts and dictates its maximum size as well as the placement and acces-
+sibility of modules. To address this, larger systems, such as the Synbot by Ha et al.(Choi group) or Adam by King et al. (King group), have sought to integrate multiplerobotic arms or robotic stages into a single platform, effectively linking platformmodules by overlapping the reach of each robotic element.
+16,33
+Although a multitude of successful studies have been performed with ﬂuidic or ﬁxed-
+robotic-arm platforms, these layouts still rely on a highly re-conceptualized workﬂowwith all modules either linked together (ﬂuidics) or strategically placed within reach ofa robotic system (ﬁxed robotic arm). Aiming to preserve a more human-centeredworkﬂow, while still introducing the advan tages of automation, a third approach to
+SDL platforms has been demonstrated in whi ch mobile robotic platforms are equip-
+ped with a robotic arm allowing them to operate in a more standardized laboratoryenvironment ( Figure 1 , blue). Focusing on this approach, the Mobile Chemist from
+Burger et al. (Cooper group) features a robotic system, supplied by KUKA Robotics,
+which was enhanced by the researchers to operate standard laboratory equipmentwithin a more traditional lab workspace.
+21Using this platform, Burger et al. had the
+robot perform reactions and analytical work in a workspace shared with other humanchemists. Despite being built to mimic human-like researchers, and arguably havingmore difﬁculty in performing many of the manipulations, the mobile robotic chemistw a sa b l et oo p e r a t ef o rm o r et h a n2 1had a y ,w h i c hi sn o t a b l yl o n g e rt h a nt h ew o r k d a yof a (healthy) human researcher. While this approach maintains a much more human-
+centered workﬂow, many operational considerations must still be made, particularly
+to ensure the safety of the human researchers operating around the mobile robot.
+Ultimately, several approaches to platform development have been demonstrated,
+but trade-offs must always be made in terms of cost, complexity, ﬂexibility, and capa-bility. Not every platform is suited to every task nor is every feature needed in everyplatform. For instance, the elegantly simple Artiﬁcial Chemist from Epps et al. uses aminimalist ﬂuidics platform to achieve its goal without the need for a more complex
+and costly robotic arm.
+17Conversely, the adhesive SDL from Rooney et al. is reliant
+on the robotic arm due to the required physical manipulation and would equally haveno use for the Artiﬁcial Chemist’s ﬂow UV/Vis spectrometer.
+31It is crucial to strike a
+careful balance betw een the capabilities and complexity of SDL platforms, particu-
+larly in regard to the end goal of the platform, as increased complexity can extendresearch timelines, introduce more potenti al sources of error, and generally increase
+development costs. When assessing increased complexity, it is important to be waryof the perceived ‘‘ease’’ in developing these platforms, as many unexpected prob-
+lems can arise during assembly (e.g., 32- vs. 64-bit subsystem incompatibility).
+19
+Many of these issues are not discussed in the literature. Understanding how to
+approach these challenges and balance complexity with capability is a crucial partof hardware development. For further re ading, we recommend the review by Chris-
+tensen et al. (Hein group).
+34
+Many platform designs, especially ﬂuidics-based platforms, have now been realized.As the ﬁeld develops, we expect new paradigms to emerge or new combinations that
+integrate current paradigms. Advanced AI algorithms in many SDLs typically focus on
+reducing the total number of experiments. In contrast, hardware automation hastraditionally been used for high-throughput experimentation (HTE), facilitatingexceedingly high reaction counts. Although these goals may seem contradictory,we believe new systems will likely emerge where HTE platforms are incorporatedinto SDLs. These systems could streamline HTE or, more excitingly, use HTE in tan-dem with an optimization SDL to perform ‘‘hit’’ testing followed by optimization.ll
+Matter 7, 2382–2398, July 3, 2024 2385PerspectiveThis would enable a single uniﬁed platform to perform both hit discovery and opti-
+mization in an automated fashion.
+Coordinator software
+One of the core challenges in SDL development lies in facilitating information ex-
+change between machines, AI, and human users in a universally understood manner.
+Achieving this within the context of SDLs o ften requires a coordinator software to
+provide a (graphical) user interface (UI) for input from the human scientist, a hard-ware interface to translate experiment parameters into executable tasks for the ro-botic platform, and an AI interface that translates the data from the platform to anML-compatible format.
+15Achieving communication between each of these compo-
+nents is far from trivial, as not only do they o perate with different inputs and outputs,
+but on a fundamental level, they each seek to achieve different objectives.
+Since the broader chemical and material science community cannot be presumed to
+have extensive knowledge in ML or software engineering, it is unreasonable torequire researchers to encode their experiments for direct execution. Therefore,the coordinator software should have a human-centric interface, ideally a graphicaluser interface (GUI), allowing users to input their experiment parameters intuitivelyand straightforwardly. Building user interfa ces that provide a simple user experience
+without losing platform control or creative freedom is not trivial. However, re-searchers now have access to numerous tools for developing such GUIs. Many of
+these tools have since found use in existing SDLs, including the LabVIEW visual tool-
+kit
+35or Python frameworks, such as Tkinter11and Streamlit.17While a variety of tools
+are available, developing an effective, appealing, and user-friendly UI is time-consuming and challenging for those wit hout UI development experience. This is
+particularly true in academic settings, where the value of UI development is not
+immediately apparent or prioritized. Given the scale of work involved in creatingan SDL, time-consuming UI design is not always a priority for developers, especiallywhen the SDL can be operated directly thr ough a command line. Nevertheless, it is
+imperative to invest the time into developing this crucial element to ensure the plat-
+form’s use by a wider audience.
+At their core, the AI agents are built upon complex mathematical algorithms and
+used to generate mathematical models that describe the relationship between givenvariables. As such, these agents are heavily reliant on the numerical nature of theirinputs, making their application to chemical and materials science slightly morecomplex. While translating numerical reaction parameters such as temperature or
+reaction time into an AI-compatible format is straightforward, encapsulating molec-
+ular structures or speciﬁc reaction protocols poses a greater challenge. As a conse-quence, much research has been directed toward chemical featurization—the pro-cess of transforming chemical data into a machine-readable format—with theultimate goal of using chemical structures as inputs for AI agents. Notations suchas SMILES, SMIRKS, SMARTS, and Chemical Markup Language as well as data-based formats such as molecular ﬁngerprints, graph-based models,
+35or DFT-based
+methods have now been shown to encode molecular structure information as well as
+reactivity information with substantial efﬁcacy.36The development of these featuri-
+zation methods has opened new avenues for SDLs, allowing the AI agent to be usedbeyond the optimization of already numerical inputs and allowing them to performtarget optimizations using ligands, substrates, or other chemical information as aninput. In certain cases, the coordinator so ftware should also ﬁlter the raw data fed
+back to the AI agent to minimize faulty datapoints. Equally, the coordinator softwareplays a signiﬁcant role in deciding when th e ML training campaig n is successful andll
+2386 Matter 7, 2382–2398, July 3, 2024Perspectivewhen to terminate the campaign based on a number of factors (maximum number of
+experiments, lack of improvement after a set number of runs, complete consumptionof reagents, etc.).
+Integrating the operations speciﬁed by users or AI agents with the hardware often
+represents the most formidable challenge in deploying an automated platform.
+34
+Due to the custom-built nature of SDLs, tailor-made software solutions are oftenrequired, which grants signiﬁcant ﬂexibility but often increases the developmenttimelines and leads to platform-speciﬁc solutions. To help address the time costand platform transferability and aid with proprietary hardware integration, a rangeof ready-built coordinator software packages have emerged including ChemOS,AresOS, or the Robot Operating System, which are designed to provide more ver-satile and generalized options for the orchestration of the SDL workﬂows.
+37,38Addi-
+tionally, the chemical description langu age XDL introduced by Mehr et al. (Cronin
+group) has also been used to convert writte n synthesis protocols from the literature
+into unit operations that can be directly executed by an SDL platform, helping toimprove the generality of platform inputs.
+39While these dedicated software pack-
+ages can offer many advantages, custom coordinator software is still preferred inmany cases as the developers are more familiar with the inner workings of the sys-tem, ultimately allowing them to better tailor the software toward the SDL’s needs.
+The ﬁnal core function of the orchestration software, the analytical data manage-
+ment and feedback, holds critical importance in the SDL workﬂow. As many SDL plat-
+forms integrate complex analytical equipment such as NMR, HPLC, and IR amongothers, advanced software to automate the analysis of the complex datasets isrequired. Many commercial software tool s such as MestreNova for NMR spectros-
+copy or open-source tools such as MOCCA for HPLC analysis
+40have demonstrated
+great proﬁciency in the automated process ing and reporting of the data generated
+by the platforms. Using such tools, the relev ant spectral features from the generated
+data can be identiﬁed, normalized, deconvoluted, and quantiﬁed to return the
+necessary numerical data back to the AI agent. By incorporating these existing anal-
+ysis tools, the coordinator software also plays a key role in translating the raw dataoutput from the platform into viable inputs for the AI agent and thereby ‘‘closethe loop’’ of the experiment cycle.
+While hardware communication for both command and data retrieval purposes has
+been demonstrated, the inability to easily realize this with commercial hardware stillposes a very signiﬁcant barrier to lab automation. This is largely due to a lack of
+documented application programming interfaces (APIs), which allow such communi-
+cation to occur. In some cases, open-sou rce APIs have been shared by other devel-
+opers. Occasionally, they are supplied free of charge by the manufacturer. However,in many cases, no immediately accessible API exists for the equipment. There aremany reasons for this. One reason is the innate inability of the hardware to becontrolled. Another reason is the lack of demand, resulting in no API being devel-oped. In more inhibitive cases, the lack of accessible API is a deliberate decisionby manufacturers to force developers to purchase the API separately. To ensure
+fair democratization of this ﬁeld and to allow progress to continue, there must be
+an improvement in the accessibility of these hardware APIs. This improvement cancome from the vendors themselves or through open-source solutions provided byother developers in the ﬁeld.
+Akin to hardware developments, great examples of coordinator software have been
+demonstrated, but there is still a signiﬁcant amount of research space left to explore.ll
+Matter 7, 2382–2398, July 3, 2024 2387PerspectiveWhile ready-made software controllers l i k eC h e m O Sh a v ea l r e a dy been developed,
+we hope to see more modular ‘‘drop-in’’ front ends or front-end frameworks. Thesewould not restrict developers’ freedom on the backend but would maintain a consis-
+tent and user-friendly interface for the end user. Such consistency would beneﬁt
+users across different SDLs and save developers’ time, as they would no longerneed to spend research time creating user-fri endly interfaces. Although ﬁnancial in-
+centives for restricting API accessibility mean we are unlikely to see signiﬁcant im-
+provements in free manufacturer APIs, res earchers are more focused on democrati-
+zation. In academic settings, where bu dgets are limited, there will likely be an
+increase in user-created APIs for SDL equipment.
+AI agent
+Hardware automation has long been integral in the chemical realm, but the recent
+adoption of ML and AI into the decision-making process has been a truly innovative
+leap. Entrusting ML agents with the role of experimental planner not only stream-
+lines the experimentation process by reducing the total number of experimentsneeded to map the chemical space, but it also generates valuable datasets fortraining subsequent AI agents. Although these AI agents are highly capable, caremust still be taken to avoid over-ﬁtting the model, where the agent overly conformsto the training data and fails to accurately predict new points—or under-ﬁtting themodel, where the agent does not learn enough to have useful predictive ability. It isalso crucial to validate the predictions generated by these models to ensure they
+are not the results of artifacts from the training data. This also underscores the
+critical role human scientists still play in the initialization and validation of theseML methods.
+41Many different machine learning methodologies have now been
+applied to the current SDL landscape and can be broadly categorized into optimi-zation-based and discovery-based approa ches. Optimization-based methods focus
+on identifying the best conditions for a predeﬁned system, prioritizing exploitationover exploration. In contrast, discovery-based approaches seek to uncover new in-teractions, relationships, or chemistries, valuing exploration of new chemical space
+over the utilization of existing data. The choice of the AI agent for a speciﬁc SDL
+depends on many factors. However, a crude selection can be made based onthe platform’s end goal and the available preceding data. For example, for optimi-zation, choose an AI agent from the list of agents compatible with optimizations(Figure 2 , left). For a discovery-based SDL with no prior data, use a random sam-
+pling agent ( Figure 2 , right). Although some preselection can be done, multiple
+AI agents often need to be assessed and their performance compared before iden-tifying the most suitable agent for the SDL.
+The area of optimization is the most explored in SDL research, and as such, many
+different AI agents have been shown to be effective. The classical one-factor-at-a-time (OFAT) approach, which is typically done during reaction optimization, requiresan in-depth assessment of every optimizable parameter and is therefore slow,resource intensive, and costly by natur e. As such, other methods that yield the
+desired outcomes with far fewer experiments, including SNOBFIT (stable noisy opti-mization by branch and ﬁt), gaussian proce sses (GP), Bayesian optimization (BO),
+and genetic algorithms, have instead been selected for use in SDLs. While a detailed
+understanding of the advantages these approaches have over the classical OFATapproach is signiﬁcant, this has already been reviewed in much detail elsewhereby Taylor et al.
+42In these more efﬁcient optimization AI agents (SNOBFIT, gradient
+descent GP, and BO), the initial data are generated through a low-data explorationmethod, such as random sampling, with the subsequent data then being used tofeed the AI algorithm. The algorithms then use these data to map the chemical spacell
+2388 Matter 7, 2382–2398, July 3, 2024Perspectiveand decide upon the next required data point based on what will give the algorithm
+a better understanding of the remaining unmapped space. Each algorithm differs inits approach toward deciding the next data point, each carrying its own strengthsand weaknesses, but the AI agent that has quickly become a pseudo-gold-standard
+for this purpose is BO. BO is notably the most embraced method in reaction optimi-
+zation as it is renowned for its for its ability to optimize black box functions, like thosefound in chemical systems, is able to perform optimizations after very few trials, andcan be applied across diverse range of platforms. Its versatility is evidenced bysuccessful implementations in areas such as photochemical transformation, multi-objective optimization, materials discovery, peptide chemistry, and chromatog-raphy. BO’s widespread adoption unders cores its effectiveness in navigating
+multi-dimensional optimization landscapes, making it a pivotal tool in advancing sci-
+entiﬁc and engineering challenges.
+17,29,31,43
+In recent years, there has been an increase in SDLs geared toward discovery, partic-
+ularly with the goal of discovering new materials or chemical compounds. Due to theinherent complexity and unpredictable nature of such discovery, there has been lessprogress in this area than for optimiz ation processes. Recent work in LLMs,
+44neural
+networks,45decision trees,46random sampling,47and random forests ( Figure 2 ,
+Bayesian OptimizationNeural Networks
+Decision TreesRandom SamplingOFAT
+Random ForestsGradient Descent
+Gaussian ProcessesLLM! ?MORE SUITABLE FOR OPTIMISATION MORE SUITABLE FOR DISCOVERY
+DOE SNOBFITGenetic Algo.
+Figure 2. AI agents for SDLs toward optimization or discovery
+Overview of machine learning frameworks and their s uitability for optimization or discovery tasks.ll
+Matter 7, 2382–2398, July 3, 2024 2389Perspectiveright), as well as developments outside of AI development in the ﬁeld of density
+functional theory (DFT), has given insight into how the discovery process can betransformed.
+48These AI agents have excelled at discovery tasks due to their inherent
+ability to use and process large amounts of data. DFT has been particularly effectivein providing accurate quantum mechanical descriptions and material properties,which greatly support these discovery task s. Although the coupling of these tech-
+niques with SDLs is still in its infancy, there have been some compelling examples
+in recent years. Streith-Kaltoff et al. describe a delocalized asynchronous approachfor the discovery of organic solid-state lasers using SDLs.
+49In addition to this, the
+A-lab developed by Szymanski et al. opens up the path to powder handling in anSDL for the discovery of novel materials.
+50The A-lab is a notable example of devel-
+opments in discovery. The system integrat es multiple AI agents for studying litera-
+ture, analyzing data, and selecting experiments. Through its automated platform,the A-lab was able to generate a series of inorganic compounds that were not
+included in its training set. The characterization and compound novelty claims
+have faced criticism due to the lack of precision in the automated analysis. Ulti-mately, they serve as a cautionary tale, highlighting the crucial role of human veriﬁ-cation. Furthermore, these technologies are not meant to be human substitutes but
+rather serve as collaborative robotic systems, where humans and robots worktogether in synergy.
+Final considerations should be made about the availability of data and the overall
+ﬁdelity of the available literature. Burke, Grzybowski, et al. recently showed that
+the current landscape of literature is large ly insufﬁcient for satisfactorily training
+ML models.
+51Low reproducibility, human selection bias, lack of negative examples,
+and relatively small datasets for any give n chemistry severely hinder the ﬁdelity of
+literature data. Therefore, the main innovation and strength of incorporating ML inthe experimentation process is the ability to generate its own unbiased data. How-ever, ignoring the wealth of research availa ble in the literature is short sighted. Multi-
+task models that account for the ﬁdelity of data as an extra parameter can be used to
+overcome this issue.
+Integration
+SDLs are growing signiﬁcantly in prevalence, largely due to advancements in auto-
+mated hardware and AI. As these improvements are driven by external forces, themost impactful role researchers can play in the SDL ﬁeld is the integration ofdifferent components. For example, the Mobile Chemist by Burger et al. was a
+highly challenging research feat, not in building the underlying robot (supplied
+by KUKA Robotics) but in integrating the robot into a chemical research environ-ment and allowing it to seamlessly operate laboratory equipment. The challengingnature of integration should not be underestimated. It often requires new and cre-ative thinking, as well as many rounds of trial and error. Any failure to integrate coreelements can result in a signiﬁcant loss of functionality. For instance, purchasingexpensive high-end robotic equipment without the necessary software architecturefor executing useful chemical experiment s is problematic for the return on invest-
+ment (ROI). It also means the SDL will not provide a signiﬁcant advantage over ex-
+isting human experimentation. Similarly, if the AI agent and hardware are well inte-
+grated but the end-user interface is non -existent, the SDL becomes unusable to
+anyone but the platform developer. This leads to underutilization and a poor returnon research investment. Balancing the performance of SDLs is a task in itself, oftenrequiring detailed analysis of various performance metrics, as reviewed by Volket al.
+52ll
+2390 Matter 7, 2382–2398, July 3, 2024PerspectiveUse cases
+Although chemical and materials SDLs have only emerged in recent years, they have
+already seen signiﬁcant use in reaction optimization,11,12,19property optimization,29
+process optimization,53–55and targeted discovery ( Figure 3 ).33,46Of all these appli-
+cations, the most prominent use to date has been in reaction optimization for the
+purpose of identifying conditions that maximize yield or throughput. Although
+ﬁxed-robotic-arm and mobile robot platforms have also been demonstrated, theseSDLs have most commonly been based on ﬂuidic platform layouts and rely oncustom coordinator software to interface between the hardware, human user, andAI agent. These types of SDLs have become particularly popular due to both thegeneral appeal of reaction optimization in the wider chemical community as well
+as the innate compatibility of these objectives with simpler to build, ﬂuidic platforms
+and numerical-based parameters (e.g., temperature, equivalents, yield, etc.). Many
+successful reaction-optimizing SDLs have been demonstrated, ranging from single-step continuous parameter optimizations,
+10,23to multi-parameter single-step opti-
+mizations for pareto front optimizations,19,56and even multi-step reaction pathway
+optimizations.11,12
+Although reaction optimization has traditionally been the central focus for optimiza-
+tion-based SDLs, they are not limited to on ly this goal. As was demonstrated by the
+formulation of quantum dots by the Artiﬁcial Chemist, the adhesive system by Roo-
+ney et al., or the organic laser emitter development by the combined groups ofAspuru-Gurzik/Adachi/Gryzbowski/Cronin/Hein and Burke, SDLs can also beapplied to reﬁning the intrinsic properties of materials.
+31,49,57Despite slight varia-
+tions, these SDLs all follow identical princ iples to the reaction-optimization SDLs
+in which an automated hardware platform synthesizes a new material, the materialis transported to an analytical unit where a numerical value is calculated to quantify
+Figure 3. Demonstrated applications of SDLs across different domains, including reaction optimization, material property optimization, process
+optimization, and targeted discoveryll
+Matter 7, 2382–2398, July 3, 2024 2391Perspectivea speciﬁc property, such as shear strength or light emission, and the analytical
+output is then returned as a numerical input for the AI agent. This methodologicalconsistency strongly highlights the vers atility of the underlying SDL approach and
+demonstrates that the same optimization concept can be more broadly appliedbeyond chemical reaction optimizati on and toward the material sciences.
+Further highlighting the applicability of o ptimization SDLs beyond chemical synthe-
+sis, the systems have also been applied toward process optimization, most notablythe optimization of chromatographic methods. Of particular interest has been theuse of BO and retention modeling algorithms by Bos et al., Boelrijk et al., or Mole-naar et al. (Pirok group) to optimize 1D and 2D liquid chromatography methods withthe goal of improving both peak separation and analytical run time.
+53–55While still
+an optimization task, this approach nicely highlights that the closed-loop SDL pro-cess can still have a signiﬁcant research impact even in simpler hardware platforms,
+in this case a single HPLC unit. This also hi ghlights that SDLs can be applied to tasks
+beyond chemical synthesis and that they hold application not only to the synthesisand materials communities but also to the analytical ﬁeld.
+Being highly suited to optimization tasks by no means restricts SDLs to these objec-
+tives, and under the right conditions, they can also be efﬁciently applied to searchand discovery through the use of high-throughput platforms and AI agents gearedtoward exploration. While direct exploration via random combinatorial events has
+been explored, it is a particularly challenging approach for SDLs due to the open-
+ended nature, the AI agent’s data training requirements, and the analytical chal-lenges in identifying and characterizing novel material. This does not mean efﬁcientexploration cannot be performed by SDLs, but rather that more clearly deﬁned taskscan be executed more efﬁciently. For example, the ‘‘Adam’’ system from King et al.(King group) was tasked with the identiﬁcation of genes encoding for a speciﬁcenzyme expressed by a yeast species.
+33Using a general bioinformatic database of
+the yeast species, Adam formulated hypotheses about the genes and enzymes,
+tested the hypothesis using the automated platform, and after extensive rounds of
+testing (>6.5 million measurements) mana ged to identify three genes that encoded
+for the enzyme. By clearly deﬁning the end target (i.e., ‘‘ﬁnd the gene for .’’) rather
+than leaving the AI to randomly explore space, the system is able to more directlydiscover previously unknown results or relationships. This nicely highlighted how tar-geting the discovery allows the SDLs to be employed in chemical discovery andelegantly demonstrates that SDLs are not limited to solely optimization tasks.
+CONSIDERATIONS
+Accessibility
+Thanks to the custom-built nature of SDLs, a variety of design philosophies and ap-
+proaches have been realized, ultimately highlighting many possible points of entryinto ﬁeld. Despite this, two signiﬁcant barriers still remain: the high cost of platform
+components and the need for speciﬁc technical skills. Although chemical research is
+a costly endeavor by nature, the cost of m any components implemented in SDLs,
+such as benchtop NMR, liquid chromatography-mass spectrometry, or X-ray diffrac-tion instruments, can signiﬁcantly exceed the working costs of a research labora-tory.
+19,50Moreover, the development of SDLs also demands researchers not only
+have a solid working knowledge of chemistry but also be skilled in programming,electrical engineering, and mechanical engineering. As such, for SDLs to be fairlydemocratized and adopted by the wider chemical and materials science community,
+solutions to both the high costs and the skill barrier must be addressed.ll
+2392 Matter 7, 2382–2398, July 3, 2024PerspectiveThe ﬁrst approach toward wider SDL adoption lies in the decentralization of SDLs
+where researchers remotely submit experiments to an established SDL such as theLeyLab or MAOSIC ( Figure 4 , left).
+32,58This approach has gained signiﬁcant traction
+in both academic and industrial settings as it is cost-effective for the end user, doesnot require development time, thereby making results more immediate, and doesnot demand extensive programming or engineering knowledge from the user. Thisis a particularly appealing option for scenarios in which the speciﬁc SDL may only
+feature lightly in the research, for example having the cloud-SDL perform hit
+screening that can then be used to inform the researchers’ optimization SDL, or anoptimization cloud-SDL could be used to achieve a challenging step in a total synthe-sis. Additionally, user operation of the SDL platform is more facile as there are alreadydevelopers with existing expertise. This option does, however, limit researchers toﬁxed, preexisting systems, which may not always suit their speciﬁc research needs.Equally, if researchers are looking to routinely use the SDL during their research pro-cess, or they need to perform commercially sensitive research, it may be desirable to
+have an in-house SDL with more private access.
+Taking a different approach toward accessibility, others have instead focused on
+reducing the cost of the hardware either through the use of cheaper components,particularly liquid handlers, or by exchanging more expensive analytical instruments,such as NMR, for cheaper systems such as IR ( Figure 4 , right). Both the analytical in-
+struments and liquid handlers are particularly good candidates for cost reduction asthere are many cases in which the maximum capabilities are not needed, the high-
+end systems are very costly, and the cheape r substitutes are not exceedingly com-
+plex to build or integrate. Cost reduction in SDLs is very promising for future SDLdevelopments, and it is becoming increasingly studied, but as it has already beenreviewed elsewhere by Lo et al., the approaches toward cost reduction are not dis-cussed further herein.
+59Although implementation of cheaper platform components
+and analytics does reduce the ﬁnancial cost and thereby improve the accessibility ofthe SDL platform, it also comes at the cost of research capability. This means careful
+Figure 4. Approaches toward improving accessibility of SDLs for the wider community
+(Left) The decentralization approach where elements of SDLs or the users may be located in different physical locations but connected via the interne t,
+allowing use without needing to develop all parts of the SDL.
+(Right) The cost-reduction approach where lower performing and cheaper ana lytics or liquid-handling solutions may be employed to reduce the overal l
+cost of the physical platform, giving a lower cost of entry into the ﬁeld.ll
+Matter 7, 2382–2398, July 3, 2024 2393Perspectiveconsiderations must always be made duri ng the cost-cutting process to ensure the
+SDL remains effective for the desired goal.
+Integrating AI and automation in SDLs leads to lower material consumption, faster
+result generation, and longer operation times (24/7). This creates clear ﬁnancial in-centives for developing SDLs, especially since methodology development and
+multi-step syntheses are known to offer signiﬁcant ﬁnancial beneﬁts in industrial set-
+tings. Given these platforms’ evident ﬁnancial upside and broad application, the keyﬁnancial decision is not whether these systems will provide an ROI but rather theminimum investment needed to create an effective system. The exact ROI dependson the ﬁnancial value of the end goal, which varies case by case. However, cost-reducing measures such as reduced material consumption or lower hardware costsare always expected to have a positive impact. Developing low-cost hardware alter-natives is valuable not only for improving the accessibility of this ﬁeld but also for
+enhancing ROI. This, in turn, incentivizes external funders to invest in SDL research.
+SDL limitations
+AI augmentation has now shown signiﬁcan t promise in many ﬁelds, illustrating its
+transformative potential to solve complex challenges yet. However, as demon-strated by Beker et al. (Grzybowski group), AI still faces many limitations, particularlyin regard to its dependency on data quality.
+51If the training data used to build the AI
+model are biased and lack negative data, the AI’s predictive performance is no
+greater than that of traditional methods. This not only highlights the importance
+of comprehensive and unbiased datasets but also emphasizes the need for criticalevaluation of AI-generated data. Although the data quality dependency may be aweakness of AI, especially when using data for the wider literature, it does highlight
+the role SDLs can play in the creation of high-quality datasets for training further AIdevelopment. As a greater focus on AI development arises in the wider scientiﬁccommunity, the ability of SDLs to generate reliable, high-quality data containingnegative results should not be underestimated. This is not only highly valuable for
+general AI training purposes, but it also opens signiﬁcant new avenues into predic-
+tive AI strategies. This cycle of enhancement—where AI controls the generation ofdata that is then used to enhance its own p erformance—illustrates the potential
+for AI to overcome its current limitations, underscoring the evolving synergy be-
+tween AI capabilities and the quality of underlying data.
+While SDL platforms alleviate researchers from some arduous physical lab work and
+AI agents expedite research by identifyin g experiment parameters more rapidly, hu-
+man researchers still play a vital role in using SDLs. The hardware, coordinator soft-
+ware, and AI agents are all prone to errors, including physical malfunctions, programerrors, or data misinterpretation, requi ring human oversight to ensure continued
+operation. This issue was highlighted in the Adam system, where King et al. recom-mended routine supervision due to its ‘‘brittle’’ nature. Many approaches to address-ing this ‘‘brittleness’’ have been demon strated, with the most common being the
+selection of reliable and robust research tasks. For instance, many reaction-optimi-zation SDLs choose robust chemistries like imine condensations or palladium cross-
+couplings, particularly Suzuki reactions. These create fewer unexpected failures and
+simplify the assessment of the SDL system. While this approach is valuable duringthe initial phases of SDL development, it i s not a long-term solution. Experimental
+robustness is crucial in research. As SDL development advances, more challengingand error-prone work should be attempted, and a detailed error database shouldbe integrated into the system. Such a database tracks errors for diagnostic anddevelopment purposes and distinguishes smaller recoverable errors from signiﬁcantll
+2394 Matter 7, 2382–2398, July 3, 2024Perspectivenon-recoverable errors during runtime. I mplementing secondary recovery systems,
+as demonstrated by Koscher et al.,60allows minor errors to be recovered during run-
+time, signiﬁcantly reducing platform bri ttleness. Although major non-recoverable
+errors still cause some residual brittleness, integrating technologies like roboticarms and camera-based computer vision into the secondary recovery system willlikely reduce the number of non-recoverable errors, further improving system
+robustness.
+Beyond simple supervision, human researc hers are essential in ensuring the quality
+and interpretation of the ﬁnal data. AI agents identify correlations between variablesbut do not truly assess the underlying physical phenomena. Therefore, human re-searchers are crucial for interpreting da ta to understand the underlying phenomena
+and for establishing the research direction.
+Safe usage
+As AI capabilities continue to develop and accessibility to SDLs increases, it is impor-
+tant to consider not only the ways SDLs can r evolutionize chemical research posi-
+tively but also the potential for harm and necessary safeguards to prevent misuse.SDLs, like all delocalized labs, can be co nnected to the internet and to expensive
+components. They may host sensitive information and are capable of unsupervisedsyntheses, making them ideal targets for o nline hackers. Hackers could hold costly
+SDL equipment or sensitive information ransom. Since developing SDL platforms
+often requires dedicated one-off grants, a ransomware attack can be ﬁnancially
+devastating for many labs, as they may not be able to afford to replace the ransomedequipment. This is especially true if such an attack occurs before investors see anyreturn on their initial investment.
+In more extreme cases beyond ransomware attacks, SDL platforms may be hijacked
+and used to create dangerous substances without the resear chers’ knowledge.
+Although the exploitation of web-based SDLs for large-scale illicit substance manu-
+facture is unlikely, it is conceivable that such SDLs could be hijacked to create explo-
+sive or toxic materials, endangering nearb y researchers. Given these hacking risks
+and the fact that SDLs are often built by chemists or engineers without cyber-securitybackgrounds, particular care must be taken to ensure these tools are cyber-secure.Developing cyber-secure systems for large-scale operations is known to be chal-lenging. However, since the internet-related elements of web-based SDLs are notexpansive, implementing basic cyber-secur ity protocols is very achievable. By using
+low-level communication protocols (e.g., s ockets), the points of entry to the system
+are limited. Additionally, there are many pre-built libraries available for data encryp-
+tion and authentication, as well as extensive online support for implementing dedi-cated security features (e.g., IP whitelisting). Given the many resources available toimplement basic cyber-security measures and the signiﬁcant ﬁnancial risks associ-
+ated with security breaches, it is imperative that developers commit time and effortto securing their platforms. While this help s prevent security br eaches, further good
+practices, such as storing research data on a remote server, also help reduce theimpact of a ransomware attack by ensuring research data security.
+Conversely, the development of cheap, open access, and easy-to-use SDLs not only
+improves access for legitimate scientiﬁc use but also increases the risk of exploita-tion for illicit drug synthesis. While th is cannot be actively secured in the same
+manner as delocalized labs, considerations should be made regarding the publica-tion and distribution of knowledge about cre ating and using these SDLs, particularly
+for automated synthesis of illicit materials. We believe that accessibility to scientiﬁcll
+Matter 7, 2382–2398, July 3, 2024 2395Perspectiveliterature should be managed by the scienti ﬁc community not individual researchers.
+Therefore, decisions about the distribution of knowledge on SDL developmentshould be left to scientiﬁc journals. This means that the publication of SDL develop-ments should remain within scientiﬁc journals, where decisions on the safety ofknowledge dissemination can be more appropriately made.
+While researcher safety is a concern for internet-connected SDLs, it is also one of the
+signiﬁcant upsides of SDL usage. These SDLs can perform multiple lab tasks, fromweighing materials and loading them into reactors to conducting analytics, reducingthe need for physical human intervention during an experiment cycle. Since manychemical compounds are harmful to humans, having machines handle these chemicalssigniﬁcantly reduces researcher exposure, ultimately leading to better health out-comes. Reduced researcher exposure also opens new avenues for more dangerousresearch that would have been previously avoided due to safety concerns.
+OUTLOOK AND FUTURE DIRECTIONS
+SDLs have only recently come to the forefront of scientiﬁc research, and althoughthey have already seen phenomenal development and application, many avenues
+remain to be explored. These systems have shown clear potential for optimizations,
+making them prime candidates for further exploration in tasks such as NMR pulsesequence optimization or gas phase reaction optimization. While SDLs are wellsuited for optimization, as AI continues to develop through reinforced learning,future SDLs may be better applied to disco very challenges, such as discovering
+new reactions and materials or even conducting mechanistic investigations. Withthese AI improvements, a new phase of SDL research could emerge, where self-incentivized SDLs not only perform autonomous research but also guide the
+research direction without human input. Although the development of self-moti-
+vated SDLs may remain unrealized in the near future, there is a clear trajectory to-ward such a goal as more untouched research space in human-guided SDLs isexplored.
+SDLs have demonstrated their value in achieving commercially valuable goals, such
+as performing complete reaction optimization campaigns within a day, developingnew materials like organic semiconductor lasers,
+49or identifying genes that encode
+for speciﬁc enzymes.33With clear ﬁnancial incentives and increasing accessibility,
+the prevalence of SDL platforms is expected to rise, especially in start-up settingswhere early research and development costs are crucial. This trend will likely in-crease the demand for programming- and eng ineering-related skills within chemical
+research. As technology-based jobs continue to grow across various ﬁelds, thefuture workforce is likely to have already encountered these skill requirementsthrough education or work experience. The push to increase programming exposureand computational thinking in childhood education has further prepared the up-
+coming generation with these skills. Modern AI tools, such as ChatGPT, reduce
+the need to memorize language-speciﬁc syntax, allowing students to focus moreon computational thinking skills. This approach means future researchers will be bet-ter equipped to adapt to SDL development, understanding the necessary thoughtprocesses without depending on memorized programmatic syntax.
+With a technologically adept future workforce, supportive AI tools, and signiﬁcant
+ﬁnancial incentives, the prevalence of SDLs is likely to increase. Given the strong ap-
+plications already demonstrated, the future impact of SDLs on the wider scientiﬁc
+ﬁeld is bound to be signiﬁcant.ll
+2396 Matter 7, 2382–2398, July 3, 2024PerspectiveACKNOWLEDGMENTS
+We gratefully acknowledge the generous funding provided by the Dutch Research
+Council (NWO) under the Open Technology Program (Multi-Modal Photochemistry,no. 18433, to A.S. and T.N.). Furthermore, we extend our gratitude for the generous
+funding received from the European Union H2020 research and innovation program
+under the European Research Council program (FlowHAT, no. 101044355, to T.N.)and under the European Innovation Council project (reaCtor, no. 101099405, to T.N.and E.S.).
+AUTHOR CONTRIBUTIONS
+All authors contributed to researching and writing this perspective.
+DECLARATION OF INTERESTS
+The authors declare no competing interests.
+REFERENCES
+1.Abolhasani, M., and Kumacheva, E. (2023). The
+rise of self-driving labs in chemical and
+materials sciences. Nat. Synth. 2, 483–492 .
+2.Spinrad, R.J. (1967). Automation in the
+laboratory. Science 158, 55–60 .
+3.Frediani, H.A. (1952). Automatic Karl Fischer
+Titration. Anal. Chem. 24, 1126–1128 .
+4.Kelley, M.T., Stelzner, R.W., Laing, W.R., and
+Fisher, D.J. (1959). Automatic Coulometric
+Titrator for Karl Fischer Determination ofWater. Anal. Chem. 31, 220–221 .
+5.Merriﬁeld, R.B., and Stewart, J.M. (1965).
+Automated Peptide Synthesis. Nature 207,
+522–523 .
+6.Olsen, K. (2012). The First 110 Years of
+Laboratory Automation: Technologies,Applications, and the Creative Scientist. J. Lab.
+Autom. 17, 469–480 .
+7.Boyd, J. (2002). Robotic laboratory automation.
+Science 295, 517–518 .
+8.Goodell, J.R., McMullen, J.P., Zaborenko, N.,
+Maloney, J.R., Ho, C.X., Jensen, K.F., Porco,J.A., Jr., and Beeler, A.B. (2009). Development
+of an Automated Microﬂuidic Reaction
+Platform for Multidimensional Screening:
+Reaction Discovery Employing Bicyclo[3.2.1]
+octanoid Scaffolds. J. Org. Chem. 74,
+6169–6180 .
+9.Krishnadasan, S., Brown, R.J.C., DeMello, A.J.,
+and DeMello, J.C. (2007). Intelligent routes to
+the controlled synthesis of nanoparticles. Lab
+Chip 7, 1434–1441 .
+10.McMullen, J.P., and Jensen, K.F. (2010). An
+Automated Microﬂuidic System for Online
+Optimization in Chemical Synthesis. Org.Process Res. Dev. 14, 1169–1176 .
+11.Coley, C.W., Thomas, D.A., Lummiss, J.A.M.,
+Jaworski, J.N., Breen, C.P., Schultz, V., Hart, T.,Fishman, J.S., Rogers, L., Gao, H., et al. (2019).
+A robotic platform for ﬂow synthesis of organic
+compounds informed by AI planning. Science
+365, eaax1566 .
+12.Nambiar, A.M.K., Breen, C.P., Hart, T., Kulesza,
+T., Jamison, T.F., and Jensen, K.F. (2022).Bayesian Optimization of Computer-Proposed
+Multistep Synthetic Routes on an Automated
+Robotic Flow Platform. ACS Cent. Sci. 8,
+825–836 .
+13.Boiko, D.A., MacKnight, R., Kline, B., and
+Gomes, G. (2023). Autonomous chemical
+research with large language models. Nature
+624, 570–578 .
+14.Mu¨ller, P., Clayton, A.D., Manson, J., Riley, S.,
+May, O.S., Govan, N., Notman, S., Ley, S.V.,
+Chamberlain, T.W., and Bourne, R.A. (2022).
+Automated multi-objective reaction
+optimisation: which algorithm should I use?
+React. Chem. Eng. 7, 987–993 .
+15.Seifrid, M., Pollice, R., Aguilar-Granda, A.,
+Morgan Chan, Z., Hotta, K., Ser, C.T., Vestfrid,
+J., Wu, T.C., and Aspuru-Guzik, A. (2022).Autonomous Chemical Experiments:
+Challenges and Perspectives on Establishing a
+Self-Driving Lab. Acc. Chem. Res. 55,
+2454–2466 .
+16.Ha, T., Lee, D., Kwon, Y., Park, M.S., Lee, S.,
+Jang, J., Choi, B., Jeon, H., Kim, J., Choi, H.,
+et al. (2023). AI-driven robotic chemist for
+autonomous synthesis of organic molecules.
+Sci. Adv. 9, eadj0461 .
+17.Epps, R.W., Bowen, M.S., Volk, A.A., Abdel-
+Latif, K., Han, S., Reyes, K.G., Amassian, A., andAbolhasani, M. (2020). Artiﬁcial Chemist: An
+Autonomous Quantum Dot Synthesis Bot. Adv.
+Mater. 32, 2001626 .
+18.Steiner, S., Wolf, J., Glatzel, S., Andreou, A.,
+Granda, J.M., Keenan, G., Hinkley, T., Aragon-
+Camarasa, G., Kitson, P.J., Angelone, D., and
+Cronin, L. (2019). Organic synthesis in amodular robotic system driven by a chemical
+programming language. Science 363,
+eaav2211 .
+19.Slattery, A., Wen, Z., Tenblad, P.,
+Sanjose ´-Orduna, J., Pintossi, D., den Hartog,
+T., and Noe ¨l, T. (2024). Automated self-
+optimization, intensiﬁcation, and scale-up of
+photocatalysis in ﬂow. Science 383, eadj1817 .
+20.MacLeod, B.P., Parlane, F.G.L., Morrissey, T.D.,
+Ha¨se, F., Roch, L.M., Dettelbach, K.E., Moreira,
+R., Yunker, L.P.E., Rooney, M.B., Deeth, J.R.,et al. (2020). Self-driving laboratory foraccelerated discovery of thin-ﬁlm materials.
+Sci. Adv. 6, eaaz8867 .
+21.Burger, B., Maffettone, P.M., Gusev, V.V.,
+Aitchison, C.M., Bai, Y., Wang, X., Li, X., Alston,
+B.M., Li, B., Clowes, R., et al. (2020). A mobile
+robotic chemist. Nature 583, 237–241 .
+22.Clayton, A.D., Pyzer-Knapp, E.O., Purdie, M.,
+Jones, M.F., Barthelme, A., Pavey, J., Kapur, N.,
+Chamberlain, T.W., Blacker, A.J., and Bourne,
+R.A. (2023). Bayesian Self -Optimization for
+Telescoped Continuous Flow Synthesis.
+Angew. Chem., Int. Ed. Engl. 62, e202214511 .
+23.Moore, J.S., and Jensen, K.F. (2012).
+Automated Multitrajectory Method for
+Reaction Optimization in a Microﬂuidic Systemusing Online IR Analysis. Org. Process Res.
+Dev. 16, 1409–1415 .
+24.Sans, V., Porwol, L., Dragone, V., and Cronin, L.
+(2015). A self optimizing synthetic organic
+reactor system using real-time in-line NMR
+spectroscopy. Chem. Sci. 6, 1258–1264 .
+25.Holmes, N., Akien, G.R., Savage, R.J.D.,
+Stanetty, C., Baxendale, I.R., Blacker, A.J.,
+Taylor, B.A., Woodward, R.L., Meadows, R.E.,
+and Bourne, R.A. (2016). Online quantitative
+mass spectrometry for the rapid adaptiveoptimisation of automated ﬂow reactors.
+React. Chem. Eng. 1, 96–100 .
+26. Mohapatra, S., Hartrampf, N., Poskus, M., Loas,
+A., Gomez-Bombarelli, R., and Pentelute, B.L.
+(2020). Deep Learning for Prediction and
+Optimization of Fast-Flow Peptide Synthesis.
+ChemRxiv. https://doi.org/10.26434/chemrxiv.
+12649343 .
+27.Reizman, B.J., Wang, Y.-M., Buchwald, S.L., and
+Jensen, K.F. (2016). Suzuki–Miyaura cross-
+coupling optimization enabled by automatedfeedback. React. Chem. Eng. 1, 658–666 .
+28.Baumgartner, L.M., Coley, C.W., Reizman, B.J.,
+Gao, K.W., and Jensen, K.F. (2018). Optimumcatalyst selection over continuous and discrete
+process variables with a single droplet
+microﬂuidic reaction platform. React. Chem.
+Eng. 3, 301–311 .
+29.Moliner, M., Serra, J., Corma, A., Argente, E.,
+Valero, S., and Botti, V. (2005). Application ofll
+Matter 7, 2382–2398, July 3, 2024 2397Perspectiveartiﬁcial neural networks to high-throughput
+synthesis of zeolites. Microporous Mesoporous
+Mater. 78, 73–81 .
+30.Jiang, Y., Fakhruldeen, H., Pizzuto, G., Longley,
+L., He, A., Dai, T., Clowes, R., Rankin, N., and
+Cooper, A.I. (2023). Autonomous biomimetic
+solid dispensing using a dual-arm robotic
+manipulator. Dig. Dis. 2, 1733–1744 .
+31.Rooney, M.B., MacLeod, B.P., Oldford, R.,
+Thompson, Z.J., White, K.L., Tungjunyatham,
+J., Stankiewicz, B.J., and Berlinguette, C.P.
+(2022). A self-driving laboratory designed to
+accelerate the discovery of adhesive materials.
+Dig. Dis. 1, 382–389 .
+32.Li, J., Li, J., Liu, R., Tu, Y., Li, Y., Cheng, J., He, T.,
+and Zhu, X. (2020). Autonomous discovery of
+optically active chiral inorganic perovskite
+nanocrystals through an intelligent cloud lab.Nat. Commun. 11, 2046 .
+33.King, R.D., Rowland, J., Oliver, S.G., Young, M.,
+Aubrey, W., Byrne, E., Liakata, M., Markham,
+M., Pir, P., Soldatova, L.N., et al. (2009). TheAutomation of Science. Science 324, 85–89 .
+34.Christensen, M., Yunker, L.P.E., Shiri, P., Zepel,
+T., Prieto, P.L., Grunert, S., Bork, F., and Hein,
+J.E. (2021). Automation isn’t automatic. Chem.Sci.12, 15473–15490 .
+35.Coley, C.W., Green, W.H., and Jensen, K.F.
+(2018). Machine Learning in Computer-Aided
+Synthesis Planning. Acc. Chem. Res. 51,
+1281–1289 .
+36.Raghavan, P., Haas, B.C., Ruos, M.E., Schleinitz,
+J., Doyle, A.G., Reisman, S.E., Sigman, M.S.,
+and Coley, C.W. (2023). Dataset Design for
+Building Models of Chemical Reactivity. ACS
+Cent. Sci. 9, 2196–2204 .
+37. Sim, M., Vakili, M.G., Strieth-Kalthoff, F., Hao,
+H., Hickman, R.J., Miret, S., Pablo-Garcı ´a, S.,
+and Aspuru-Guzik, A. (2024). ChemOS 2.0: An
+orchestration architecture for chemical self-driving laboratories. Matter. https://doi.org/
+10.1016/j.matt.2024.04.022 .
+38.Roch, L.M., Ha ¨se, F., Kreisbeck, C., Tamayo-
+Mendoza, T., Yunker, L.P.E., Hein, J.E., andAspuru-Guzik, A. (2018). ChemOS:
+Orchestrating autonomous experimentation.
+Sci. Robot. 3, eaat5559 .
+39.Mehr, S.H.M., Craven, M., Leonov, A.I., Keenan,
+G., and Cronin, L. (2020). A universal system for
+digitization and automatic execution of the
+chemical synthesis literature. Science 370,
+101–108 .
+40.Haas, C.P., Lu ¨bbesmeyer, M., Jin, E.H.,
+McDonald, M.A., Koscher, B.A., Guimond, N.,
+Di Rocco, L., Kayser, H., Leweke, S.,Niedenfu ¨hr, S., et al. (2023). Open-Source
+Chromatographic Data Analysis for Reaction
+Optimization and Screening. ACS Cent. Sci. 9,
+307–317 .
+41.de Almeida, A.F., Moreira, R., and Rodrigues,
+T. (2019). Synthetic organic chemistry driven by
+artiﬁcial intelligence. Nat. Rev. Chem 3,
+589–604 .
+42.Clayton, A.D., Manson, J.A., Taylor, C.J.,
+Chamberlain, T.W., Taylor, B.A., Clemens, G.,
+and Bourne, R.A. (2019). Algorithms for the self-
+optimisation of chemical reactions. React.
+Chem. Eng. 4, 1545–1554 .
+43.Kusne, A.G., Yu, H., Wu, C., Zhang, H., Hattrick-
+Simpers, J., DeCost, B., Sarker, S., Oses, C.,
+Toher, C., Curtarolo, S., et al. (2020). On-the-ﬂy
+closed-loop materials discovery via Bayesian
+active learning. Nat. Commun. 11, 5966 .
+44. Jablonka, K.M., Schwaller, P., Ortega-
+Guerrero, A., and Smit, B. (2024). Leveraging
+large language models for predictive
+chemistry. Nat. Mach. Intell. 6, 161–169.
+https://doi.org/10.1038/s42256-023-00788-1 .
+45.Ji, W., Qiu, W., Shi, Z., Pan, S., and Deng, S.
+(2021). Stiff-PINN: Physics-Informed Neural
+Network for Stiff Chemical Kinetics. J. Phys.Chem. A 125, 8098–8106 .
+46.King, R.D., Whelan, K.E., Jones, F.M., Reiser,
+P.G.K., Bryant, C.H., Muggleton, S.H., Kell,
+D.B., and Oliver, S.G. (2004). Functionalgenomic hypothesis generation and
+experimentation by a robot scientist. Nature
+427, 247–252 .
+47.McNally, A., Prier, C.K., and MacMillan, D.W.C.
+(2011). Discovery of an a-amino C-H arylation
+reaction using the strategy of acceleratedserendipity. Science 334, 1114–1117 .
+48.Wang, H., Fu, T., Du, Y., Gao, W., Huang, K.,
+Liu, Z., Chandak, P., Liu, S., Van Katwyk, P.,
+Deac, A., et al. (2023). Scientiﬁc discovery in theage of artiﬁcial intelligence. Nature 620, 47–60 .
+49.Strieth-Kalthoff, F., Hao, H., Rathore, V.,
+Derasp, J., Gaudin, T., Angello, N.H., Seifrid,
+M., Trushina, E., Guy, M., Liu, J., et al. (2024).Delocalized, asynchronous, closed-loop
+discovery of organic laser emitters. Science
+384, eadk9227 .
+50.Szymanski, N.J., Rendy, B., Fei, Y., Kumar, R.E.,
+He, T., Milsted, D., McDermott, M.J., Gallant,
+M., Cubuk, E.D., Merchant, A., et al. (2023). An
+autonomous laboratory for the accelerated
+synthesis of novel materials. Nature 624, 86–91 .
+51.Beker, W., Roszak, R., Wołos, A., Angello, N.H.,
+Rathore, V., Burke, M.D., and Grzybowski, B.A.
+(2022). Machine Learning May SometimesSimply Capture Literature Popularity Trends: A
+Case Study of Heterocyclic Suzuki–Miyaura
+Coupling. J. Am. Chem. Soc. 144, 4819–4827 .
+52.Volk, A.A., and Abolhasani, M. (2024).
+Performance metrics to unleash the power of
+self-driving labs in chemistry and materialsscience. Nat. Commun. 15, 1378 .
+53.Boelrijk, J., Ensing, B., Forre ´, P., and Pirok,
+B.W.J. (2023). Closed-loop automatic gradient
+design for liquid chromatography using
+Bayesian optimization. Anal. Chim. Acta 1242 ,
+340789 .
+54.Molenaar, S.R.A., Bos, T.S., Boelrijk, J.,
+Dahlseid, T.A., Stoll, D.R., and Pirok, B.W.J.(2023). Computer-driven optimization of
+complex gradients in comprehensive two-
+dimensional liquid chromatography.
+J. Chromatogr. A 1707 , 464306 .
+55.Bos, T.S., Boelrijk, J., Molenaar, S.R.A., van ’t
+Veer, B., Niezen, L.E., van Herwerden, D.,
+Samanipour, S., Stoll, D.R., Forre ´, P., Ensing, B.,
+et al. (2022). Chemometric Strategies for FullyAutomated Interpretive Method Development
+in Liquid Chromatography. Anal. Chem. 94,
+16060–16068 .
+56.Jablonka, K.M., Jothiappan, G.M., Wang, S.,
+Smit, B., and Yoo, B. (2021). Bias free
+multiobjective active learning for materialsdesign and discovery. Nat. Commun. 12, 2312 .
+57.Angello, N.H., Rathore, V., Beker, W., Wołos,
+A., Jira, E.R., Roszak, R., Wu, T.C., Schroeder,C.M., Aspuru-Guzik, A., Grzybowski, B.A., and
+Burke, M.D. (2022). Closed-loop optimization
+of general reaction conditions for heteroaryl
+Suzuki-Miyaura coupling. Science 378,
+399–405 .
+58.Mateos, C., Nieves-Remacha, M.J., and Rinco ´n,
+J.A. (2019). Automated platforms for reaction
+self-optimization in ﬂow. React. Chem. Eng. 4,
+1536–1544 .
+59. Lo, S., Baird, S.G., Schrier, J., Blaiszik, B.,
+Carson, N., Foster, I., Aguilar-Granda, A.,
+Kalinin, S.V., Maruyama, B., Politi, M., et al.
+(2024). Review of low-cost self-driving
+laboratories in chemistry and materials science:the ‘‘frugal twin’’ concept. Dig. Dis. 3, 842–868.
+https://doi.org/10.1039/D3DD00223C .
+60.Koscher, B.A., Canty, R.B., McDonald, M.A.,
+Greenman, K.P., McGill, C.J., Bilodeau, C.L.,
+Jin, W., Wu, H., Vermeire, F.H., Jin, B., et al.
+(2023). Autonomous, multiproperty-drivenmolecular discovery: From predictions to
+measurements and back. Science 382,
+eadi1407 .ll
+2398 Matter 7, 2382–2398, July 3, 2024Perspective
