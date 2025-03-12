@@ -1,0 +1,1513 @@
+[
+	{
+		"id": "http://zotero.org/users/16075619/items/J6N637M8",
+		"type": "article-journal",
+		"abstract": "Self-driving laboratories (SDLs) are the future for scientific discovery in a world growing with artificial intelligence. The interaction between scientists and automated instrumentation are leading conversations about the impact of SDLs on research.\n          , \n            Recent developments in artificial intelligence (AI) and machine learning (ML), implemented through self-driving laboratories (SDLs), are rapidly creating unprecedented opportunities for the accelerated discovery and optimization of materials. This paper provides a joint analysis of SDLs from both academic and industry perspectives, highlighting the importance of integrating human intelligence in these systems. It discusses the necessity of careful planning in SDL design across physical, data, and workflow dimensions, including instrumental setup, experimental workflow, data management, and human–SDL interaction. The significance of integrating human input within SDLs, especially as the focus shifts from individual tools and tasks to the creation and management of complex workflows, is emphasized. The paper stresses on the crucial role of reward function design in developing forward-looking workflows and examines the interplay between hardware evolution, ML application across chemical processes, and the influence of reward systems in research. Ultimately, the article advocates for a future where SDLs blend human intuition in hypothesis formulation with AI's precision, speed, and data-handling capabilities.",
+		"container-title": "Digital Discovery",
+		"DOI": "10.1039/D4DD00040D",
+		"ISSN": "2635-098X",
+		"issue": "4",
+		"journalAbbreviation": "Digital Discovery",
+		"language": "en",
+		"page": "621-636",
+		"source": "DOI.org (Crossref)",
+		"title": "The future of self-driving laboratories from human in the loop interactive AI to gamification",
+		"title-short": "The future of self-driving laboratories",
+		"URL": "https://xlink.rsc.org/?DOI=D4DD00040D",
+		"volume": "3",
+		"author": [
+			{
+				"family": "Hysmith",
+				"given": "Holland"
+			},
+			{
+				"family": "Foadian",
+				"given": "Elham"
+			},
+			{
+				"family": "Padhy",
+				"given": "Shakti P."
+			},
+			{
+				"family": "Kalinin",
+				"given": "Sergei V."
+			},
+			{
+				"family": "Moore",
+				"given": "Rob G."
+			},
+			{
+				"family": "Ovchinnikova",
+				"given": "Olga S."
+			},
+			{
+				"family": "Ahmadi",
+				"given": "Mahshid"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/5AFJLTR3",
+		"type": "article",
+		"abstract": "A self-driving lab (SDL) is a system that automates experiment design, data collection, and analysis using robotics and artificial intelligence (AI) technologies, and its significance has grown substantially in recent years. This study analyzes the overall research trends in SDL, examines changes in specific topics, visualizes the relational structure among authors to identify key contributors and extracts major themes from extensive texts to highlight essential research content. To achieve these objectives, trend analysis, network analysis, and topic modeling are conducted on 352 research papers collected from the Web of Science from 2004 to 2023. The results revealed three key findings. First, SDL research has surged since 2019, driven by the pandemic and advancements in AI technologies, reflecting heightened activity in this field. Second, several influential researchers have been identified as central figures in the network, playing pivotal roles in collaboration and information dissemination. Third, SDL research exhibits interdisciplinary convergence, encompassing areas such as material optimization, biological processes, and AI predictive algorithms. This study underscores the growing importance of SDL as a research tool across diverse academic disciplines and provides practical insights into sustainable future research directions and strategic approaches.",
+		"DOI": "10.20944/preprints202412.0512.v1",
+		"language": "en",
+		"license": "http://creativecommons.org/licenses/by/4.0",
+		"publisher": "Environmental and Earth Sciences",
+		"source": "DOI.org (Crossref)",
+		"title": "Research Trend Analysis in the Field of Self Driving Lab Using Network Analysis and Topic Modeling",
+		"URL": "https://www.preprints.org/manuscript/202412.0512/v1",
+		"author": [
+			{
+				"family": "Jung",
+				"given": "Woojun"
+			},
+			{
+				"family": "Hwang",
+				"given": "Insung"
+			},
+			{
+				"family": "Cho",
+				"given": "Keuntae"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					12,
+					6
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/JAEMEGFY",
+		"type": "article-journal",
+		"abstract": "Abstract\n            With the rise of self-driving labs (SDLs) and automated experimentation across chemical and materials sciences, there is a considerable challenge in designing the best autonomous lab for a given problem based on published studies alone. Determining what digital and physical features are germane to a specific study is a critical aspect of SDL design that needs to be approached quantitatively. Even when controlling for features such as dimensionality, every experimental space has unique requirements and challenges that influence the design of the optimal physical platform and algorithm. Metrics such as optimization rate are therefore not necessarily indicative of the capabilities of an SDL across different studies. In this perspective, we highlight some of the critical metrics for quantifying performance in SDLs to better guide researchers in implementing the most suitable strategies. We then provide a brief review of the existing literature under the lens of quantified performance as well as heuristic recommendations for platform and experimental space pairings.",
+		"container-title": "Nature Communications",
+		"DOI": "10.1038/s41467-024-45569-5",
+		"ISSN": "2041-1723",
+		"issue": "1",
+		"journalAbbreviation": "Nat Commun",
+		"language": "en",
+		"page": "1378",
+		"source": "DOI.org (Crossref)",
+		"title": "Performance metrics to unleash the power of self-driving labs in chemistry and materials science",
+		"URL": "https://www.nature.com/articles/s41467-024-45569-5",
+		"volume": "15",
+		"author": [
+			{
+				"family": "Volk",
+				"given": "Amanda A."
+			},
+			{
+				"family": "Abolhasani",
+				"given": "Milad"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					2,
+					14
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/JAJ8D5ED",
+		"type": "article",
+		"abstract": "We present the development of an automated scanning probe microscopy (SPM) measurement system using an advanced large-scale language model (LLM). This SPM system can receive instructions via social networking services (SNS), and the integration of SNS and LLMs enables real-time, language-agnostic control of SPM operations, thereby improving accessibility and efficiency. The integration of LLMs with AI systems with specialized functions brings the realization of self-driving labs closer.",
+		"DOI": "10.48550/arXiv.2405.15490",
+		"language": "en",
+		"note": "arXiv:2405.15490 [physics]",
+		"number": "arXiv:2405.15490",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Leveraging Large Language Models and Social Media for Automation in Scanning Probe Microscopy",
+		"URL": "http://arxiv.org/abs/2405.15490",
+		"author": [
+			{
+				"family": "Diao",
+				"given": "Zhuo"
+			},
+			{
+				"family": "Yamashita",
+				"given": "Hayato"
+			},
+			{
+				"family": "Abe",
+				"given": "Masayuki"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					24
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/RJDIXMBL",
+		"type": "article",
+		"abstract": "With the advent of self-driving labs promising to synthesize large numbers of new materials, new automated tools are required for checking potential duplicates in existing structural databases before a material can be claimed as novel. To avoid duplication, we rigorously define the novelty metric of any periodic material as the smallest distance to its nearest neighbor among already known materials.  Using ultra-fast structural invariants, all such nearest neighbors can be found within seconds on a typical computer even if a given crystal is disguised by changing a unit cell, perturbing atoms, or replacing chemical elements. This real-time novelty check is demonstrated by finding near-duplicates of the 43 materials produced by Berkeley’s A-lab in the world’s largest collections of inorganic structures, the Inorganic Crystal Structure Database and Materials Project.  To help future self-driving labs successfully identify novel materials, we propose navigation maps of the materials space where any new structure can be quickly located by its invariant descriptors similar to a geographic location on Earth.  Keywords: materials space, crystal structure, isometry invariant, continuous metric",
+		"DOI": "10.48550/arXiv.2410.13796",
+		"language": "en",
+		"note": "arXiv:2410.13796 [cond-mat]",
+		"number": "arXiv:2410.13796",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Navigation maps of the material space for automated self driving labs of the future",
+		"URL": "http://arxiv.org/abs/2410.13796",
+		"author": [
+			{
+				"family": "Widdowson",
+				"given": "Daniel E."
+			},
+			{
+				"family": "Kurlin",
+				"given": "Vitaliy A."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					10,
+					17
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/LXCX64IP",
+		"type": "article",
+		"abstract": "Recent development in Artificial Intelligence (AI) models has propelled their application in scientific discovery, but the validation and exploration of these discoveries require subsequent empirical experimentation. The concept of self-driving laboratories promises to automate and thus boost the experimental process following AI-driven discoveries. However, the transition of experimental protocols, originally crafted for human comprehension, into formats interpretable by machines presents significant challenges, which, within the context of specific expert domain, encompass the necessity for structured as opposed to natural language, the imperative for explicit rather than tacit knowledge, and the preservation of causality and consistency throughout protocol steps. Presently, the task of protocol translation predominantly requires the manual and labor-intensive involvement of domain experts and information technology specialists, rendering the process time-intensive. To address these issues, we propose a framework that automates the protocol translation process through a three-stage workflow, which incrementally constructs Protocol Dependence Graphs (PDGs) that approach structured on the syntax level, completed on the semantics level, and linked on the execution level. Quantitative and qualitative evaluations have demonstrated its performance at par with that of human experts, underscoring its potential to significantly expedite and democratize the process of scientific discovery by elevating the automation capabilities within self-driving laboratories.",
+		"DOI": "10.48550/arXiv.2411.00444",
+		"language": "en",
+		"note": "arXiv:2411.00444 [cs]",
+		"number": "arXiv:2411.00444",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Expert level protocol translation for self-driving labs",
+		"URL": "http://arxiv.org/abs/2411.00444",
+		"author": [
+			{
+				"family": "Shi",
+				"given": "Yu-Zhe"
+			},
+			{
+				"family": "Meng",
+				"given": "Fanxu"
+			},
+			{
+				"family": "Hou",
+				"given": "Haofei"
+			},
+			{
+				"family": "Bi",
+				"given": "Zhangqian"
+			},
+			{
+				"family": "Xu",
+				"given": "Qiao"
+			},
+			{
+				"family": "Ruan",
+				"given": "Lecheng"
+			},
+			{
+				"family": "Wang",
+				"given": "Qining"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					11,
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/NK9CBYCK",
+		"type": "article",
+		"abstract": "This paper addresses the gap between the capabilities and utilisation of robotics and automation in laboratory settings and builds upon the concept of Self Driving Labs (SDL). We introduce an innovative approach to the temporal characterisation of materials. The article discusses the challenges posed by manual methods involving established laboratory equipment and presents an automated hyperspectral characterisation station. This station integrates robot-aided hyperspectral imaging, complex material characterisation modeling, and automated data analysis, offering a non-destructive and comprehensive approach. This work explains how the proposed assembly can automatically measure the half-life of biodegradable polymers with higher throughput and accuracy than manual methods. The investigation explores the effect of pH, number of average molecular weight (Mn), end groups, and blends on the degradation rate of polylactic acid (PLA). The contributions of the paper lie in introducing an adaptable classification station for novel characterisation methods and presenting an innovative methodology for polymer degradation rate measurement. The proposed system has the potential to accelerate the development of high-throughput screening and characterisation methods in material and chemistry laboratories.",
+		"DOI": "10.48550/arXiv.2402.11763",
+		"language": "en",
+		"note": "arXiv:2402.11763 [eess]",
+		"number": "arXiv:2402.11763",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Autonomous Hyperspectral Characterisation Station: Robotically Assisted Characterisation of Polymer Degradation",
+		"title-short": "Autonomous Hyperspectral Characterisation Station",
+		"URL": "http://arxiv.org/abs/2402.11763",
+		"author": [
+			{
+				"family": "Azizi",
+				"given": "Shayan"
+			},
+			{
+				"family": "Asadi",
+				"given": "Ehsan"
+			},
+			{
+				"family": "Howard",
+				"given": "Shaun"
+			},
+			{
+				"family": "Muir",
+				"given": "Benjamin W."
+			},
+			{
+				"family": "O'Shea",
+				"given": "Riley"
+			},
+			{
+				"family": "Bab-Hadiashar",
+				"given": "Alireza"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					2,
+					19
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/96J8J4EC",
+		"type": "article",
+		"abstract": "Recent advancements in Large Language Models (LLMs) are transforming biology, computer science, and many other research fields, as well as impacting everyday life. While transformer-based technologies are currently being deployed in biology, no available agentic system has been developed to tackle bioinformatics workflows. We present a prototype Bioinformatics Retrieval Augmented Data (BRAD) digital assistant. BRAD is a chatbot and agentic system that integrates a suite of tools to handle bioinformatics tasks, from code execution to online search. We demonstrate its capabilities through (1) improved question-and-answering with retrieval augmented generation (RAG), (2) the ability to run complex software pipelines, and (3) the ability to organize and distribute tasks in agentic workflows. We use BRAD for automation, performing tasks ranging from gene enrichment and searching the archive to automatic code generation for running biomarker identification pipelines. BRAD is a step toward autonomous, self-driving labs for digital biology.",
+		"DOI": "10.48550/arXiv.2409.02864",
+		"language": "en",
+		"note": "arXiv:2409.02864 [cs]",
+		"number": "arXiv:2409.02864",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Language Model Powered Digital Biology with BRAD",
+		"URL": "http://arxiv.org/abs/2409.02864",
+		"author": [
+			{
+				"family": "Pickard",
+				"given": "Joshua"
+			},
+			{
+				"family": "Prakash",
+				"given": "Ram"
+			},
+			{
+				"family": "Choi",
+				"given": "Marc Andrew"
+			},
+			{
+				"family": "Oliven",
+				"given": "Natalie"
+			},
+			{
+				"family": "Stansbury",
+				"given": "Cooper"
+			},
+			{
+				"family": "Cwycyshyn",
+				"given": "Jillian"
+			},
+			{
+				"family": "Gorodetsky",
+				"given": "Alex"
+			},
+			{
+				"family": "Velasquez",
+				"given": "Alvaro"
+			},
+			{
+				"family": "Rajapakse",
+				"given": "Indika"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					12,
+					8
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/3D4U8Z2Z",
+		"type": "article",
+		"abstract": "We apply logic-based machine learning techniques to facilitate cellular engineering and drive biological discovery, using a comprehensive knowledge base of metabolic processes called a genome-scale metabolic network model (GEM). Predicted host behaviours are not always correctly described by GEMs. Learning the intricate genetic interactions within GEMs presents computational and empirical challenges. To address these difficulties, we describe a novel approach called Boolean Matrix Logic Programming (BMLP) by leveraging boolean matrices to evaluate large logic programs. We introduce a new system, BM LPactive, which efficiently explores the genomic hypothesis space by guiding informative experimentation through active learning. In contrast to subsymbolic methods, BM LPactive encodes a state-of-the-art GEM of a widely accepted bacterial host in an interpretable and logical representation using datalog logic programs. Notably, BM LPactive can successfully learn the interaction between a gene pair with 90% fewer training examples than random experimentation, overcoming the increase in experimental design space. BM LPactive enables rapid optimisation of metabolic models and offers a realistic approach to a self-driving lab for microbial engineering.",
+		"DOI": "10.48550/arXiv.2408.14487",
+		"language": "en",
+		"note": "arXiv:2408.14487 [cs]",
+		"number": "arXiv:2408.14487",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Active learning of digenic functions with boolean matrix logic programming",
+		"URL": "http://arxiv.org/abs/2408.14487",
+		"author": [
+			{
+				"family": "Ai",
+				"given": "Lun"
+			},
+			{
+				"family": "Muggleton",
+				"given": "Stephen H."
+			},
+			{
+				"family": "Liang",
+				"given": "Shi-shun"
+			},
+			{
+				"family": "Baldwin",
+				"given": "Geoff S."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					11,
+					13
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/S56GZXYT",
+		"type": "article",
+		"abstract": "Self Driving Labs (SDLs) that combine automation of experimental procedures with autonomous decision making are gaining popularity as a means of increasing the throughput of scientific workflows. The task of identifying quantities of supplied colored pigments that match a target color, the color matching problem, provides a simple and flexible SDL test case, as it requires experiment proposal, sample creation, and sample analysis, three common components in autonomous discovery applications. We present a robotic solution to the color matching problem that allows for fully autonomous execution of a color matching protocol. Our solution leverages the WEI science factory platform to enable portability across different robotic hardware, the use of alternative optimization methods for continuous refinement, and automated publication of results for experiment tracking and post-hoc analysis.",
+		"DOI": "10.48550/arXiv.2310.00510",
+		"language": "en",
+		"note": "arXiv:2310.00510 [cs]",
+		"number": "arXiv:2310.00510",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Exploring Benchmarks for Self-Driving Labs using Color Matching",
+		"URL": "http://arxiv.org/abs/2310.00510",
+		"author": [
+			{
+				"family": "Ginsburg",
+				"given": "Tobias"
+			},
+			{
+				"family": "Hippe",
+				"given": "Kyle"
+			},
+			{
+				"family": "Lewis",
+				"given": "Ryan"
+			},
+			{
+				"family": "Ozgulbas",
+				"given": "Doga"
+			},
+			{
+				"family": "Cleary",
+				"given": "Aileen"
+			},
+			{
+				"family": "Butler",
+				"given": "Rory"
+			},
+			{
+				"family": "Stone",
+				"given": "Casey"
+			},
+			{
+				"family": "Stroka",
+				"given": "Abraham"
+			},
+			{
+				"family": "Foster",
+				"given": "Ian"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					9,
+					30
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/IU3Y3Z2Y",
+		"type": "article-journal",
+		"abstract": "Functional coatings are used in a wide range of high surface-area technologies, such as low-E windows and photovoltaics. Solution-based coatings are typically less expensive to produce than vacuum-based coatings; however, it is generally more difﬁcult to produce high-quality coatings using solution-based methods due to lower control over the physical and chemical processes involved. Here, we show how a selfdriving laboratory can be used to optimize spray coating parameters. For this demonstration, we optimized the combustion synthesis of spray-cast conductive palladium (Pd) ﬁlms. The closed-loop optimization yielded ﬁlms with conductivities of >4 MS/m, which compares favorably with the conductivities of 2–6 MS/m reported for thin Pd ﬁlms obtained by vacuum-based sputtering processes. The champion coating conditions were scaled up to an 83 larger area using the same spray-coating apparatus while preserving coating quality and conductivity. This work shows how self-driving laboratories can optimize solution-based coatings at scale.",
+		"container-title": "Cell Reports Physical Science",
+		"DOI": "10.1016/j.xcrp.2023.101411",
+		"ISSN": "26663864",
+		"issue": "5",
+		"journalAbbreviation": "Cell Reports Physical Science",
+		"language": "en",
+		"page": "101411",
+		"source": "DOI.org (Crossref)",
+		"title": "A self driving laboratory optimizes a scalable process for making functional coatings",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S2666386423001856",
+		"volume": "4",
+		"author": [
+			{
+				"family": "Rupnow",
+				"given": "Connor C."
+			},
+			{
+				"family": "MacLeod",
+				"given": "Benjamin P."
+			},
+			{
+				"family": "Mokhtari",
+				"given": "Mehrdad"
+			},
+			{
+				"family": "Ocean",
+				"given": "Karry"
+			},
+			{
+				"family": "Dettelbach",
+				"given": "Kevan E."
+			},
+			{
+				"family": "Lin",
+				"given": "Daniel"
+			},
+			{
+				"family": "Parlane",
+				"given": "Fraser G.L."
+			},
+			{
+				"family": "Chiu",
+				"given": "Hsi N."
+			},
+			{
+				"family": "Rooney",
+				"given": "Michael B."
+			},
+			{
+				"family": "Waizenegger",
+				"given": "Chris E.B."
+			},
+			{
+				"family": "De Hoog",
+				"given": "Elija I."
+			},
+			{
+				"family": "Soni",
+				"given": "Abhishek"
+			},
+			{
+				"family": "Berlinguette",
+				"given": "Curtis P."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/BCWE72FH",
+		"type": "article-journal",
+		"abstract": "Abstract\n            Active learning—the field of machine learning (ML) dedicated to optimal experiment design—has played a part in science as far back as the 18th century when Laplace used it to guide his discovery of celestial mechanics. In this work, we focus a closed-loop, active learning-driven autonomous system on another major challenge, the discovery of advanced materials against the exceedingly complex synthesis-processes-structure-property landscape. We demonstrate an autonomous materials discovery methodology for functional inorganic compounds which allow scientists to fail smarter, learn faster, and spend less resources in their studies, while simultaneously improving trust in scientific results and machine learning tools. This robot science enables science-over-the-network, reducing the economic impact of scientists being physically separated from their labs. The real-time closed-loop, autonomous system for materials exploration and optimization (CAMEO) is implemented at the synchrotron beamline to accelerate the interconnected tasks of phase mapping and property optimization, with each cycle taking seconds to minutes. We also demonstrate an embodiment of human-machine interaction, where human-in-the-loop is called to play a contributing role within each cycle. This work has resulted in the discovery of a novel epitaxial nanocomposite phase-change memory material.",
+		"container-title": "Nature Communications",
+		"DOI": "10.1038/s41467-020-19597-w",
+		"ISSN": "2041-1723",
+		"issue": "1",
+		"journalAbbreviation": "Nat Commun",
+		"language": "en",
+		"page": "5966",
+		"source": "DOI.org (Crossref)",
+		"title": "On the fly closed loop materials discovery via Bayesian active learning",
+		"URL": "https://www.nature.com/articles/s41467-020-19597-w",
+		"volume": "11",
+		"author": [
+			{
+				"family": "Kusne",
+				"given": "A. Gilad"
+			},
+			{
+				"family": "Yu",
+				"given": "Heshan"
+			},
+			{
+				"family": "Wu",
+				"given": "Changming"
+			},
+			{
+				"family": "Zhang",
+				"given": "Huairuo"
+			},
+			{
+				"family": "Hattrick-Simpers",
+				"given": "Jason"
+			},
+			{
+				"family": "DeCost",
+				"given": "Brian"
+			},
+			{
+				"family": "Sarker",
+				"given": "Suchismita"
+			},
+			{
+				"family": "Oses",
+				"given": "Corey"
+			},
+			{
+				"family": "Toher",
+				"given": "Cormac"
+			},
+			{
+				"family": "Curtarolo",
+				"given": "Stefano"
+			},
+			{
+				"family": "Davydov",
+				"given": "Albert V."
+			},
+			{
+				"family": "Agarwal",
+				"given": "Ritesh"
+			},
+			{
+				"family": "Bendersky",
+				"given": "Leonid A."
+			},
+			{
+				"family": "Li",
+				"given": "Mo"
+			},
+			{
+				"family": "Mehta",
+				"given": "Apurva"
+			},
+			{
+				"family": "Takeuchi",
+				"given": "Ichiro"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2020",
+					11,
+					24
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/DSE76EHH",
+		"type": "article-journal",
+		"abstract": "Abstract\n            \n              To close the gap between the rates of computational screening and experimental realization of novel materials\n              1,2\n              , we introduce the A-Lab, an autonomous laboratory for the solid-state synthesis of inorganic powders. This platform uses computations, historical data from the literature, machine learning (ML) and active learning to plan and interpret the outcomes of experiments performed using robotics. Over 17 days of continuous operation, the A-Lab realized 41 novel compounds from a set of 58 targets including a variety of oxides and phosphates that were identified using large-scale ab initio phase-stability data from the Materials Project and Google DeepMind. Synthesis recipes were proposed by natural-language models trained on the literature and optimized using an active-learning approach grounded in thermodynamics. Analysis of the failed syntheses provides direct and actionable suggestions to improve current techniques for materials screening and synthesis design. The high success rate demonstrates the effectiveness of artificial-intelligence-driven platforms for autonomous materials discovery and motivates further integration of computations, historical knowledge and robotics.",
+		"container-title": "Nature",
+		"DOI": "10.1038/s41586-023-06734-w",
+		"ISSN": "0028-0836, 1476-4687",
+		"issue": "7990",
+		"journalAbbreviation": "Nature",
+		"language": "en",
+		"page": "86-91",
+		"source": "DOI.org (Crossref)",
+		"title": "An autonomous laboratory for the accelerated synthesis of novel materials",
+		"URL": "https://www.nature.com/articles/s41586-023-06734-w",
+		"volume": "624",
+		"author": [
+			{
+				"family": "Szymanski",
+				"given": "Nathan J."
+			},
+			{
+				"family": "Rendy",
+				"given": "Bernardus"
+			},
+			{
+				"family": "Fei",
+				"given": "Yuxing"
+			},
+			{
+				"family": "Kumar",
+				"given": "Rishi E."
+			},
+			{
+				"family": "He",
+				"given": "Tanjin"
+			},
+			{
+				"family": "Milsted",
+				"given": "David"
+			},
+			{
+				"family": "McDermott",
+				"given": "Matthew J."
+			},
+			{
+				"family": "Gallant",
+				"given": "Max"
+			},
+			{
+				"family": "Cubuk",
+				"given": "Ekin Dogus"
+			},
+			{
+				"family": "Merchant",
+				"given": "Amil"
+			},
+			{
+				"family": "Kim",
+				"given": "Haegyeom"
+			},
+			{
+				"family": "Jain",
+				"given": "Anubhav"
+			},
+			{
+				"family": "Bartel",
+				"given": "Christopher J."
+			},
+			{
+				"family": "Persson",
+				"given": "Kristin"
+			},
+			{
+				"family": "Zeng",
+				"given": "Yan"
+			},
+			{
+				"family": "Ceder",
+				"given": "Gerbrand"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					12,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/ZH649BGV",
+		"type": "article-journal",
+		"abstract": "We review recent progress in the development of self-driving laboratories and discuss their application to autonomous inorganic materials synthesis.\n          , \n            Autonomous experimentation driven by artificial intelligence (AI) provides an exciting opportunity to revolutionize inorganic materials discovery and development. Herein, we review recent progress in the design of self-driving laboratories, including robotics to automate materials synthesis and characterization, in conjunction with AI to interpret experimental outcomes and propose new experimental procedures. We focus on efforts to automate inorganic synthesis through solution-based routes, solid-state reactions, and thin film deposition. In each case, connections are made to relevant work in organic chemistry, where automation is more common. Characterization techniques are primarily discussed in the context of phase identification, as this task is critical to understand what products have formed during synthesis. The application of deep learning to analyze multivariate characterization data and perform phase identification is examined. To achieve “closed-loop” materials synthesis and design, we further provide a detailed overview of optimization algorithms that use active learning to rationally guide experimental iterations. Finally, we highlight several key opportunities and challenges for the future development of self-driving inorganic materials synthesis platforms.",
+		"container-title": "Materials Horizons",
+		"DOI": "10.1039/D1MH00495F",
+		"ISSN": "2051-6347, 2051-6355",
+		"issue": "8",
+		"journalAbbreviation": "Mater. Horiz.",
+		"language": "en",
+		"page": "2169-2198",
+		"source": "DOI.org (Crossref)",
+		"title": "Toward autonomous design and synthesis of novel inorganic materials",
+		"URL": "https://xlink.rsc.org/?DOI=D1MH00495F",
+		"volume": "8",
+		"author": [
+			{
+				"family": "Szymanski",
+				"given": "Nathan J."
+			},
+			{
+				"family": "Zeng",
+				"given": "Yan"
+			},
+			{
+				"family": "Huo",
+				"given": "Haoyan"
+			},
+			{
+				"family": "Bartel",
+				"given": "Christopher J."
+			},
+			{
+				"family": "Kim",
+				"given": "Haegyeom"
+			},
+			{
+				"family": "Ceder",
+				"given": "Gerbrand"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/F9SFN34Z",
+		"type": "article",
+		"abstract": "Assessing different material properties to predict specific attributes, such as band gap, resistivity, young modulus, work function, and refractive index, is a fundamental requirement for materials science-based applications. However, the process is time-consuming and often requires extensive literature reviews and numerous experiments. Our study addresses these challenges by leveraging machine learning to analyze material properties with greater precision and efficiency. By automating the data extraction process and using the extracted information to train machine learning models, our developed model, SciQu, optimizes material properties. As a proof of concept, we predicted the refractive index of materials using data extracted from numerous research articles with SciQu, considering input descriptors such as space group, volume, and bandgap with Root Mean Square Error (RMSE) ∼ 0.068 and R2 ∼ 0.94. Thus, SciQu not only predicts the material’s properties but also plays a key role in self-driving laboratories by optimizing the synthesis parameters to achieve precise shape, size, and phase of the materials subjected to the input parameters.",
+		"DOI": "10.48550/arXiv.2407.08270",
+		"language": "en",
+		"note": "arXiv:2407.08270 [cond-mat]",
+		"number": "arXiv:2407.08270",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Accelerating Materials Properties Prediction with Automated Literature Mining for Self-Driving Laboratories",
+		"title-short": "SciQu",
+		"URL": "http://arxiv.org/abs/2407.08270",
+		"author": [
+			{
+				"family": "Babu",
+				"given": "Anand"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					7,
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/Z2X3K3ZD",
+		"type": "article-journal",
+		"abstract": "Abstract\n            \n              Metal cation‐doped lead halide perovskite (LHP) quantum dots (QDs) with photoluminescence quantum yields (PLQYs) higher than unity, due to quantum cutting phenomena, are an important building block of the next‐generation renewable energy technologies. However, synthetic route exploration and development of the highest‐performing QDs for device applications remain challenging. In this work, Smart Dope is presented, which is a self‐driving fluidic lab (SDFL), for the accelerated synthesis space exploration and autonomous optimization of LHP QDs. Specifically, the multi‐cation doping of CsPbCl\n              3\n              QDs using a one‐pot high‐temperature synthesis chemistry is reported. Smart Dope continuously synthesizes multi‐cation‐doped CsPbCl\n              3\n              QDs using a high‐pressure gas‐liquid segmented flow format to enable continuous experimentation with minimal experimental noise at reaction temperatures up to 255°C. Smart Dope offers multiple functionalities, including accelerated mechanistic studies through digital twin QD synthesis modeling, closed‐loop autonomous optimization for accelerated QD synthetic route discovery, and on‐demand continuous manufacturing of high‐performing QDs. Through these developments, Smart Dope autonomously identifies the optimal synthetic route of Mn‐Yb co‐doped CsPbCl\n              3\n              QDs with a PLQY of 158%, which is the highest reported value for this class of QDs to date. Smart Dope illustrates the power of SDFLs in accelerating the discovery and development of emerging advanced energy materials.",
+		"container-title": "Advanced Energy Materials",
+		"DOI": "10.1002/aenm.202302303",
+		"ISSN": "1614-6832, 1614-6840",
+		"issue": "1",
+		"journalAbbreviation": "Advanced Energy Materials",
+		"language": "en",
+		"page": "2302303",
+		"source": "DOI.org (Crossref)",
+		"title": "Smart Dope A Self‐Driving Fluidic Lab for Accelerated Development of Doped Perovskite Quantum Dots",
+		"title-short": "Smart Dope",
+		"URL": "https://onlinelibrary.wiley.com/doi/10.1002/aenm.202302303",
+		"volume": "14",
+		"author": [
+			{
+				"family": "Bateni",
+				"given": "Fazel"
+			},
+			{
+				"family": "Sadeghi",
+				"given": "Sina"
+			},
+			{
+				"family": "Orouji",
+				"given": "Negin"
+			},
+			{
+				"family": "Bennett",
+				"given": "Jeffrey A."
+			},
+			{
+				"family": "Punati",
+				"given": "Venkat S."
+			},
+			{
+				"family": "Stark",
+				"given": "Christine"
+			},
+			{
+				"family": "Wang",
+				"given": "Junyu"
+			},
+			{
+				"family": "Rosko",
+				"given": "Michael C."
+			},
+			{
+				"family": "Chen",
+				"given": "Ou"
+			},
+			{
+				"family": "Castellano",
+				"given": "Felix N."
+			},
+			{
+				"family": "Reyes",
+				"given": "Kristofer G."
+			},
+			{
+				"family": "Abolhasani",
+				"given": "Milad"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/EV9VPRXS",
+		"type": "article-journal",
+		"abstract": "Recent advances in machine learning (ML) and artificial intelligence (AI) have provided an exciting opportunity to computerize the fundamental and applied studies of complex reaction systems via selfdriving laboratories. Autonomous robotic experimentation can enable time-, material-, and resourceefficient exploration and/or optimization of high-dimensional space reaction systems. Furthermore, interpretation of the ML models trained on the experimental data can unveil underlying reaction mechanisms. In this article, we discuss different elements of a self-driving lab, and present recent efforts in autonomous reaction modeling and optimization. Further development and adoption of ML-guided closed-loop experimentation strategies can realize the full potential of autonomous chemical science and engineering to accelerate the discovery and development of advanced materials and molecules.",
+		"container-title": "Current Opinion in Chemical Engineering",
+		"DOI": "10.1016/j.coche.2022.100831",
+		"ISSN": "22113398",
+		"journalAbbreviation": "Current Opinion in Chemical Engineering",
+		"language": "en",
+		"page": "100831",
+		"source": "DOI.org (Crossref)",
+		"title": "Autonomous chemical science and engineering enabled by self-driving laboratories",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S2211339822000417",
+		"volume": "36",
+		"author": [
+			{
+				"family": "Bennett",
+				"given": "Jeffrey A"
+			},
+			{
+				"family": "Abolhasani",
+				"given": "Milad"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					6
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/7Q79T28L",
+		"type": "article-journal",
+		"abstract": "Owing to the chemical pluripotency and viscoelastic nature of electronic polymers, polymer electronics have shown unique advances in many emerging applications such as skin-like electronics, large-area printed energy devices, and neuromorphic computing devices, but their development period is years-long. Recent advancements in automation, robotics, and learning algorithms have led to a growing number of self-driving (autonomous) laboratories that have begun to revolutionize the development and accelerated discovery of materials. In this perspective, we first introduce the current state of autonomous laboratories. Then we analyze why it is challenging to conduct polymer electronics research by an autonomous laboratory and highlight the needs. We further discuss our efforts in building an autonomous laboratory, namely Polybot, for the automated synthesis and characterization of electronic polymers and their processing and fabrication into electronic devices. Finally, we share our vision in using a self-driving laboratory for different types of polymer electronics research.",
+		"container-title": "Chemistry of Materials",
+		"DOI": "10.1021/acs.chemmater.2c03593",
+		"ISSN": "0897-4756, 1520-5002",
+		"issue": "8",
+		"journalAbbreviation": "Chem. Mater.",
+		"language": "en",
+		"license": "https://doi.org/10.15223/policy-029",
+		"page": "3046-3056",
+		"source": "DOI.org (Crossref)",
+		"title": "Self Driving Laboratory for Polymer Electronics",
+		"URL": "https://pubs.acs.org/doi/10.1021/acs.chemmater.2c03593",
+		"volume": "35",
+		"author": [
+			{
+				"family": "Vriza",
+				"given": "Aikaterini"
+			},
+			{
+				"family": "Chan",
+				"given": "Henry"
+			},
+			{
+				"family": "Xu",
+				"given": "Jie"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					4,
+					25
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/SS56XKPG",
+		"type": "article-journal",
+		"abstract": "The accelerating depletion of natural resources undoubtedly demands a radical reevaluation of research practices addressing the escalating climate crisis. From traditional approaches to modern-day advancements, the integration of automation and artificial intelligence (AI)-guided decision-making has emerged as a transformative route in shaping new research methodologies. Harnessing robotics and high-throughput automation alongside intelligent experimental design, self-driving laboratories (SDLs) offer an innovative solution to expedite chemical/materials research timelines while significantly reducing the carbon footprint of scientific endeavors, which could be utilized to not only generate green materials but also make the research process itself more sustainable. In this Perspective, we examine the potential of SDLs in driving sustainability forward through case studies in materials discovery and process optimization, thereby paving the way for a greener and more efficient future. While SDLs hold an immense promise, we discuss the challenges that persist in their development and deployment, necessitating a holistic approach to sustainability in both design and implementation.",
+		"container-title": "ACS Sustainable Chemistry & Engineering",
+		"DOI": "10.1021/acssuschemeng.4c02177",
+		"ISSN": "2168-0485, 2168-0485",
+		"issue": "34",
+		"journalAbbreviation": "ACS Sustainable Chem. Eng.",
+		"language": "en",
+		"license": "https://doi.org/10.15223/policy-029",
+		"page": "12695-12707",
+		"source": "DOI.org (Crossref)",
+		"title": "Engineering a Sustainable Future Harnessing Automation, Robotics, and Artificial Intelligence with Self Driving Laboratories",
+		"title-short": "Engineering a Sustainable Future",
+		"URL": "https://pubs.acs.org/doi/10.1021/acssuschemeng.4c02177",
+		"volume": "12",
+		"author": [
+			{
+				"family": "Sadeghi",
+				"given": "Sina"
+			},
+			{
+				"family": "Canty",
+				"given": "Richard B."
+			},
+			{
+				"family": "Mukhin",
+				"given": "Nikolai"
+			},
+			{
+				"family": "Xu",
+				"given": "Jinge"
+			},
+			{
+				"family": "Delgado-Licona",
+				"given": "Fernando"
+			},
+			{
+				"family": "Abolhasani",
+				"given": "Milad"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					8,
+					26
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/8283AK3X",
+		"type": "article-journal",
+		"abstract": "Self-driving labs (SDLs) have recently emerged as one of the most signiﬁcant technological developments in the chemical and materials sciences and hold the potential to revolutionize the research process. Herein, we discuss the structure of an SDL in terms of the hardware, the coordinator software, and the AI agent and examine how the selection of these elements affects the overall research capabilities. We further look to the application and accessibility of these platforms to better understand their future impact on synthetic and materials chemistry. With the rapid rise in the capabilities of these SDLs, and with the increasing democratization of the space, it is crucial to be aware of both the promises and pitfalls this technology holds.",
+		"container-title": "Matter",
+		"DOI": "10.1016/j.matt.2024.06.003",
+		"ISSN": "25902385",
+		"issue": "7",
+		"journalAbbreviation": "Matter",
+		"language": "en",
+		"page": "2382-2398",
+		"source": "DOI.org (Crossref)",
+		"title": "Autonomous chemistry Navigating self-driving labs in chemical and material sciences",
+		"title-short": "Autonomous chemistry",
+		"URL": "https://linkinghub.elsevier.com/retrieve/pii/S2590238524003229",
+		"volume": "7",
+		"author": [
+			{
+				"family": "Bayley",
+				"given": "Oliver"
+			},
+			{
+				"family": "Savino",
+				"given": "Elia"
+			},
+			{
+				"family": "Slattery",
+				"given": "Aidan"
+			},
+			{
+				"family": "Noël",
+				"given": "Timothy"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/2TG9CQE7",
+		"type": "article-journal",
+		"abstract": "Low-cost self-driving labs (SDLs) offer faster prototyping, low-risk hands-on experience, and a test bed for sophisticated experimental planning software which helps us develop state-of-the-art SDLs.\n          , \n            \n              This review proposes the concept of a “frugal twin,” similar to a digital twin, but for physical experiments. Frugal twins range from simple toy examples to low-cost surrogates of high-cost research systems. For example, a color-mixing self-driving laboratory (SDL) can serve as a low-cost version of a costly multi-step chemical discovery SDL. Frugal twins already provide hands-on experience for SDLs with low costs and low risks. They can also offer as test beds for software prototyping (\n              e.g.\n              , optimization, data infrastructure), and a low barrier to entry for democratizing SDLs. However, there is room for improvement. The true value of frugal twins can be realized in three core areas. Firstly, hardware and software modularity; secondly, purpose-built design (human-inspired\n              vs.\n              hardware-centric\n              vs.\n              human-in-the-loop); and thirdly state-of-the-art (SOTA) software (\n              e.g.\n              , multi-fidelity optimization). We also describe the ethical benefits and risks that come with the democratization of science through frugal twins. For future work, we suggest ideas for new frugal twins, SDL educational course outcomes, and a classification scheme for autonomy levels.",
+		"container-title": "Digital Discovery",
+		"DOI": "10.1039/D3DD00223C",
+		"ISSN": "2635-098X",
+		"issue": "5",
+		"journalAbbreviation": "Digital Discovery",
+		"language": "en",
+		"page": "842-868",
+		"source": "DOI.org (Crossref)",
+		"title": "Review of low-cost self-driving laboratories in chemistry and materials science the “frugal twin” concept",
+		"title-short": "Review of low-cost self-driving laboratories in chemistry and materials science",
+		"URL": "https://xlink.rsc.org/?DOI=D3DD00223C",
+		"volume": "3",
+		"author": [
+			{
+				"family": "Lo",
+				"given": "Stanley"
+			},
+			{
+				"family": "Baird",
+				"given": "Sterling G."
+			},
+			{
+				"family": "Schrier",
+				"given": "Joshua"
+			},
+			{
+				"family": "Blaiszik",
+				"given": "Ben"
+			},
+			{
+				"family": "Carson",
+				"given": "Nessa"
+			},
+			{
+				"family": "Foster",
+				"given": "Ian"
+			},
+			{
+				"family": "Aguilar-Granda",
+				"given": "Andrés"
+			},
+			{
+				"family": "Kalinin",
+				"given": "Sergei V."
+			},
+			{
+				"family": "Maruyama",
+				"given": "Benji"
+			},
+			{
+				"family": "Politi",
+				"given": "Maria"
+			},
+			{
+				"family": "Tran",
+				"given": "Helen"
+			},
+			{
+				"family": "Sparks",
+				"given": "Taylor D."
+			},
+			{
+				"family": "Aspuru-Guzik",
+				"given": "Alán"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/56DMLKY7",
+		"type": "article-journal",
+		"abstract": "CONSPECTUS: We must accelerate the pace at which we make technological advancements to address climate change and disease risks worldwide. This swifter pace of discovery requires faster research and development cycles enabled by better integration between hypothesis generation, design, experimentation, and data analysis. Typical research cycles take months to years. However, data-driven automated laboratories, or self-driving laboratories, can significantly accelerate molecular and materials discovery. Recently, substantial advancements have been made in the areas of machine learning and optimization algorithms that have allowed researchers to extract valuable knowledge from multidimensional data sets. Machine learning models can be trained on large data sets from the literature or databases, but their performance can often be hampered by a lack of negative results or metadata. In contrast, data generated by self-driving laboratories can be information-rich, containing precise details of the experimental conditions and metadata. Consequently, much larger amounts of high-quality data are gathered in self-driving laboratories. When placed in open repositories, this data can be used by the research community to reproduce experiments, for more in-depth analysis, or as the basis for further investigation. Accordingly, high-quality open data sets will increase the accessibility and reproducibility of science, which is sorely needed. In this Account, we describe our efforts to build a self-driving lab for the development of a new class of materials: organic semiconductor lasers (OSLs). Since they have only recently been demonstrated, little is known about the molecular and material design rules for thin-film, electrically-pumped OSL devices as compared to other technologies such as organic light-emitting diodes or organic photovoltaics. To realize high-performing OSL materials, we are developing a flexible system for automated synthesis via iterative Suzuki−Miyaura cross-coupling reactions. This automated synthesis platform is directly coupled to the analysis and purification capabilities. Subsequently, the molecules of interest can be transferred to an optical characterization setup. We are currently limited to optical measurements of the OSL molecules in solution. However, material properties are ultimately most important in the solid state (e.g., as a thin-film device). To that end and for a different scientific goal, we are developing a self-driving lab for inorganic thin-film materials focused on the oxygen evolution reaction. While the future of self-driving laboratories is very promising, numerous challenges still need to be overcome. These challenges can be split into cognition and motor function. Generally, the cognitive challenges are related to optimization with constraints or unexpected outcomes for which general algorithmic solutions have yet to be developed. A more practical challenge that could be resolved in the near future is that of software control and integration because few instrument manufacturers design their products with self-driving laboratories in mind. Challenges in motor function are largely related to handling heterogeneous systems, such as dispensing solids or performing extractions. As a result, it is critical to understand that adapting experimental procedures that were designed for human experimenters is not as simple as transferring those same actions to an automated system, and there may be more efficient ways to achieve the same goal in an automated fashion. Accordingly, for self-driving laboratories, we need to carefully rethink the translation of manual experimental protocols.",
+		"container-title": "Accounts of Chemical Research",
+		"DOI": "10.1021/acs.accounts.2c00220",
+		"ISSN": "0001-4842, 1520-4898",
+		"issue": "17",
+		"journalAbbreviation": "Acc. Chem. Res.",
+		"language": "en",
+		"license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+		"page": "2454-2466",
+		"source": "DOI.org (Crossref)",
+		"title": "Autonomous Chemical Experiments Challenges and Perspectives on Establishing a Self Driving Lab",
+		"title-short": "Autonomous Chemical Experiments",
+		"URL": "https://pubs.acs.org/doi/10.1021/acs.accounts.2c00220",
+		"volume": "55",
+		"author": [
+			{
+				"family": "Seifrid",
+				"given": "Martin"
+			},
+			{
+				"family": "Pollice",
+				"given": "Robert"
+			},
+			{
+				"family": "Aguilar-Granda",
+				"given": "Andrés"
+			},
+			{
+				"family": "Morgan Chan",
+				"given": "Zamyla"
+			},
+			{
+				"family": "Hotta",
+				"given": "Kazuhiro"
+			},
+			{
+				"family": "Ser",
+				"given": "Cher Tian"
+			},
+			{
+				"family": "Vestfrid",
+				"given": "Jenya"
+			},
+			{
+				"family": "Wu",
+				"given": "Tony C."
+			},
+			{
+				"family": "Aspuru-Guzik",
+				"given": "Alán"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					9,
+					6
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/XGEXF3XG",
+		"type": "article-journal",
+		"container-title": "Nature Synthesis",
+		"DOI": "10.1038/s44160-022-00231-0",
+		"ISSN": "2731-0582",
+		"issue": "6",
+		"journalAbbreviation": "Nat. Synth",
+		"language": "en",
+		"page": "483-492",
+		"source": "DOI.org (Crossref)",
+		"title": "The rise of self driving labs in chemical and materials sciences",
+		"URL": "https://www.nature.com/articles/s44160-022-00231-0",
+		"volume": "2",
+		"author": [
+			{
+				"family": "Abolhasani",
+				"given": "Milad"
+			},
+			{
+				"family": "Kumacheva",
+				"given": "Eugenia"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					1,
+					30
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/16075619/items/V5AHVUH7",
+		"type": "article-journal",
+		"abstract": "The rapid emergence of large language model (LLM) technology presents promising opportunities to facilitate the development of synthetic reactions. In this work, we leveraged the power of GPT-4 to build an LLM-based reaction development framework (LLM-RDF) to handle fundamental tasks involved throughout the chemical synthesis development. LLM-RDF comprises six specialized LLM-based agents, including Literature Scouter, Experiment Designer, Hardware Executor, Spectrum Analyzer, Separation Instructor, and Result Interpreter, which are pre-prompted to accomplish the designated tasks. A web application with LLM-RDF as the backend was built to allow chemist users to interact with automated experimental platforms and analyze results via natural language, thus, eliminating the need for coding skills and ensuring accessibility for all chemists. We demonstrated the capabilities of LLM-RDF in guiding the end-to-end synthesis development process for the copper/TEMPO catalyzed aerobic alcohol oxidation to aldehyde reaction, including literature search and information extraction, substrate scope and condition screening, reaction kinetics study, reaction condition optimization, reaction scale-up and product purification. Furthermore, LLM-RDF’s broader applicability and versability was validated on various synthesis tasks of three distinct reactions (SNAr reaction, photoredox C-C cross-coupling reaction, and heterogeneous photoelectrochemical reaction).",
+		"container-title": "Nature Communications",
+		"DOI": "10.1038/s41467-024-54457-x",
+		"ISSN": "2041-1723",
+		"issue": "1",
+		"journalAbbreviation": "Nat Commun",
+		"language": "en",
+		"page": "10160",
+		"source": "DOI.org (Crossref)",
+		"title": "An automatic end to end chemical synthesis development platform powered by large language models",
+		"URL": "https://www.nature.com/articles/s41467-024-54457-x",
+		"volume": "15",
+		"author": [
+			{
+				"family": "Ruan",
+				"given": "Yixiang"
+			},
+			{
+				"family": "Lu",
+				"given": "Chenyin"
+			},
+			{
+				"family": "Xu",
+				"given": "Ning"
+			},
+			{
+				"family": "He",
+				"given": "Yuchen"
+			},
+			{
+				"family": "Chen",
+				"given": "Yixin"
+			},
+			{
+				"family": "Zhang",
+				"given": "Jian"
+			},
+			{
+				"family": "Xuan",
+				"given": "Jun"
+			},
+			{
+				"family": "Pan",
+				"given": "Jianzhang"
+			},
+			{
+				"family": "Fang",
+				"given": "Qun"
+			},
+			{
+				"family": "Gao",
+				"given": "Hanyu"
+			},
+			{
+				"family": "Shen",
+				"given": "Xiaodong"
+			},
+			{
+				"family": "Ye",
+				"given": "Ning"
+			},
+			{
+				"family": "Zhang",
+				"given": "Qiang"
+			},
+			{
+				"family": "Mo",
+				"given": "Yiming"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					3,
+					3
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					11,
+					23
+				]
+			]
+		}
+	}
+]
